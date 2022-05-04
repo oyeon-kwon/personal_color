@@ -1,0 +1,14 @@
+.nav {
+background-color: #ff7773;
+width: 100vw;
+height: 3rem;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.nav-link {
+margin: 0 15px;
+color: #ffffff;
+font-size: 12px;
+}
