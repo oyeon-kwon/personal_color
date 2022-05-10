@@ -4,7 +4,6 @@ import { firestore } from './firebase';
 import Landing from './Landing';
 import Nav from './Nav';
 
-
 function App() {
 
   return (

@@ -12,3 +12,8 @@ margin: 0 15px;
 color: #ffffff;
 font-size: 12px;
 }
+
+a {
+text-decoration: none;
+color: #ffffff;
+}
