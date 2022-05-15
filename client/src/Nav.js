@@ -21,7 +21,7 @@ function Nav () {
               <Link to='/color'>COLOR</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/community'>COMMUTNITY</Link>
+              <Link to='/community'>COMMUNITY</Link>
             </span>
             <span className='nav-link'>
               <Link to='/mypage'>MYPAGE</Link>
