@@ -4,6 +4,7 @@ import { firestore } from './firebase';
 import Landing from './Landing';
 import Nav from './Nav';
 import Signup from './Signup';
+import Login from './Login';
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
     <div className='body'>
       {/* <Nav />
       <Landing /> */}
-      <Signup />
+      {/* <Signup /> */}
+      <Login />
     </div>
   );
 }
