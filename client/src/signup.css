@@ -1,3 +1,20 @@
+.signup-box {
+    display: flex;
+}
+
+.left-nav { 
+    width: 40vw;
+    height: 100vh;
+    background-color: #fdc1bf;
+    text-align: center;
+    align-items: center;
+}
+
+.signup-img {
+    width: 28rem;
+    margin: 30% 0;
+}
+
 .form-body {
     display: flex;
     flex-direction: column;
@@ -5,7 +22,9 @@
 }
 
 .form-title {
-    text-align: center;
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 5rem 0;
 }
 
 .form {
@@ -18,7 +37,7 @@
 
 .desc {
     font-size: 0.8rem;
-    margin: 1rem 1rem 0 1.5rem;
+    margin: 1rem 1rem 0 0.5rem;
 }
 
 .form-box {
@@ -26,5 +45,17 @@
     width: 30rem;
     height: 3rem;
     border-radius: 20px;
-    margin: 0.5rem 1rem 1rem 1rem;
+    margin: 0.5rem 1rem 1rem 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+input { 
+    -webkit-appearance : none;
+    -moz-appearance:none;
+    appearance:none;
+}
+
+input:focus {
+    outline: none;
 }

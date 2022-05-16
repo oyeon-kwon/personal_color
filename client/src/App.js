@@ -10,10 +10,10 @@ function App() {
 
   return (
     <div className='body'>
-      {/* <Nav />
-      <Landing /> */}
-      {/* <Signup /> */}
-      <Login />
+      {/* <Nav /> */}
+      {/* <Landing /> */}
+      <Signup />
+      {/* <Login /> */}
     </div>
   );
 }
