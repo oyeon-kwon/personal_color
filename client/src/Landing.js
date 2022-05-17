@@ -4,32 +4,31 @@ import selfImg from './img/self.svg';
 import aiImg from './img/ai.svg';
 
 function Landing () {
+  const [buttonStatus, setButtonStatus] = useState('self');
 
-  const [buttonStatus, setButtonStatus] = useState('self')
-
-    return (
-        <>
-        <div className='content-box-1'>
-          <div className='desc'>
-            <div className='desc-lg'>간단하게 퍼스널 컬러를 테스트 해 보세요!</div>
-            <div className='desc-sm'>스스로 맞는 컬러가 무엇인지 측정해 보거나<br />빅데이터를 기반으로 학습한 AI를 통해 측정할 수 있습니다.</div>
-          </div>
-          <div className='test-button-container'>
-            <div className='test-button self' onMouseOver={() => setButtonStatus('self')}>스스로 진단하기</div>
-            <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')}>AI로 진단하기</div>
-          </div>
+  return (
+    <>
+      <div className='content-box-1'>
+        <div className='desc'>
+          <div className='desc-lg'>간단하게 퍼스널 컬러를 테스트 해 보세요!</div>
+          <div className='desc-sm'>스스로 맞는 컬러가 무엇인지 측정해 보거나<br />빅데이터를 기반으로 학습한 AI를 통해 측정할 수 있습니다.</div>
         </div>
-        <div className='img-container'>
-            {
-                buttonStatus === 'self' ?
-                 <img src={selfImg} className="button-img" alt="img" />
-                : buttonStatus === 'ai' ? <img src={aiImg} className="button-img" alt="img" />
-                : <></>
+        <div className='test-button-container'>
+          <div className='test-button self' onMouseOver={() => setButtonStatus('self')}>스스로 진단하기</div>
+          <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')}>AI로 진단하기</div>
+        </div>
+      </div>
+      <div className='img-container'>
+        {
+                buttonStatus === 'self'
+                  ? <img src={selfImg} className='button-img' alt='img' />
+                  : buttonStatus === 'ai' ? <img src={aiImg} className='button-img' alt='img' />
+                    : <></>
             }
-        </div>
-        </>
+      </div>
+    </>
 
-    )
+  );
 }
 
 export default Landing;

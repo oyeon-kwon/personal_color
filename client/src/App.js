@@ -6,14 +6,13 @@ import Nav from './Nav';
 import Signup from './Signup';
 import Login from './Login';
 
-function App() {
-
+function App () {
   return (
     <div className='body'>
       {/* <Nav /> */}
       {/* <Landing /> */}
-      <Signup />
-      {/* <Login /> */}
+      {/* <Signup /> */}
+      <Login />
     </div>
   );
 }

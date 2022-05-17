@@ -1,2 +1,2 @@
-import {db} from './index.js'
-import "firebase/firestore";
+import { db } from './index.js';
+import 'firebase/firestore';
