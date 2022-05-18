@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './login.css';
 
-// TODO: 소셜 로그인 추가
-
 function Login () {
+
+  const [emailInput, setEmailInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+
+  const emailInputHandler = (e) => {
+    let email = e.target.value
+    setEmailInput(email)
+  }
+
+  const passwordInputHandler = (e) => {
+    let password = e.target.value
+    setPasswordInput(password)
+  }
+
+  const submitLoginHandler = () => {
+      // TODO: 서버로 emailInput, passwordInput 보내주기
+      console.log(emailInput)
+      console.log(passwordInput)
+  }
+
   return (
     <>
       <div className='modal-background'>
@@ -12,13 +30,13 @@ function Login () {
           <div className='form'>
             <div className='email'>
               <div className='desc'>email</div>
-              <div className='form-box' />
+              <input className='form-box' onChange={emailInputHandler} />
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>
-              <div className='form-box' />
+              <input className='form-box' onChange={passwordInputHandler}/>
             </div>
-            <div className='submit-button'>로그인</div>
+            <div className='submit-button' onClick={submitLoginHandler}>로그인</div>
             <div className='hr'>
                 <span className='line' />
                 <span>or</span>
