@@ -11,8 +11,8 @@ function App () {
     <div className='body'>
       {/* <Nav /> */}
       {/* <Landing /> */}
-      {/* <Signup /> */}
-      <Login />
+      <Signup />
+      {/* <Login /> */}
     </div>
   );
 }

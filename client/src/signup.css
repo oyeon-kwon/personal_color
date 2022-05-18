@@ -59,3 +59,23 @@ input {
 input:focus {
     outline: none;
 }
+
+
+.signup-button {
+    width: 25rem;
+    height: 3rem;
+    background-color: #ff7773;
+    border-radius: 20px;
+    margin: 2rem auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    color: #ffffff;
+}
+
+.signup-button:hover {
+    cursor: pointer;
+    background-color: #ffcecc;
+    color: #ff7773;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
