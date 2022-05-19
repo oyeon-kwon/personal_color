@@ -5,6 +5,10 @@ import { signupEmail } from './firebase';
 
 function Signup () {
 
+  // TODO: name도 같이 firebase에 저장할 수 있는 방법 알아보기
+  // TODO: 회원가입 클릭 후 성공? -> 라우팅
+  // TODO: 회원가입 안될 시 에러메시지 디자인
+
   const [nameInput, setNameInput] = useState('')
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')

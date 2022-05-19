@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
+import { loginEmail } from './firebase';
 
 function Login () {
 
@@ -16,10 +17,11 @@ function Login () {
     setPasswordInput(password)
   }
 
-  const submitLoginHandler = () => {
-      // TODO: 서버로 emailInput, passwordInput 보내주기
-      console.log(emailInput)
-      console.log(passwordInput)
+  const submitLoginHandler = async () => {
+      let userinfo = await loginEmail(emailInput, passwordInput)
+      if(userinfo.user.uid) {
+          alert('로그인에 성공했습니다.')
+      }
   }
 
   return (
