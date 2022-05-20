@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './signup.css';
 import signupImg from './img/signup-img.png';
 import { signupEmail } from './firebase';
+import { useNavigate } from 'react-router-dom';
 
 function Signup () {
-  // TODO: name도 같이 firebase에 저장할 수 있는 방법 알아보기
-  // TODO: 회원가입 클릭 후 성공? -> 라우팅
-  // TODO: 회원가입 안될 시 에러메시지 디자인
+  let navigate = useNavigate();
+  // TODO: 비밀번호 확인 구현
+  // TODO: result.user.emailVerified
 
   const [nameInput, setNameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [isSamePassword, setIsSamePassword] = useState(false);
 
   const nameInputHandler = (e) => {
     const name = e.target.value;
@@ -27,8 +29,40 @@ function Signup () {
     setPasswordInput(password);
   };
 
-  const submitSignupHandler = () => {
-    signupEmail(emailInput, passwordInput);
+  const passwordInputCheckHandler = (e) => {
+    const passwordCheck = e.target.value;
+    if (passwordInput !== passwordCheck) {
+      setIsSamePassword(false)
+    } else {
+      // 한 박자 늦어..
+      setIsSamePassword(true)
+    }
+  }
+
+  const submitSignupHandler = async () => {
+    await signupEmail(emailInput, passwordInput)
+    .then(result => {
+      result.user.displayName = nameInput
+      navigate('/signin');
+    })
+    .catch(err => {
+      // 에러메시지 공식문서 : https://firebase.google.com/docs/auth/admin/errors
+      if(err.message === 'Firebase: Error (auth/invalid-email).') {
+        alert('이메일이 유효하지 않습니다.')
+      }
+      if(err.message === 'Firebase: Error (auth/email-already-in-use).') {
+        alert('이미 사용 중인 이메일입니다.')
+      }
+      if(err.message === 'Firebase: Error (auth/internal-error).') {
+        alert('인증 서버에서 요청을 처리하려고 시도하는 중에 예기치 않은 오류가 발생했습니다. 오류 메시지에는 추가 정보가 들어 있는 인증 서버의 응답이 포함되어야 합니다. 오류가 계속되면 버그 신고 지원 채널에 문제를 신고하시기 바랍니다.')
+      }
+      if(err.message === 'Firebase: Error (auth/invalid-email-verified).') {
+        alert('emailVerified 사용자 속성에 제공된 값이 잘못되었습니다.')
+      }
+      if(err.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+        alert('패스워드는 6자 이상의 문자열이어야 합니다.')
+      }
+    })
   };
 
   return (
@@ -54,7 +88,7 @@ function Signup () {
             </div>
             <div className='password-check'>
               <div className='desc'>비밀번호 확인</div>
-              <input className='form-box' />
+              <input className='form-box' type='password' onChange={passwordInputCheckHandler} />
             </div>
             <div className='signup-button' onClick={submitSignupHandler}>회원가입</div>
           </div>
