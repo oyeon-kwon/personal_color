@@ -25,3 +25,24 @@ time, mark, audio, video {
   height: 100vh;
   flex-direction: column;
 }
+
+.nav {
+  background-color: #ff7773;
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  }
+  
+  .nav-link {
+  margin: 0 15px;
+  color: #ffffff;
+  font-size: 12px;
+  }
+  
+  a {
+  text-decoration: none;
+  color: #ffffff;
+  }

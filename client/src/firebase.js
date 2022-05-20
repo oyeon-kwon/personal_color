@@ -1,6 +1,6 @@
-import firebase from "firebase/compat/app";
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -25,4 +25,3 @@ export const signupEmail = (email, password) => {
 export const loginEmail = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
-

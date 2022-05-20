@@ -4,33 +4,32 @@ import signupImg from './img/signup-img.png';
 import { signupEmail } from './firebase';
 
 function Signup () {
-
   // TODO: name도 같이 firebase에 저장할 수 있는 방법 알아보기
   // TODO: 회원가입 클릭 후 성공? -> 라우팅
   // TODO: 회원가입 안될 시 에러메시지 디자인
 
-  const [nameInput, setNameInput] = useState('')
-  const [emailInput, setEmailInput] = useState('')
-  const [passwordInput, setPasswordInput] = useState('')
+  const [nameInput, setNameInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
 
   const nameInputHandler = (e) => {
-    let name = e.target.value
-    setNameInput(name)
-  }
+    const name = e.target.value;
+    setNameInput(name);
+  };
 
   const emailInputHandler = (e) => {
-    let email = e.target.value
-    setEmailInput(email)
-  }
+    const email = e.target.value;
+    setEmailInput(email);
+  };
 
   const passwordInputHandler = (e) => {
-    let password = e.target.value
-    setPasswordInput(password)
-  }
+    const password = e.target.value;
+    setPasswordInput(password);
+  };
 
   const submitSignupHandler = () => {
-    signupEmail(emailInput, passwordInput)
-  }
+    signupEmail(emailInput, passwordInput);
+  };
 
   return (
     <>
@@ -43,7 +42,7 @@ function Signup () {
           <div className='form'>
             <div className='name'>
               <div className='desc'>이름</div>
-              <input className='form-box' onChange={nameInputHandler}/>
+              <input className='form-box' onChange={nameInputHandler} />
             </div>
             <div className='email'>
               <div className='desc'>email</div>
@@ -51,7 +50,7 @@ function Signup () {
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>
-              <input className='form-box' type="password" onChange={passwordInputHandler} />
+              <input className='form-box' type='password' onChange={passwordInputHandler} />
             </div>
             <div className='password-check'>
               <div className='desc'>비밀번호 확인</div>
