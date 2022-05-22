@@ -20,6 +20,7 @@ function Login () {
     const userinfo = await loginEmail(emailInput, passwordInput);
     if (userinfo.user.uid) {
       alert('로그인에 성공했습니다.');
+      // TODO: 로그인 유지 구현
     }
   };
 
