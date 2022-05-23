@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './login.css';
-import { loginEmail } from './firebase';
+import { auth, loginEmail } from './firebase';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 function Login () {
   const [emailInput, setEmailInput] = useState('');
@@ -24,6 +25,20 @@ function Login () {
     }
   };
 
+  const googleLoginHandler = async () => {
+    const googleProvider = new GoogleAuthProvider();
+
+    googleProvider.addScope('profile');
+    googleProvider.addScope('email');
+    const googleLoginResult = await signInWithPopup(auth, googleProvider);
+
+    // 유저 정보
+    const user = googleLoginResult.user;
+    // 액세스 토큰
+    const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
+    const token = credential.accessToken;
+  }
+
   return (
     <>
       <div className='modal-background'>
@@ -46,7 +61,7 @@ function Login () {
             </div>
             <div className='social-login-box'>
               <span className='naver social-login-button'>네이버</span>
-              <span className='google social-login-button'>구글</span>
+              <span className='google social-login-button' onClick={googleLoginHandler}>구글</span>
               <span className='kakao social-login-button'>카카오</span>
             </div>
           </div>

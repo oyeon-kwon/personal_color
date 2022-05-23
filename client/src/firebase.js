@@ -16,7 +16,7 @@ export const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 // const firestore = firebase.firestore();
 
-const auth = getAuth();
+export const auth = getAuth();
 
 export const signupEmail = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -27,21 +27,17 @@ export const loginEmail = (email, password) => {
 };
 
 // TODO: 로그인 유지
-export const persistLogin = setPersistence(auth, browserSessionPersistence)
-  .then(() => {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-    return signInWithEmailAndPassword(auth, email, password);
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
-  // TODO: google 로그인
-  const googleProvider = new GoogleAuthProvider();
-  googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+// export const persistLogin = setPersistence(auth, browserSessionPersistence)
+//   .then(() => {
+//     // Existing and future Auth states are now persisted in the current
+//     // session only. Closing the window would clear any existing state even
+//     // if a user forgets to sign out.
+//     // ...
+//     // New sign-in will be persisted with session persistence.
+//     return signInWithEmailAndPassword(auth, email, password);
+//   })
+//   .catch((error) => {
+//     // Handle Errors here.
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
