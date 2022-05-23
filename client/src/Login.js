@@ -3,7 +3,11 @@ import './login.css';
 import { auth, loginEmail } from './firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
+// TODO: 비밀번호 확인
+// TODO: 로그인 유지
+
 function Login () {
+
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
@@ -20,24 +24,26 @@ function Login () {
   const submitLoginHandler = async () => {
     const userinfo = await loginEmail(emailInput, passwordInput);
     if (userinfo.user.uid) {
-      alert('로그인에 성공했습니다.');
-      // TODO: 로그인 유지 구현
+        alert('로그인에 성공했습니다.');
+        let token = userinfo.user.accessToken
+        localStorage.setItem('accessToken', token);
     }
   };
 
   const googleLoginHandler = async () => {
-    const googleProvider = new GoogleAuthProvider();
+        const googleProvider = new GoogleAuthProvider();
 
-    googleProvider.addScope('profile');
-    googleProvider.addScope('email');
-    const googleLoginResult = await signInWithPopup(auth, googleProvider);
-
-    // 유저 정보
-    const user = googleLoginResult.user;
-    // 액세스 토큰
-    const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
-    const token = credential.accessToken;
-  }
+        googleProvider.addScope('profile');
+        googleProvider.addScope('email');
+        const googleLoginResult = await signInWithPopup(auth, googleProvider);
+        console.log(googleLoginResult.user.auth.persistenceManager)
+        // 유저 정보
+        const user = googleLoginResult.user;
+        // 액세스 토큰
+        const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
+        const token = credential.accessToken;
+        localStorage.setItem('accessToken', token);
+  };
 
   return (
     <>
