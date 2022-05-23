@@ -42,11 +42,10 @@ function Signup () {
   const submitSignupHandler = async () => {
     await signupEmail(emailInput, passwordInput)
       .then(result => {
-        console.log(result)
-        let email = result.user.email
-        let uid = result.user.uid
-        let accessToken = result.user.accessToken
-        writeUserData(uid, nameInput, email, accessToken)
+        console.log(result);
+        const email = result.user.email;
+        const uid = result.user.uid;
+        writeUserData(uid, nameInput, email);
         navigate('/signin');
       })
       .catch(err => {

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import './login.css';
-import { auth, loginEmail, database } from './firebase';
+import { auth, loginEmail, getUserData, writeUserData } from './firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-// TODO: 비밀번호 확인
 // TODO: 로그인 유지
 
-console.log(database)
-
 function Login () {
-
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
@@ -24,27 +20,46 @@ function Login () {
   };
 
   const submitLoginHandler = async () => {
-    const userinfo = await loginEmail(emailInput, passwordInput);
-    if (userinfo.user.uid) {
-        alert('로그인에 성공했습니다.');
-        let token = userinfo.user.accessToken
-        localStorage.setItem('accessToken', token);
+    try {
+        const userinfo = await loginEmail(emailInput, passwordInput);
+        getUserData(userinfo.user.uid)
+        .then((snapshot) => {
+            console.log(snapshot)
+            if (snapshot.exists()) {
+                alert('로그인에 성공했습니다.');
+                let token = userinfo.user.accessToken;
+                localStorage.setItem('accessToken', token);
+                // TODO: localStorage 의 액세스토큰을 firebase로 검증
+            } else {
+                console.log('No data available');
+            }
+        })
+    } catch (err) {
+        if(err.message === "Firebase: Error (auth/user-not-found).") {
+            alert("이메일에 해당하는 유저를 찾을 수 없습니다.")
+        }
+        if(err.message === "Firebase: Error (auth/wrong-password).") {
+            alert("비밀번호가 올바르지 않습니다.")
+        }
+        if(err.message === "Firebase: Error (auth/invalid-email).") {
+            alert("이메일 형식이 유효하지 않습니다.")
+        }
     }
   };
 
   const googleLoginHandler = async () => {
-        const googleProvider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
 
-        googleProvider.addScope('profile');
-        googleProvider.addScope('email');
-        const googleLoginResult = await signInWithPopup(auth, googleProvider);
-        console.log(googleLoginResult.user.auth.persistenceManager)
-        // 유저 정보
-        const user = googleLoginResult.user;
-        // 액세스 토큰
-        const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
-        const token = credential.accessToken;
-        localStorage.setItem('accessToken', token);
+    googleProvider.addScope('profile');
+    googleProvider.addScope('email');
+    const googleLoginResult = await signInWithPopup(auth, googleProvider);
+    console.log(googleLoginResult.user.auth.persistenceManager);
+    // 유저 정보
+    const user = googleLoginResult.user;
+    // 액세스 토큰
+    const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
+    const token = credential.accessToken;
+    localStorage.setItem('accessToken', token);
   };
 
   return (
