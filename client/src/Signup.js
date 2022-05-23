@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './signup.css';
 import signupImg from './img/signup-img.png';
-import { signupEmail } from './firebase';
+import { signupEmail, writeUserData } from './firebase';
 import { useNavigate } from 'react-router-dom';
 
 function Signup () {
@@ -42,8 +42,11 @@ function Signup () {
   const submitSignupHandler = async () => {
     await signupEmail(emailInput, passwordInput)
       .then(result => {
-        // TODO: 이름 세팅 안됨
-        result.user.displayName = nameInput;
+        console.log(result)
+        let email = result.user.email
+        let uid = result.user.uid
+        let accessToken = result.user.accessToken
+        writeUserData(uid, nameInput, email, accessToken)
         navigate('/signin');
       })
       .catch(err => {

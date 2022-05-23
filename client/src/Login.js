@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
-import { auth, loginEmail } from './firebase';
+import { auth, loginEmail, database } from './firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 // TODO: 비밀번호 확인
 // TODO: 로그인 유지
+
+console.log(database)
 
 function Login () {
 
