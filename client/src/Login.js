@@ -29,7 +29,7 @@ function Login () {
                 alert('로그인에 성공했습니다.');
                 let token = userinfo.user.accessToken;
                 localStorage.setItem('accessToken', token);
-                // TODO: localStorage 의 액세스토큰을 firebase로 검증
+                // TODO: localStorage 의 액세스토큰을 firebase로 검증해서 로그인 유지
             } else {
                 console.log('No data available');
             }
