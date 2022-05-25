@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './login.css';
-import { auth, loginEmail, getUserData, writeUserData } from './firebase';
+import { auth, loginEmail, getUserData, writeUserData, verifyTokenFromFirebase } from './firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-
-// TODO: 로그인 유지
+import { useNavigate } from 'react-router-dom';
 
 function Login () {
+  const navigate = useNavigate()
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
@@ -24,12 +24,10 @@ function Login () {
         const userinfo = await loginEmail(emailInput, passwordInput);
         getUserData(userinfo.user.uid)
         .then((snapshot) => {
-            console.log(snapshot)
             if (snapshot.exists()) {
                 alert('로그인에 성공했습니다.');
-                let token = userinfo.user.accessToken;
-                localStorage.setItem('accessToken', token);
-                // TODO: localStorage 의 액세스토큰을 firebase로 검증해서 로그인 유지
+                navigate('/');
+                verifyTokenFromFirebase()
             } else {
                 console.log('No data available');
             }
@@ -59,7 +57,6 @@ function Login () {
     // 액세스 토큰
     const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
     const token = credential.accessToken;
-    localStorage.setItem('accessToken', token);
   };
 
   return (

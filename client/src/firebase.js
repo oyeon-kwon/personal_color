@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
+import axios from 'axios';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -42,3 +43,33 @@ const dbRef = ref(getDatabase());
 export const getUserData = (userId) => {
   return get(child(dbRef, `users/${userId}`))
 };
+
+
+// TODO: 로그인 유지
+
+export const verifyTokenFromFirebase = () => {
+  
+  getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+    // Send token to your backend via HTTPS
+    // TODO: https 설정
+    if(idToken) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:4000/auth-token',
+        data: {
+          "idToken": idToken
+        }
+      })
+      .then(result => {
+        if(result.status === 200) {
+          let tokenUid = result.data
+          return tokenUid
+        }
+      })
+    }
+  }).catch(function(error) {
+    // Handle error
+    console.log(error)
+    console.log("토큰이 올바르지 않습니다.")
+  });
+}
