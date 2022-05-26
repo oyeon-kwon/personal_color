@@ -45,10 +45,9 @@ export const getUserData = (userId) => {
 };
 
 
-// TODO: 로그인 유지
+// TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
 
 export const verifyTokenFromFirebase = () => {
-  
   getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
     // Send token to your backend via HTTPS
     // TODO: https 설정
