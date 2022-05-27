@@ -29,7 +29,7 @@ function Color () {
           videoConstraints={videoConstraints}
           mirrored={true}
         />
-        <button onClick={capture}>Capture photo</button>
+        <button onClick={capture} className="camera-button">Capture photo</button>
         <img src={img} />
       </>
     );
