@@ -3,7 +3,7 @@ import './App.css';
 import Landing from './Landing';
 import Signup from './Signup';
 import Login from './Login';
-import Color from './Color';
+import Camera from './Camera';
 import {
   BrowserRouter as Router,
   Routes,
@@ -40,7 +40,7 @@ function App () {
             <Route path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login />} />
-            <Route path='/color' element={<Color />} />
+            <Route path='/color' element={<Camera />} />
           </Routes>
         </Router>
 

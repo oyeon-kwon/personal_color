@@ -41,34 +41,33 @@ export const writeUserData = (userId, name, email) => {
 
 const dbRef = ref(getDatabase());
 export const getUserData = (userId) => {
-  return get(child(dbRef, `users/${userId}`))
+  return get(child(dbRef, `users/${userId}`));
 };
-
 
 // TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
 
 export const verifyTokenFromFirebase = () => {
-  getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+  getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
     // Send token to your backend via HTTPS
     // TODO: https 설정
-    if(idToken) {
+    if (idToken) {
       axios({
         method: 'post',
         url: 'http://localhost:4000/auth-token',
         data: {
-          "idToken": idToken
+          idToken: idToken
         }
       })
-      .then(result => {
-        if(result.status === 200) {
-          let tokenUid = result.data
-          return tokenUid
-        }
-      })
+        .then(result => {
+          if (result.status === 200) {
+            const tokenUid = result.data;
+            return tokenUid;
+          }
+        });
     }
-  }).catch(function(error) {
+  }).catch(function (error) {
     // Handle error
-    console.log(error)
-    console.log("토큰이 올바르지 않습니다.")
+    console.log(error);
+    console.log('토큰이 올바르지 않습니다.');
   });
-}
+};

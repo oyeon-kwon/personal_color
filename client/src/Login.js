@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login () {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
@@ -21,27 +21,27 @@ function Login () {
 
   const submitLoginHandler = async () => {
     try {
-        const userinfo = await loginEmail(emailInput, passwordInput);
-        getUserData(userinfo.user.uid)
+      const userinfo = await loginEmail(emailInput, passwordInput);
+      getUserData(userinfo.user.uid)
         .then((snapshot) => {
-            if (snapshot.exists()) {
-                alert('로그인에 성공했습니다.');
-                navigate('/');
-                verifyTokenFromFirebase()
-            } else {
-                console.log('No data available');
-            }
-        })
+          if (snapshot.exists()) {
+            alert('로그인에 성공했습니다.');
+            navigate('/');
+            verifyTokenFromFirebase();
+          } else {
+            console.log('No data available');
+          }
+        });
     } catch (err) {
-        if(err.message === "Firebase: Error (auth/user-not-found).") {
-            alert("이메일에 해당하는 유저를 찾을 수 없습니다.")
-        }
-        if(err.message === "Firebase: Error (auth/wrong-password).") {
-            alert("비밀번호가 올바르지 않습니다.")
-        }
-        if(err.message === "Firebase: Error (auth/invalid-email).") {
-            alert("이메일 형식이 유효하지 않습니다.")
-        }
+      if (err.message === 'Firebase: Error (auth/user-not-found).') {
+        alert('이메일에 해당하는 유저를 찾을 수 없습니다.');
+      }
+      if (err.message === 'Firebase: Error (auth/wrong-password).') {
+        alert('비밀번호가 올바르지 않습니다.');
+      }
+      if (err.message === 'Firebase: Error (auth/invalid-email).') {
+        alert('이메일 형식이 유효하지 않습니다.');
+      }
     }
   };
 
