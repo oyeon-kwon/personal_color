@@ -6,12 +6,6 @@ li {
     list-style: none;
 }
 
-.color-list {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-}
-
 .submenu {
     width: 100%;
     padding: 15px 10px;
@@ -22,4 +16,23 @@ li {
     background-color: #ff7773;
     color: rgba(255, 255, 255, 1);
     transition: 0.3s;
+}
+
+.colors-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.color-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-theme-title {
+    position: relative;
+    left: 30px;
 }

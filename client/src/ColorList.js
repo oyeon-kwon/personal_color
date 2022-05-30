@@ -34,10 +34,17 @@ function ColorList () {
             })
         }
     </div>
-    <div className='color-list'>
+    <div className='colors-list'>
         {
             seasons[currentTab].colorThemes.map((colorTheme, index) => {
-                return <Color colorTheme={colorTheme} key={index} />
+                return (
+                    <>
+                    <div className='color-card'>
+                        <div className='color-theme-title'>{colorTheme}</div>
+                        <Color colorTheme={colorTheme} key={index} />
+                    </div>
+                    </>
+                )
             })
         }
     </div>
