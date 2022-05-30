@@ -1,5 +1,25 @@
+.tab-box {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
 .color-list {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
+}
+
+.submenu {
+    width: 100%;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.focused {
+    background-color: #ff7773;
+    color: rgba(255, 255, 255, 1);
+    transition: 0.3s;
 }
