@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './color.css';
 import colorData from './color.json';
+import { useSelector } from 'react-redux'
 
 function Color ( { colorTheme } ) {
+
+  const selfCameraImg = useSelector((state) => state.selfCameraImg.selfCameraImg)
 
   const color_0 = useRef();
   const color_1 = useRef();
@@ -35,7 +38,9 @@ function Color ( { colorTheme } ) {
   return (
     <>
     <div className='self-photo-box'>
-        <div className='self-photo' />
+        <div className='self-photo'>
+          <img src={selfCameraImg} />
+        </div>
         <div className='left'>
             <div className='color' ref={color_0} />
             <div className='color' ref={color_1} />
@@ -57,7 +62,6 @@ function Color ( { colorTheme } ) {
             <div className='color' ref={color_11} />
         </div>
     </div>
-
     </>
   );
 }

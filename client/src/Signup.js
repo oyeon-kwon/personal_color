@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './signup.css';
 import signupImg from './img/signup-img.png';
-import { signupEmail, writeUserData } from './firebase';
+import { signupEmail, writeUserData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
 function Signup () {

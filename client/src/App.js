@@ -3,8 +3,8 @@ import './App.css';
 import Landing from './Landing';
 import Signup from './Signup';
 import Login from './Login';
-import Camera from './Camera';
-import ColorList from './ColorList';
+import Camera from './components/Camera';
+import ColorList from './components/ColorList';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +17,6 @@ function App () {
 
   return (
     <>
-    <ColorList />
       <div className='body'>
         <Router>
           <div className='nav'>
