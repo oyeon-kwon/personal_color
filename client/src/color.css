@@ -1,3 +1,53 @@
-.camera-button {
-    
+.self-photo-box {
+    position: static;
+    width: 400px;
+    height: 400px;
+    margin: 6rem;
+}
+
+.self-photo {
+    width: 210px;
+    height: 210px;
+    position: relative;
+    left: 73px;
+    top: 73px;
+    background-color: antiquewhite;
+}
+
+.color {
+    width: 65px;
+    height: 65px;
+    margin: 2.5px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 0;
+    top: -138px;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: -420px;
+    left: 73px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 285px;
+    top: -420px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 73px;
+    top: -415px;
 }

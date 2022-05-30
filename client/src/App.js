@@ -4,6 +4,7 @@ import Landing from './Landing';
 import Signup from './Signup';
 import Login from './Login';
 import Camera from './Camera';
+import ColorList from './ColorList';
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,8 +13,11 @@ import {
 } from 'react-router-dom';
 
 function App () {
+
+
   return (
     <>
+    <ColorList />
       <div className='body'>
         <Router>
           <div className='nav'>
@@ -21,7 +25,7 @@ function App () {
               <Link to='/'>HOME</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/color'>COLOR</Link>
+              <Link to='/camera'>COLOR</Link>
             </span>
             <span className='nav-link'>
               <Link to='/community'>COMMUNITY</Link>
@@ -40,10 +44,10 @@ function App () {
             <Route path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login />} />
-            <Route path='/color' element={<Camera />} />
+            <Route path='/camera' element={<Camera />} />
+            <Route path='/camera/colors' element={<ColorList />} />
           </Routes>
         </Router>
-
         {/* <Landing /> */}
         {/* <Signup /> */}
         {/* <Login /> */}
