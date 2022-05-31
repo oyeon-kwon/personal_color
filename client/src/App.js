@@ -5,6 +5,8 @@ import Signup from './Signup';
 import Login from './Login';
 import Camera from './components/Camera';
 import ColorList from './components/ColorList';
+import Commumity from './Community';
+import Mypage from './Mypage';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,7 +26,7 @@ function App () {
               <Link to='/'>HOME</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/camera'>COLOR</Link>
+              <Link to='/camera-self'>COLOR</Link>
             </span>
             <span className='nav-link'>
               <Link to='/community'>COMMUNITY</Link>
@@ -43,8 +45,10 @@ function App () {
             <Route path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login />} />
-            <Route path='/camera' element={<Camera />} />
-            <Route path='/camera/colors' element={<ColorList />} />
+            <Route path='/camera-self' element={<Camera />} />
+            <Route path='/camera-self/colors' element={<ColorList />} />
+            <Route path='/community' element={<Commumity />} />
+            <Route path='/mypage' element={<Mypage />} />
           </Routes>
         </Router>
         {/* <Landing /> */}

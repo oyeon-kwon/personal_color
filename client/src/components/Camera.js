@@ -14,7 +14,7 @@ function Camera () {
     () => {
       const imageSrc = webcamRef.current.getScreenshot();
       dispatch(setSelfCameraImg(imageSrc));
-      navigate('/camera/colors');
+      navigate('/camera-self/colors');
     },
     [webcamRef]
   );

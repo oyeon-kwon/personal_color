@@ -9,8 +9,10 @@ function ColorList () {
 
   const seasons = [
       { name: "전체", colorThemes: Object.keys(colorData)},
-      { name: "봄", colorThemes: ['spring-light-1', 'spring-light-2', 'spring-bright']},
-      { name: "여름", colorThemes: ['summer-light', 'summer-light-bright', 'summer-bright', 'summer-mute-1', 'summer-mute-2', 'summer-mute-3', 'summer-mute-4']}
+      { name: "봄", colorThemes: ['봄 라이트 페일', '봄 라이트', '봄 브라이트']},
+      { name: "여름", colorThemes: ['여름 라이트 페일', '여름 라이트 브라이트', '여름 브라이트', '여름 뮤트 라이트그레이시', '여름 뮤트 소프트', '여름 뮤트 그레이시', '여름 뮤트 덜']},
+      { name: "가을", colorThemes: ['가을 뮤트 라이트그레이시', '가을 뮤트 소프트', '가을 뮤트 그레이시', '가을 뮤트 덜', '가을 스트롱', '가을 딥 다크그레이시', '가을 딥 다크', '가을 딥']},
+      { name: "겨울", colorThemes: ['겨울 브라이트 스트롱', '겨울 브라이트 비비드', '겨울 브라이트 다크그레이시', '겨울 브라이트 다크', '겨울 브라이트 딥']}
   ]
 
   const selectMenuHandler = (index) => {

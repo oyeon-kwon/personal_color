@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import './landing.css';
 import selfImg from './img/self.svg';
 import aiImg from './img/ai.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Landing () {
+  const navigate = useNavigate();
   const [buttonStatus, setButtonStatus] = useState('self');
+
+  const selfTestHandler = () => {
+    navigate('/camera-self');
+  }
 
   return (
     <>
@@ -14,7 +20,7 @@ function Landing () {
           <div className='desc-sm'>스스로 맞는 컬러가 무엇인지 측정해 보거나<br />빅데이터를 기반으로 학습한 AI를 통해 측정할 수 있습니다.</div>
         </div>
         <div className='test-button-container'>
-          <div className='test-button self' onMouseOver={() => setButtonStatus('self')}>스스로 진단하기</div>
+          <div className='test-button self' onMouseOver={() => setButtonStatus('self')} onClick={selfTestHandler}>스스로 진단하기</div>
           <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')}>AI로 진단하기</div>
         </div>
       </div>

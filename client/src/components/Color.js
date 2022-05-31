@@ -33,7 +33,7 @@ function Color ( { colorTheme } ) {
     color_9.current.style = `background-color:${colorData[colorTheme][9]}`
     color_10.current.style = `background-color:${colorData[colorTheme][10]}`
     color_11.current.style = `background-color:${colorData[colorTheme][11]}`
-  })
+  }, [])
 
   return (
     <>
