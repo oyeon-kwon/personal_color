@@ -6,6 +6,8 @@ function Coummunity () {
   return (
     <>
     커뮤니티 페이지를 준비 중입니다.
+    [기획]
+    - 게시판 형식
     </>
   );
 }

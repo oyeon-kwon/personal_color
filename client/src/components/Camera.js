@@ -7,7 +7,10 @@ import { setSelfCameraImg } from '../reducer/index'
 
 function Camera () {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  // TODO: CSS 수정
+  // TODO: 여기서 찍은 사진 정보를 로그인 한 사용자라면 DB에 저장해서 마이페이지에서 보여줘야 함
 
   const webcamRef = useRef(null);
   const capture = useCallback(
