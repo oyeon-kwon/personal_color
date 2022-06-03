@@ -2,8 +2,8 @@ import React, { useState, useRef, useCallback } from 'react';
 import './camera.css';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { setSelfCameraImg } from '../reducer/index'
+import { useDispatch } from 'react-redux';
+import { setSelfCameraImg } from '../reducer/index';
 
 function Camera () {
   const navigate = useNavigate();
@@ -26,7 +26,6 @@ function Camera () {
     height: 210,
     facingMode: 'user'
   };
-
 
   return (
     <>

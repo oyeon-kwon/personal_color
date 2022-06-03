@@ -10,7 +10,7 @@ function Landing () {
 
   const selfTestHandler = () => {
     navigate('/camera-self');
-  }
+  };
 
   return (
     <>
