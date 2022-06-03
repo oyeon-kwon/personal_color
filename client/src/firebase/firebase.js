@@ -28,7 +28,7 @@ export const loginEmail = async (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-// DB 설정
+//! Realtime DB 설정
 export const database = getDatabase(app);
 
 export const writeUserData = (userId, name, email) => {
