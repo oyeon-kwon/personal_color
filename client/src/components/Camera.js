@@ -10,7 +10,8 @@ function Camera () {
   const dispatch = useDispatch();
 
   // TODO: CSS 수정
-  // TODO: 여기서 찍은 사진 정보를 로그인 한 사용자라면 DB에 저장해서 마이페이지에서 보여줘야 함
+  // TODO: 
+  // TODO: 주의사항 안내
 
   const webcamRef = useRef(null);
   const capture = useCallback(
@@ -29,6 +30,7 @@ function Camera () {
 
   return (
     <>
+    <div className='camera-box'>
       <Webcam
         audio={false}
         ref={webcamRef}
@@ -37,8 +39,10 @@ function Camera () {
         height={210}
         videoConstraints={videoConstraints}
         mirrored
+        className='camera'
       />
       <button onClick={capture} className='camera-button'>Capture photo</button>
+    </div>
     </>
   );
 }
