@@ -5,6 +5,7 @@ import aiImg from './img/ai.svg';
 import { useNavigate } from 'react-router-dom';
 
 function Landing () {
+  // TODO: 호버 이미지 크기 조정
   const navigate = useNavigate();
   const [buttonStatus, setButtonStatus] = useState('self');
 
