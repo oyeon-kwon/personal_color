@@ -6,6 +6,7 @@ function Coummunity () {
   // TODO: 클릭하면 상세 게시판 페이지 연결
   // TODO: 게시물 검색 기능
   // TODO: 카테고리별 필터링
+  // TODO: 리스트에 카테고리 표시
 
   const [currentTab, setCurrentTab] = useState(0);
 

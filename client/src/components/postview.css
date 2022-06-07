@@ -1,0 +1,123 @@
+.post-view-box {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: 0 auto;
+}
+
+.post-box {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    padding: 2rem;
+    margin: 5rem auto;
+    border: 1px solid #d2d2d2;
+    border-radius: 20px;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.edit-button {
+    margin: 1rem 1rem auto auto;
+    width: 3rem;
+    height: 2rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: #FF7773;
+    color: #ffffff;
+    font-size: 0.5rem;
+    transition: all 0.5s ease;
+}
+
+.edit-button:hover {
+    background-color: #e6e6e6;
+    color: #FF7773;
+    cursor: pointer;
+}
+
+.post-desc-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-user {
+    margin: 1rem;
+}
+
+.comment-count {
+    margin: 1rem;
+}
+
+.divider-large {
+    width: 70vw;
+    border-top: 1px solid #d2d2d2;
+}
+
+.post-content {
+    padding: 2rem 0;
+}
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0 0 0;
+}
+
+.divider-medium {
+    width: 70vw;
+    border-top: 1px solid #e6e6e6;
+    margin: 0 auto;
+}
+
+.comment-input-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #dedede;
+}
+
+.comment-button {
+    width: 4rem;
+    border-radius: 20px;
+    padding: 0.5rem;
+    font-size: 0.5rem;
+    background-color: #FF7773;
+    color: #ffffff;
+    margin: 0 0 0 1rem;
+    transition: all 0.5s ease;
+    text-align: center;
+}
+
+.comment-button:hover {
+    background-color: #e6e6e6;
+    color: #FF7773;
+    cursor: pointer;
+}
+
+.comments {
+    margin: 0.5rem 0 0 0.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-user {
+    margin: 0.5rem 0;
+}
+
+.comment-text {
+    margin: 0.5rem 0;
+}

@@ -7,6 +7,7 @@ import Camera from './components/Camera';
 import ColorList from './components/ColorList';
 import Commumity from './Community';
 import Mypage from './Mypage';
+import PostInput from './components/PostInput';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +18,7 @@ import {
 function App () {
   return (
     <>
+      <PostInput />
       <div className='body'>
         <Router>
           <div className='nav'>

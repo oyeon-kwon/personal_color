@@ -29,7 +29,10 @@ export const loginEmail = async (email, password) => {
 };
 
 //! Realtime DB 설정
+// 회원가입
+// TODO: 회원 탈퇴 기능 만들기
 export const database = getDatabase(app);
+const dbRef = ref(getDatabase());
 
 export const writeUserData = (userId, name, email) => {
   const db = getDatabase();
@@ -39,7 +42,6 @@ export const writeUserData = (userId, name, email) => {
   });
 };
 
-const dbRef = ref(getDatabase());
 export const getUserData = (userId) => {
   return get(child(dbRef, `users/${userId}`));
 };
@@ -69,5 +71,18 @@ export const verifyTokenFromFirebase = () => {
     // Handle error
     console.log(error);
     console.log('토큰이 올바르지 않습니다.');
+  });
+};
+
+// ! Real time Database 설정
+// 커뮤니티 게시판
+
+export const writePostData = (userId, name, content, image, category) => {
+  const db = getDatabase();
+  set(ref(db, 'community/' + userId), {
+    username: name,
+    content: content,
+    image: image,
+    category: category
   });
 };
