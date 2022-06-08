@@ -10,7 +10,7 @@ function Camera () {
   const dispatch = useDispatch();
 
   // TODO: CSS 수정
-  // TODO: 
+  // TODO:
   // TODO: 주의사항 안내
 
   const webcamRef = useRef(null);
@@ -30,19 +30,19 @@ function Camera () {
 
   return (
     <>
-    <div className='camera-box'>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat='image/jpeg'
-        width={210}
-        height={210}
-        videoConstraints={videoConstraints}
-        mirrored
-        className='camera'
-      />
-      <button onClick={capture} className='camera-button'>Capture photo</button>
-    </div>
+      <div className='camera-box'>
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat='image/jpeg'
+          width={210}
+          height={210}
+          videoConstraints={videoConstraints}
+          mirrored
+          className='camera'
+        />
+        <button onClick={capture} className='camera-button'>Capture photo</button>
+      </div>
     </>
   );
 }

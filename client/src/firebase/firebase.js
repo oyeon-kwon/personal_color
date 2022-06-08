@@ -1,9 +1,8 @@
 import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
+import 'firebase/compat/storage';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getDatabase, ref, set, child, get } from 'firebase/database';
+import { getDatabase, ref, set, child, get, push } from 'firebase/database';
 import axios from 'axios';
-
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -15,10 +14,10 @@ export const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-// const firestore = firebase.firestore();
+export const app = firebase.initializeApp(firebaseConfig);
 
 export const auth = getAuth();
+export const storage = firebase.storage();
 
 export const signupEmail = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -77,12 +76,22 @@ export const verifyTokenFromFirebase = () => {
 // ! Real time Database 설정
 // 커뮤니티 게시판
 
-export const writePostData = (userId, name, content, image, category) => {
+export const writePostData = (userId, title, content, image, category) => {
   const db = getDatabase();
-  set(ref(db, 'community/' + userId), {
-    username: name,
+
+  const now = new Date();
+
+  const postListRef = ref(db, 'posts');
+  const newPostRef = push(postListRef);
+  set(newPostRef, {
+    userId: userId,
+    title: title,
     content: content,
     image: image,
-    category: category
+    category: category,
+    createdAt: now.toString(),
+    comment: []
   });
 };
+
+

@@ -41,7 +41,7 @@ function Coummunity () {
         <table>
           {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
           <tbody>
-              {/* TODO: map으로 내려주기 */}
+            {/* TODO: map으로 내려주기 */}
             <tr className='community-content'>
               <td className='community-content-title'>나 웜톤인데 이 색깔 어때?</td>
               <td className='community-content-date'>2020.01.20</td>
