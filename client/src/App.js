@@ -19,7 +19,8 @@ import {
 function App () {
   return (
     <>
-      <PostInput />
+
+      <PostView />
       <div className='body'>
         <Router>
           <div className='nav'>

@@ -95,18 +95,17 @@ export const writePostData = (userId, title, content, image, category) => {
 };
 
 export const getPostData = async () => {
-
   let postsData;
 
-  await get(child(dbRef, `posts/`)).then((snapshot) => {
+  await get(child(dbRef, 'posts/')).then((snapshot) => {
     if (snapshot.exists()) {
       postsData = snapshot.val();
     } else {
-      console.log("No data available");
+      console.log('No data available');
     }
   }).catch((error) => {
     console.error(error);
   });
 
   return postsData;
-}
+};

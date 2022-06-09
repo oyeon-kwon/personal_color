@@ -4,7 +4,6 @@ import './community.css';
 import { getPostData } from './firebase/firebase';
 
 function Coummunity () {
-
   const [postsData, setPostData] = useState([]);
   // TODO: 파이어베이스 CRUD 연결
   // TODO: 클릭하면 상세 게시판 페이지 연결
@@ -21,22 +20,22 @@ function Coummunity () {
   };
 
   const getAllPosts = async () => {
-    const response = await getPostData()
+    const response = await getPostData();
     const allPostArray = [];
 
-    for(let key in response) {
+    for (const key in response) {
       const postObject = {
         id: key,
         ...response[key]
-      }
-      allPostArray.push(postObject)
+      };
+      allPostArray.push(postObject);
     }
-    setPostData(allPostArray)
-  }
+    setPostData(allPostArray);
+  };
 
   useEffect(() => {
-    getAllPosts()
-  }, [])
+    getAllPosts();
+  }, []);
 
   return (
     <>
@@ -67,10 +66,10 @@ function Coummunity () {
               postsData.map((post) => {
                 return (
                   <tr className='community-content' key={post.key}>
-                  <td className='community-content-title'>{post.title}</td>
-                  <td className='community-content-date'>{post.createdAt}</td>
-                </tr>
-                )
+                    <td className='community-content-title'>{post.title}</td>
+                    <td className='community-content-date'>{post.createdAt}</td>
+                  </tr>
+                );
               })
             }
 

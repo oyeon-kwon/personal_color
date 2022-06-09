@@ -3,8 +3,7 @@ import './postInput.css';
 import { writePostData, storage } from '../firebase/firebase';
 
 function PostInput () {
-
-    // TODO: 이미지 업로드 css 변경
+  // TODO: 이미지 업로드 css 변경
 
   const [postInput, setPostInput] = useState({
     userId: 'oana',
@@ -19,17 +18,17 @@ function PostInput () {
   };
 
   const imageHandler = (e) => {
-    let imgFile = e.target.files
-        // 이미지 storage로 전송
-        let file = imgFile[0]
-        const storageRef = storage.ref();
-        const saveRoute = storageRef.child(`${postInput.userId + '-' + imgFile[0].name}`);
-        const upload = saveRoute.put(file)
-    
-        let imgUrl = `https://firebasestorage.googleapis.com/v0/b/personal-color-62f62.appspot.com/o/${postInput.userId + '-' + e.target.files[0].name}?alt=media`
-    
-        setPostInput({ ...postInput, image: imgUrl})
-  }
+    const imgFile = e.target.files;
+    // 이미지 storage로 전송
+    const file = imgFile[0];
+    const storageRef = storage.ref();
+    const saveRoute = storageRef.child(`${postInput.userId + '-' + imgFile[0].name}`);
+    const upload = saveRoute.put(file);
+
+    const imgUrl = `https://firebasestorage.googleapis.com/v0/b/personal-color-62f62.appspot.com/o/${postInput.userId + '-' + e.target.files[0].name}?alt=media`;
+
+    setPostInput({ ...postInput, image: imgUrl });
+  };
 
   const registPost = () => {
     // TODO: firebase에서 userId 받아오기!!!
@@ -49,7 +48,6 @@ function PostInput () {
     // TODO: 전송 후 PostView로 라우팅 처리 필요
   };
 
-
   return (
     <>
       <div className='post-view-box'>
@@ -63,7 +61,7 @@ function PostInput () {
           <input className='post-title-input' placeholder='제목을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
 
           <div className='post-content'>
-            <input className="post-image-input" type="file" multiple="multiple" onChange={imageHandler}/>
+            <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
             <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} />
           </div>
 
