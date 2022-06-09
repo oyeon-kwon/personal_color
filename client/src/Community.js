@@ -1,15 +1,16 @@
 import { get } from 'firebase/database';
 import React, { useState, useRef, useEffect } from 'react';
 import './community.css';
-import { getPostData } from './firebase/firebase';
+import { getAllPostsData } from './firebase/firebase';
+import { useNavigate } from 'react-router-dom';
 
 function Coummunity () {
   const [postsData, setPostData] = useState([]);
-  // TODO: 파이어베이스 CRUD 연결
-  // TODO: 클릭하면 상세 게시판 페이지 연결
+  const navigate = useNavigate();
+
   // TODO: 게시물 검색 기능
   // TODO: 카테고리별 필터링
-  // TODO: 리스트에 카테고리 표시
+  // TODO: 글쓰기 버튼 (로그인한 사용자만 가능)
 
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -20,7 +21,7 @@ function Coummunity () {
   };
 
   const getAllPosts = async () => {
-    const response = await getPostData();
+    const response = await getAllPostsData();
     const allPostArray = [];
 
     for (const key in response) {
@@ -36,6 +37,15 @@ function Coummunity () {
   useEffect(() => {
     getAllPosts();
   }, []);
+
+  const viewPostHandler = (e) => {
+    const id = e.target.parentElement.id
+    for(let i=0; i<postsData.length; i++) {
+      if(postsData[i].id === id) {
+        navigate(`/community/${id}`)
+      }
+    }
+  }
 
   return (
     <>
@@ -65,14 +75,14 @@ function Coummunity () {
             {
               postsData.map((post) => {
                 return (
-                  <tr className='community-content' key={post.key}>
+                  <tr className='community-content' id={post.id} key={post.id} onClick={viewPostHandler}>
+                    <td className='community-content-category'>{post.category}</td>
                     <td className='community-content-title'>{post.title}</td>
                     <td className='community-content-date'>{post.createdAt}</td>
                   </tr>
                 );
               })
             }
-
           </tbody>
         </table>
         {/* TODO: 페이지네이션 네비게이터 */}

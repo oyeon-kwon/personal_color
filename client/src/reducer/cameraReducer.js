@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { initialState } from './initialState';
 
-const initialState = {
-// TODO: 기본 아바타 이미지 삽입
-  selfCameraImg: ''
-};
-
+// 셀프카메라 사진
 export const selfCameraImgSlice = createSlice({
   name: 'selfCameraImg',
   initialState,

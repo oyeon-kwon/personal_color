@@ -3,14 +3,13 @@ import './camera.css';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setSelfCameraImg } from '../reducer/index';
+import { setSelfCameraImg } from '../reducer/cameraReducer';
 
 function Camera () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // TODO: CSS 수정
-  // TODO:
   // TODO: 주의사항 안내
 
   const webcamRef = useRef(null);

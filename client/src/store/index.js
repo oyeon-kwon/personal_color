@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import selfCameraImgReducer from '../reducer/index';
+import selfCameraImgReducer from '../reducer/cameraReducer';
 
 export const store = configureStore({
   reducer: {

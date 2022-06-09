@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getDatabase, ref, set, child, get, push } from 'firebase/database';
+import { getDatabase, ref, set, child, get, push, onValue } from 'firebase/database';
 import axios from 'axios';
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -94,7 +94,7 @@ export const writePostData = (userId, title, content, image, category) => {
   });
 };
 
-export const getPostData = async () => {
+export const getAllPostsData = async () => {
   let postsData;
 
   await get(child(dbRef, 'posts/')).then((snapshot) => {
@@ -109,3 +109,20 @@ export const getPostData = async () => {
 
   return postsData;
 };
+
+
+export const getPostData = async (id) => {
+  let postData;
+
+  await get(child(dbRef, `posts/`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      postData = snapshot.val();
+    } else {
+      console.log('No data available');
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  // console.log(postData[id])
+  return postData[id];
+}

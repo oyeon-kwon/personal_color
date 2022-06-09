@@ -17,10 +17,9 @@ import {
 } from 'react-router-dom';
 
 function App () {
+
   return (
     <>
-
-      <PostView />
       <div className='body'>
         <Router>
           <div className='nav'>
@@ -50,6 +49,7 @@ function App () {
             <Route path='/camera-self' element={<Camera />} />
             <Route path='/camera-self/colors' element={<ColorList />} />
             <Route path='/community' element={<Commumity />} />
+            <Route path='/community/:id' element={<PostView />} />
             <Route path='/mypage' element={<Mypage />} />
           </Routes>
         </Router>
