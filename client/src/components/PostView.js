@@ -8,7 +8,9 @@ function PostView () {
   // TODO: 카테고리 보여주기
   // TODO: 글쓰기 버튼 (로그인한 사용자만 가능)
   // TODO: 댓글 firebase로 보내주기
+  // TODO: 해당하는 포스트의 ref를 받아와서 코멘트 데이터 post DB로 보내기
 
+  // ! 여기는 코멘트
   // useEffect(() => {
   //   setComments(post.comment);
   // }, [post.comment]);
@@ -74,16 +76,6 @@ function PostView () {
               <div className='comment-text'>댓글입니당.</div>
             </div>
             <div className='divider-medium' />
-            <div className='comments'>
-              <div className='comment-user'>oanana</div>
-              <div className='comment-text'>댓글입니당.</div>
-            </div>
-            <div className='divider-medium' />
-            <div className='comments'>
-              <div className='comment-user'>oanana</div>
-              <div className='comment-text'>댓글입니당.</div>
-            </div>
-
           </div>
         </div>
 

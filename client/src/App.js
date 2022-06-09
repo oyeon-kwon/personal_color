@@ -7,6 +7,7 @@ import Camera from './components/Camera';
 import ColorList from './components/ColorList';
 import Commumity from './Community';
 import Mypage from './Mypage';
+import PostView from './components/PostView';
 import PostInput from './components/PostInput';
 import {
   BrowserRouter as Router,

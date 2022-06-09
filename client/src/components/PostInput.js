@@ -4,6 +4,8 @@ import { writePostData, storage } from '../firebase/firebase';
 
 function PostInput () {
 
+    // TODO: 이미지 업로드 css 변경
+
   const [postInput, setPostInput] = useState({
     userId: 'oana',
     title: '',
@@ -44,7 +46,7 @@ function PostInput () {
     } else {
       writePostData(userId, title, content, image, category);
     }
-    // TODO: 전송 후 라우팅 처리 필요
+    // TODO: 전송 후 PostView로 라우팅 처리 필요
   };
 
 
@@ -61,10 +63,7 @@ function PostInput () {
           <input className='post-title-input' placeholder='제목을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
 
           <div className='post-content'>
-            <div className='post-img-content-input'>
-              +
-            </div>
-            <input type="file" multiple="multiple" onChange={imageHandler}/>
+            <input className="post-image-input" type="file" multiple="multiple" onChange={imageHandler}/>
             <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} />
           </div>
 

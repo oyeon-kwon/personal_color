@@ -30,17 +30,13 @@
     border-bottom: 1px solid #dedede;
 }
 
-.post-img-content-input {
-    width: 15rem;
-    height: 15rem;
-    border-radius: 30px;
-    border: 1px dashed #cacaca;
+.post-content {
     display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    color: #a4a4a4;
+    flex-direction: column;
+}
+
+.post-image-input {
+
 }
 
 .post-text-content-input {
