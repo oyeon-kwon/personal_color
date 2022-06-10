@@ -1,8 +1,9 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getDatabase, ref, set, child, get, push, onValue } from 'firebase/database';
+import { getDatabase, ref, set, child, get, push, update, onValue, query, orderByChild } from 'firebase/database';
 import axios from 'axios';
+import { isRejected } from '@reduxjs/toolkit';
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -110,11 +111,10 @@ export const getAllPostsData = async () => {
   return postsData;
 };
 
-
 export const getPostData = async (id) => {
   let postData;
 
-  await get(child(dbRef, `posts/`)).then((snapshot) => {
+  await get(child(dbRef, 'posts/')).then((snapshot) => {
     if (snapshot.exists()) {
       postData = snapshot.val();
     } else {
@@ -125,4 +125,39 @@ export const getPostData = async (id) => {
   });
   // console.log(postData[id])
   return postData[id];
-}
+};
+
+export const writeCommentData = async (postId, commentUser, commentInput) => {
+  const db = getDatabase();
+
+  const postRef = ref(db, 'posts/');
+
+  await onValue(postRef, (snapshot) => {
+    const posts = snapshot.val();
+    const post = posts[postId];
+
+    if (post.comment === undefined) {
+      const newPost = {
+        ...post,
+        comment: [{
+          commentUser: commentUser,
+          commentInput: commentInput
+        }]
+      };
+      set(ref(db, 'posts/' + postId), newPost);
+    } else {
+      post.comment.unshift({
+        commentUser: commentUser,
+        commentInput: commentInput
+      });
+
+      const newPost = {
+        ...post,
+        comment: post.comment
+      };
+      set(ref(db, 'posts/' + postId), newPost);
+    }
+  }, {
+    onlyOnce: true
+  });
+};

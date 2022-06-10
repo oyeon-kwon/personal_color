@@ -10,7 +10,8 @@ function Coummunity () {
 
   // TODO: 게시물 검색 기능
   // TODO: 카테고리별 필터링
-  // TODO: 글쓰기 버튼 (로그인한 사용자만 가능)
+  // TODO: 글쓰기 버튼 (로그인한 사용자만 가능) => PostInput 컴포넌트로 연결
+  // TODO: console 창에 No data available 뜨면 데이터가 없습니다. 표시해주기
 
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -39,13 +40,13 @@ function Coummunity () {
   }, []);
 
   const viewPostHandler = (e) => {
-    const id = e.target.parentElement.id
-    for(let i=0; i<postsData.length; i++) {
-      if(postsData[i].id === id) {
-        navigate(`/community/${id}`)
+    const id = e.target.parentElement.id;
+    for (let i = 0; i < postsData.length; i++) {
+      if (postsData[i].id === id) {
+        navigate(`/community/${id}`);
       }
     }
-  }
+  };
 
   return (
     <>

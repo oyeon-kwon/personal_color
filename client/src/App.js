@@ -17,9 +17,9 @@ import {
 } from 'react-router-dom';
 
 function App () {
-
   return (
     <>
+      <PostInput />
       <div className='body'>
         <Router>
           <div className='nav'>
