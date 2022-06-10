@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getDatabase, ref, set, child, get, push, update, onValue, query, orderByChild } from 'firebase/database';
+import { getDatabase, ref, set, child, get, push, update, onValue, query, equalTo, orderByChild, orderByValue } from 'firebase/database';
 import axios from 'axios';
 import { isRejected } from '@reduxjs/toolkit';
 export const firebaseConfig = {
@@ -110,6 +110,14 @@ export const getAllPostsData = async () => {
 
   return postsData;
 };
+
+//! 필터링 구현
+export const getFilteredPostsData = async (filter) => {
+  const db = getDatabase();
+
+  const filteredData = await query(ref(db, 'posts/'), orderByValue(filter))
+  console.log(filteredData)
+}
 
 export const getPostData = async (id) => {
   let postData;

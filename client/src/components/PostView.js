@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 function PostView () {
   const [postData, setPostData] = useState();
-  
+
   // 포스트 가져오기
   const { id } = useParams();
 
@@ -28,7 +28,7 @@ function PostView () {
 
   const createComment = async () => {
     if (comment === '') {
-      alert('댓글을 입력하세요.')
+      alert('댓글을 입력하세요.');
     } else {
       // TODO: 로그인된 user 정보 받아와서 넣어주기
       writeCommentData(id, 'oana', comment);
@@ -39,7 +39,7 @@ function PostView () {
   const enterCommentKey = () => {
     if (window.event.keyCode === 13) {
       if (comment === '') {
-        alert('댓글을 입력하세요.')
+        alert('댓글을 입력하세요.');
       } else {
         writeCommentData(id, 'oana', comment);
         setComment('');

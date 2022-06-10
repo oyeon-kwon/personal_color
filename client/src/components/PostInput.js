@@ -54,9 +54,9 @@ function PostInput () {
         <div className='post-box'>
           <select name='categories' id='category-select' onChange={handleChangeCategory} value={postInput.value}>
             <option value=''>카테고리를 지정해 주세요.</option>
-            <option value='warm'>WARM</option>
-            <option value='cool'>COOL</option>
-            <option value='none'>모름</option>
+            <option value='WARM'>WARM</option>
+            <option value='COOL'>COOL</option>
+            <option value='모르겠어요'>모르겠어요</option>
           </select>
           <input className='post-title-input' placeholder='제목을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
 
