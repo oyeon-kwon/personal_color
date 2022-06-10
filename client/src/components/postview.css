@@ -46,6 +46,11 @@
     justify-content: space-between;
 }
 
+.post-category {
+    margin: 1rem;
+    color: #a6a6a6
+}
+
 .post-user {
     margin: 1rem;
 }

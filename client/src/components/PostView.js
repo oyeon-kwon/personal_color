@@ -5,10 +5,8 @@ import { useParams } from 'react-router-dom';
 
 function PostView () {
   const [postData, setPostData] = useState();
-
-  // TODO: 카테고리 보여주기
-  // TODO: 엔터로 작동하게 만들기
-
+  
+  // 포스트 가져오기
   const { id } = useParams();
 
   const getPostDataHandler = async () => {
@@ -20,10 +18,7 @@ function PostView () {
     getPostDataHandler();
   }, [postData]);
 
-  // ! 여기부터는 코멘트
-  useEffect(() => {
-    // writeCommentData(id, 'oana', '코멘트 테스트입니다.4')
-  }, []);
+  // 코멘트
   const [comment, setComment] = useState('');
 
   const inputComment = (e) => {
@@ -41,17 +36,16 @@ function PostView () {
     }
   };
 
-  // const enterKey = () => {
-  //   if (window.event.keyCode === 13) {
-  //     if (comment === '') {
-
-  //     } else {
-  //       post.comment.unshift(comment);
-  //       setComments(post.comment);
-  //       setComment('');
-  //     }
-  //   }
-  // };
+  const enterCommentKey = () => {
+    if (window.event.keyCode === 13) {
+      if (comment === '') {
+        alert('댓글을 입력하세요.')
+      } else {
+        writeCommentData(id, 'oana', comment);
+        setComment('');
+      }
+    }
+  };
 
   return (
     <>
@@ -62,6 +56,7 @@ function PostView () {
             <div className='post-title'>{postData.title}</div>
             <div className='edit-button'>수정</div>
             <div className='post-desc-box'>
+              <span className='post-category'>{postData.category}</span>
               <span className='post-user'>{postData.userId}</span>
               <span className='post-created-at'>{postData.createdAt}</span>
               {
@@ -82,7 +77,7 @@ function PostView () {
             <div className='divider-large' />
             <div className='comment-box'>
               <div className='comment-input-box'>
-                <input className='comment-input' type='text' placeholder='댓글을 입력하세요' value={comment} onChange={inputComment} />
+                <input className='comment-input' type='text' placeholder='댓글을 입력하세요' value={comment} onChange={inputComment} onKeyUp={enterCommentKey} />
                 <span className='comment-button' onClick={createComment}>댓글 등록</span>
               </div>
               <div className='comments'>
