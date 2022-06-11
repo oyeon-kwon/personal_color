@@ -111,12 +111,28 @@ export const getAllPostsData = async () => {
   return postsData;
 };
 
-//! 필터링 구현
-export const getFilteredPostsData = async (filter) => {
-  const db = getDatabase();
+export const getFilteredByCategoryPostsData = async (category) => {
 
-  const filteredData = await query(ref(db, 'posts/'), orderByValue(filter))
-  console.log(filteredData)
+  let allPostData;
+  let filteredByCategoryPost = [];
+
+  await get(child(dbRef, 'posts/')).then((snapshot) => {
+    if(snapshot.exists()) {
+      allPostData = snapshot.val();
+    } else {
+      console.log('No data available');
+    }
+  }).catch((error) => {
+    console.log(error);
+  })
+
+  for(let key in allPostData) {
+    if(allPostData[key].category === category) {
+      filteredByCategoryPost.push(allPostData[key])
+    }
+  }
+
+  return filteredByCategoryPost
 }
 
 export const getPostData = async (id) => {

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './community.css';
-import { getAllPostsData, getFilteredPostsData } from './firebase/firebase';
+import { getAllPostsData, getFilteredByCategoryPostsData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
 function Coummunity () {
@@ -11,19 +11,17 @@ function Coummunity () {
   // TODO: 글쓰기 버튼 (로그인한 사용자만 가능) => PostInput 컴포넌트로 연결
 
   const [currentTab, setCurrentTab] = useState(0);
-  // TODO: 카테고리별 필터링
 
-  getFilteredPostsData('WARM')
   const categories = ['전체', 'WARM', 'COOL', '모르겠어요'];
 
   const selectCategoryHandler = async (index) => {
     setCurrentTab(index);
 
-    // getAllPosts()
-    // let filteredData = postsData.filter((post) => {
-    //   return post.category === categories[index]
-    // })
-    // setPostData(filteredData)
+    if(index === 0) {
+      return getAllPosts();
+    }
+    let filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index])
+    setPostData(filteredByCategoryData)
   };
 
   const getAllPosts = async () => {
