@@ -1,14 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './community.css';
-import { getAllPostsData, getFilteredByCategoryPostsData } from './firebase/firebase';
+import { getAllPostsData, getFilteredByCategoryPostsData, getSearchedPostsData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
 function Coummunity () {
   const [postsData, setPostData] = useState([]);
   const navigate = useNavigate();
-
-  // TODO: 게시물 검색 기능
-  // TODO: 글쓰기 버튼 (로그인한 사용자만 가능) => PostInput 컴포넌트로 연결
 
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -51,6 +48,11 @@ function Coummunity () {
     }
   };
 
+  const writePostHandler = () => {
+    // TODO: 로그인 한 사용자일 경우만 글쓰기 가능하게 인증 확인하기
+    navigate('/community/post');
+  }
+
   return (
     <>
       <div className='category-box'>
@@ -68,11 +70,12 @@ function Coummunity () {
             })
         }
       </div>
-      <div className='search-box'>
+      {/* <div className='search-box'>
         <input placeholder='검색어를 입력하세요' />
-        {/* TODO: 아이콘 */}
+        TODO: 아이콘
         <button>검색</button>
-      </div>
+      </div> */}
+      <button className='write-post-button' onClick={writePostHandler}>글쓰기</button>
       <div className='community-content-box'>
         {
           postsData.length === 0
@@ -94,7 +97,6 @@ function Coummunity () {
               </tbody>
             </table>
         }
-
         {/* TODO: 페이지네이션 네비게이터 */}
       </div>
     </>

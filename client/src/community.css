@@ -29,6 +29,22 @@
     text-align: right;
 }
 
+.write-post-button {
+    width: 4rem;
+    height: 1.5rem;
+    margin: 1rem 5rem 1rem auto;
+    border: none;
+    background-color: #ff7773;
+    color: #ffffff;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.write-post-button:hover {
+    background-color: #e3e3e3;
+    color: #ff7773;
+}
+
 .community-content-box {
     display: flex;
     margin: 0 auto;

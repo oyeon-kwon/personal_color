@@ -19,7 +19,6 @@ import {
 function App () {
   return (
     <>
-      <PostInput />
       <div className='body'>
         <Router>
           <div className='nav'>
@@ -50,6 +49,7 @@ function App () {
             <Route path='/camera-self/colors' element={<ColorList />} />
             <Route path='/community' element={<Commumity />} />
             <Route path='/community/:id' element={<PostView />} />
+            <Route path='/community/post' element={<PostInput />} />
             <Route path='/mypage' element={<Mypage />} />
           </Routes>
         </Router>
