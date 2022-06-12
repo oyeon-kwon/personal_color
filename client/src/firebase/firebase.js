@@ -135,11 +135,6 @@ export const getFilteredByCategoryPostsData = async (category) => {
   return filteredByCategoryPost
 }
 
-//! 검색 입력에 따라 필터링
-export const getSearchedPostsData = async (search) => {
-
-}
-
 export const getPostData = async (id) => {
   let postData;
 
