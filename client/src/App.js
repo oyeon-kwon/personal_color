@@ -9,6 +9,7 @@ import Commumity from './Community';
 import Mypage from './Mypage';
 import PostView from './components/PostView';
 import PostInput from './components/PostInput';
+import CameraAI from './components/CameraAI';
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,6 +20,7 @@ import {
 function App () {
   return (
     <>
+    <CameraAI />
       <div className='body'>
         <Router>
           <div className='nav'>
