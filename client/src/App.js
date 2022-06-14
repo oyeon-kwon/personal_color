@@ -10,6 +10,7 @@ import Mypage from './Mypage';
 import PostView from './components/PostView';
 import PostInput from './components/PostInput';
 import CameraAI from './components/CameraAI';
+import ColorResult from './components/ColorResult';
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,7 +28,7 @@ function App () {
               <Link to='/'>HOME</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/camera-self'>COLOR</Link>
+              <Link to='/color'>COLOR</Link>
             </span>
             <span className='nav-link'>
               <Link to='/community'>COMMUNITY</Link>
@@ -53,6 +54,7 @@ function App () {
             <Route path='/community/:id' element={<PostView />} />
             <Route path='/community/post' element={<PostInput />} />
             <Route path='/mypage' element={<Mypage />} />
+            <Route path='/color' element={<ColorResult />} />
           </Routes>
         </Router>
         {/* <Landing /> */}

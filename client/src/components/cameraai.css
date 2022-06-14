@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&family=Luckiest+Guy&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.ai-camera-button {
+    width: 15rem;
+    height: 5rem;
+    background-color: #FF7773;
+    color: #ffffff;
+    border-radius: 50px;
+    border: none;
+    margin: 7rem auto 3rem auto;    
+}
+
+.ai-camera-button:hover {
+    color: #FF7773;
+    background-color: #FFF1F0;
+}
+
+.ai-camera-desc {
+    margin: 5rem auto 0 auto;
+    color: #FF7773;
+    text-align: center;
+    line-height: 2rem;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+}
+
+#ai-webcam-container {
+    margin: 0 auto;
+}
+
+#ai-label-container {
+    margin: 3rem auto;
+    font-size: 2rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}

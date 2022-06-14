@@ -15,7 +15,7 @@ function Landing () {
 
   const aiTestHandler = () => {
     navigate('/camera-ai');
-  }
+  };
 
   return (
     <>

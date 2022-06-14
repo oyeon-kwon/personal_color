@@ -1,11 +1,17 @@
 import React, { useState, useRef, useCallback } from 'react';
+import './cameraai.css';
+import { useNavigate } from 'react-router-dom';
 
 function CameraAI () {
-  const URL = 'https://teachablemachine.withgoogle.com/models/JWq_f7ptd/';
+  const [isAICameraStart, setIsAICameraStart] = useState(false);
+  const navigate = useNavigate();
+  const labelContainerRef = useRef();
 
   let model, webcam, labelContainer, maxPredictions;
+  const URL = 'https://teachablemachine.withgoogle.com/models/JWq_f7ptd/';
 
-  async function init () {
+  const init = async () => {
+    setIsAICameraStart(!isAICameraStart);
     const modelURL = URL + 'model.json';
     const metadataURL = URL + 'metadata.json';
 
@@ -14,39 +20,58 @@ function CameraAI () {
 
     const flip = true;
     webcam = new window.tmImage.Webcam(200, 200, flip);
+
     await webcam.setup();
     await webcam.play();
+
     window.requestAnimationFrame(loop);
 
-    document.getElementById('webcam-container').appendChild(webcam.canvas);
-    labelContainer = document.getElementById('label-container');
+    document.getElementById('ai-webcam-container').appendChild(webcam.canvas);
+    labelContainer = document.getElementById('ai-label-container');
     for (let i = 0; i < maxPredictions; i++) {
       labelContainer.appendChild(document.createElement('div'));
     }
-  }
+  };
 
-  async function loop () {
+  const loop = async () => {
     webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
-  }
+  };
 
-  async function predict () {
+  const predict = async () => {
     const prediction = await model.predict(webcam.canvas);
-    for (let i = 0; i < maxPredictions; i++) {
-      const classPrediction =
-                prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
-      labelContainer.childNodes[i].innerHTML = classPrediction;
+
+    if (Number(prediction[0].probability.toFixed(2)) < Number(prediction[1].probability.toFixed(2))) {
+      // COOL
+      labelContainer.childNodes[0].innerHTML = prediction[1].className;
+      labelContainerRef.current.style = 'color: #0398fc';
+    } else if (Number(prediction[0].probability.toFixed(2)) > Number(prediction[1].probability.toFixed(2))) {
+      // WARM
+      labelContainer.childNodes[0].innerHTML = prediction[0].className;
+      labelContainerRef.current.style = 'color: #ffb83d';
     }
-  }
+  };
+
+  const close = async () => {
+    setIsAICameraStart(!isAICameraStart);
+    navigate('/color');
+    window.location.reload();
+  };
 
   return (
     <>
+      {
+        !isAICameraStart
+          ? <>
+            <div className='ai-camera-desc'>보다 정확한 테스트를 위해 <br /> 메이크업을 하지 않은 상태로  <br /> 화면에 얼굴이 꽉 채워질 수 있게 <br /> 테스트하실 것을 권장합니다.</div>
+            <button type='button' onClick={init} className='ai-camera-button'>진단 시작하기</button>
+          </>
+          : <button type='button' onClick={close} className='ai-camera-button'>진단 끝내기</button>
+    }
+      <div id='ai-webcam-container' />
+      <div id='ai-label-container' ref={labelContainerRef} />
 
-      <div>Teachable Machine Image Model</div>
-      <button type='button' onClick={init}>Start</button>
-      <div id='webcam-container' />
-      <div id='label-container' />
     </>
   );
 }
