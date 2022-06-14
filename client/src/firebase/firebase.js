@@ -1,9 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, set, child, get, push, update, onValue, query, equalTo, orderByChild, orderByValue } from 'firebase/database';
 import axios from 'axios';
-import { isRejected } from '@reduxjs/toolkit';
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -18,7 +17,7 @@ export const firebaseConfig = {
 export const app = firebase.initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-export const storage = firebase.storage();
+export const storage = firebase.storage()
 
 export const signupEmail = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -45,6 +44,16 @@ export const writeUserData = (userId, name, email) => {
 export const getUserData = (userId) => {
   return get(child(dbRef, `users/${userId}`));
 };
+
+export const getCurrentLoggedInUser = () => {
+  const currentUser = auth.currentUser
+
+  if(currentUser) {
+    return currentUser
+  } else {
+    return null;
+  }
+}
 
 // TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
 
@@ -73,6 +82,14 @@ export const verifyTokenFromFirebase = () => {
     console.log('토큰이 올바르지 않습니다.');
   });
 };
+
+export const signout = () => {
+  signOut(auth).then(() => {
+    console.log('로그아웃 성공')
+  }).catch((error) => {
+    console.log(error)
+  })
+}
 
 // ! Real time Database 설정
 // 커뮤니티 게시판

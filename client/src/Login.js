@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
-import { auth, loginEmail, getUserData, writeUserData, verifyTokenFromFirebase } from './firebase/firebase';
+import { auth, loginEmail, getUserData, writeUserData, verifyTokenFromFirebase, getCurrentLoggedInUser } from './firebase/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login () {
+  getCurrentLoggedInUser()
+
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');

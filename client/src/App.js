@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Landing from './Landing';
 import Signup from './Signup';
@@ -17,8 +17,29 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import { getCurrentLoggedInUser, signout } from './firebase/firebase'
 
 function App () {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [currentUserInfo, setCurrentUserInfo] = useState()
+
+  const loginStatusHandler = () => {
+    let currenUserInfo = getCurrentLoggedInUser()
+
+    if(currenUserInfo) {
+      setIsLoggedIn(true)
+      setCurrentUserInfo(currenUserInfo)
+    } else {
+      setIsLoggedIn(false)
+    }
+  }
+
+  useEffect(() => {
+    loginStatusHandler()
+  })
+
+
   return (
     <>
       <div className='body'>
@@ -40,7 +61,12 @@ function App () {
               <Link to='/signup'>회원가입</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/signin'>로그인</Link>
+              {
+                isLoggedIn ?
+                <span onClick={signout}>로그아웃</span>
+                :
+                <Link to='/signin'>로그인</Link>
+              }
             </span>
           </div>
           <Routes>
