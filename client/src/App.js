@@ -20,7 +20,6 @@ import {
 function App () {
   return (
     <>
-    <CameraAI />
       <div className='body'>
         <Router>
           <div className='nav'>
@@ -48,6 +47,7 @@ function App () {
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login />} />
             <Route path='/camera-self' element={<Camera />} />
+            <Route path='/camera-ai' element={<CameraAI />} />
             <Route path='/camera-self/colors' element={<ColorList />} />
             <Route path='/community' element={<Commumity />} />
             <Route path='/community/:id' element={<PostView />} />

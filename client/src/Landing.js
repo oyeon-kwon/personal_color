@@ -13,6 +13,10 @@ function Landing () {
     navigate('/camera-self');
   };
 
+  const aiTestHandler = () => {
+    navigate('/camera-ai');
+  }
+
   return (
     <>
       <div className='content-box-1'>
@@ -22,7 +26,7 @@ function Landing () {
         </div>
         <div className='test-button-container'>
           <div className='test-button self' onMouseOver={() => setButtonStatus('self')} onClick={selfTestHandler}>스스로 진단하기</div>
-          <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')}>AI로 진단하기</div>
+          <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')} onClick={aiTestHandler}>AI로 진단하기</div>
         </div>
       </div>
       <div className='img-container'>

@@ -112,28 +112,27 @@ export const getAllPostsData = async () => {
 };
 
 export const getFilteredByCategoryPostsData = async (category) => {
-
   let allPostData;
-  let filteredByCategoryPost = [];
+  const filteredByCategoryPost = [];
 
   await get(child(dbRef, 'posts/')).then((snapshot) => {
-    if(snapshot.exists()) {
+    if (snapshot.exists()) {
       allPostData = snapshot.val();
     } else {
       console.log('No data available');
     }
   }).catch((error) => {
     console.log(error);
-  })
+  });
 
-  for(let key in allPostData) {
-    if(allPostData[key].category === category) {
-      filteredByCategoryPost.push(allPostData[key])
+  for (const key in allPostData) {
+    if (allPostData[key].category === category) {
+      filteredByCategoryPost.push(allPostData[key]);
     }
   }
 
-  return filteredByCategoryPost
-}
+  return filteredByCategoryPost;
+};
 
 export const getPostData = async (id) => {
   let postData;

@@ -14,11 +14,11 @@ function Coummunity () {
   const selectCategoryHandler = async (index) => {
     setCurrentTab(index);
 
-    if(index === 0) {
+    if (index === 0) {
       return getAllPosts();
     }
-    let filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index])
-    setPostData(filteredByCategoryData)
+    const filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index]);
+    setPostData(filteredByCategoryData);
   };
 
   const getAllPosts = async () => {
@@ -51,7 +51,7 @@ function Coummunity () {
   const writePostHandler = () => {
     // TODO: 로그인 한 사용자일 경우만 글쓰기 가능하게 인증 확인하기
     navigate('/community/post');
-  }
+  };
 
   return (
     <>
@@ -83,7 +83,7 @@ function Coummunity () {
             : <table>
               {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
               <tbody>
-              {
+                {
                 postsData.map((post) => {
                   return (
                     <tr className='community-content' id={post.id} key={post.id} onClick={viewPostHandler}>
