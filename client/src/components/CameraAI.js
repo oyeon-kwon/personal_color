@@ -3,6 +3,7 @@ import './cameraai.css';
 import { useNavigate } from 'react-router-dom';
 
 function CameraAI () {
+// TODO: DOM 쓰지말고 useRef 로 리팩토링
   const [isAICameraStart, setIsAICameraStart] = useState(false);
   const navigate = useNavigate();
   const labelContainerRef = useRef();
