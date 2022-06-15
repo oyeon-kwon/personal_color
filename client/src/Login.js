@@ -5,7 +5,6 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login () {
-  getCurrentLoggedInUser()
 
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
@@ -29,7 +28,7 @@ function Login () {
           if (snapshot.exists()) {
             alert('로그인에 성공했습니다.');
             navigate('/');
-            verifyTokenFromFirebase();
+            // verifyTokenFromFirebase();
           } else {
             console.log('No data available');
           }

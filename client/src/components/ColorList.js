@@ -3,7 +3,10 @@ import Color from './Color';
 import colorData from './color.json';
 import './colorlist.css';
 
-function ColorList () {
+function ColorList ({ currentUserInfo }) {
+  console.log(currentUserInfo)
+  // undefined
+  
   // TODO: color.json 데이터 가공 필요 (봄 여름 가을 겨울 카테고리로 나누기)
   // TODO: 여기서 내 퍼스널 컬러 선택하기 기능 추가, 저장하기 누르면 서버로 컬러 전송 (로그인 한 사용자일 경우) -> 마이페이지에서 보여주기
   const [currentTab, setCurrentTab] = useState(0);

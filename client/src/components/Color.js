@@ -4,7 +4,7 @@ import colorData from './color.json';
 import { useSelector } from 'react-redux';
 
 function Color ({ colorTheme }) {
-  const selfCameraImg = useSelector((state) => state.selfCameraImg.selfCameraImg);
+  const selfCameraImg = useSelector((state) => state.selfCameraImgReducer.selfCameraImg);
 
   const color_0 = useRef();
   const color_1 = useRef();

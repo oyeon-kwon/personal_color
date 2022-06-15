@@ -1,11 +1,11 @@
 import React, { useState, useRef, useCallback } from 'react';
-import './camera.css';
+import './cameraself.css';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSelfCameraImg } from '../reducer/cameraReducer';
 
-function Camera () {
+function CameraSelf () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -46,4 +46,4 @@ function Camera () {
   );
 }
 
-export default Camera;
+export default CameraSelf;
