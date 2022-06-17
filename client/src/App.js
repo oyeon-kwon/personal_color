@@ -20,6 +20,7 @@ import {
 import { getCurrentLoggedInUser, signout } from './firebase/firebase'
 
   // TODO: 새로고침해도 로그인 유지 되게
+  // Redux-persist 활용
   // App 이 불러와졌을 때 로컬스토리지에 있던 유저 정보 사용
   // 서버에 현재 로그인 상태 재검증
   // 서버가 응답한 로그인 정보로 업데이트
