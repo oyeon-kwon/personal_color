@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import selfCameraImgReducer from '../reducer/cameraReducer';
+import selfCameraImgReducer from './cameraReducer';
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
-    selfCameraImgReducer
+    selfCameraImgReducer,
+    authReducer
 });
 
 export default rootReducer;

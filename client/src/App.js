@@ -18,6 +18,9 @@ import {
   Link
 } from 'react-router-dom';
 import { getCurrentLoggedInUser, signout } from './firebase/firebase'
+import { useDispatch } from 'react-redux';
+import { setAuth } from './reducer/authReducer';
+import { useSelector } from 'react-redux';
 
   // TODO: 새로고침해도 로그인 유지 되게
   // Redux-persist 활용
@@ -27,26 +30,27 @@ import { getCurrentLoggedInUser, signout } from './firebase/firebase'
   // 만약에 토큰이 만료되었을 시에는, 재로그인 요청
 
 function App () {
+  const dispatch = useDispatch();
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [currentUserInfo, setCurrentUserInfo] = useState()
 
   const loginStatusHandler = () => {
-    let currenUserInfo = getCurrentLoggedInUser()
+    let currentUserInfo = getCurrentLoggedInUser()
 
-    if(currenUserInfo) {
-      setIsLoggedIn(true)
-      setCurrentUserInfo(currenUserInfo)
+    if(currentUserInfo) {
+      dispatch(setAuth(currentUserInfo))
     } else {
-      setIsLoggedIn(false)
     }
   }
 
   useEffect(() => {
     loginStatusHandler()
-
-    console.log('로그인 되었나요?' + isLoggedIn)
-    console.log(currentUserInfo)
+    //! 여기서 리덕스에 저장된 유저 정보 불러오기
+    console.log(authCurrentUser)
+    console.log(authCurrentUser.uid)
+    console.log(authCurrentUser.accessToken)
+    console.log(authCurrentUser.email)
+    console.log(authCurrentUser.displayName)
   })
 
   return (
@@ -70,12 +74,13 @@ function App () {
               <Link to='/signup'>회원가입</Link>
             </span>
             <span className='nav-link'>
-              {
+              {/* {
                 isLoggedIn ?
                 <span onClick={signout}>로그아웃</span>
                 :
                 <Link to='/signin'>로그인</Link>
-              }
+              } */}
+              <Link to='/signin'>로그인</Link>
             </span>
           </div>
           <Routes>
@@ -83,12 +88,12 @@ function App () {
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login />} />
             <Route path='/camera-self' element={<CameraSelf />} />
-            <Route path='/camera-ai' element={<CameraAI currentUserInfo={currentUserInfo} />} />
-            <Route path='/camera-self/colors' element={<ColorList currentUserInfo={currentUserInfo} />} />
-            <Route path='/community' element={<Commumity currentUserInfo={currentUserInfo} />} />
-            <Route path='/community/:id' element={<PostView currentUserInfo={currentUserInfo} />} />
-            <Route path='/community/post' element={<PostInput currentUserInfo={currentUserInfo} />} />
-            <Route path='/mypage' element={<Mypage currentUserInfo={currentUserInfo} />} />
+            <Route path='/camera-ai' element={<CameraAI />} />
+            <Route path='/camera-self/colors' element={<ColorList />} />
+            <Route path='/community' element={<Commumity />} />
+            <Route path='/community/:id' element={<PostView />} />
+            <Route path='/community/post' element={<PostInput />} />
+            <Route path='/mypage' element={<Mypage />} />
             <Route path='/color' element={<ColorResult />} />
           </Routes>
         </Router>
