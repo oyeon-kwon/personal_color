@@ -1,9 +1,14 @@
 import React, { useState, useRef, useCallback } from 'react';
 import './cameraai.css';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function CameraAI () {
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
+  // 리덕스에 저장된 authCurrentUser의 정보
+
 // TODO: DOM 쓰지말고 useRef 로 리팩토링
+// TODO: 내 톤 선택하고 자동으로 끝내게 변경 (authCurrentUser 활용해서 데베에 정보 저장)
   const [isAICameraStart, setIsAICameraStart] = useState(false);
   const navigate = useNavigate();
   const labelContainerRef = useRef();

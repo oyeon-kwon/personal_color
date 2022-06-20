@@ -4,8 +4,8 @@ import selfCameraImgReducer from './cameraReducer';
 import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
-    selfCameraImgReducer,
-    authReducer
+  selfCameraImgReducer,
+  authReducer
 });
 
 export default rootReducer;

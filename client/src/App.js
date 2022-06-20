@@ -17,41 +17,39 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import { getCurrentLoggedInUser, signout } from './firebase/firebase'
-import { useDispatch } from 'react-redux';
+import { getCurrentLoggedInUser, signout } from './firebase/firebase';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from './reducer/authReducer';
-import { useSelector } from 'react-redux';
 
-  // TODO: 새로고침해도 로그인 유지 되게
-  // Redux-persist 활용
-  // App 이 불러와졌을 때 로컬스토리지에 있던 유저 정보 사용
-  // 서버에 현재 로그인 상태 재검증
-  // 서버가 응답한 로그인 정보로 업데이트
-  // 만약에 토큰이 만료되었을 시에는, 재로그인 요청
+// TODO: 새로고침해도 로그인 유지 되게
+// Redux-persist 활용
+// App 이 불러와졌을 때 로컬스토리지에 있던 유저 정보 사용
+// 서버에 현재 로그인 상태 재검증
+// 서버가 응답한 로그인 정보로 업데이트
+// 만약에 토큰이 만료되었을 시에는, 재로그인 요청
 
 function App () {
   const dispatch = useDispatch();
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
+  // 리덕스에 저장된 authCurrentUser의 정보: email, username
 
+  const loginStatusHandler = async () => {
+    const currentUserInfo = await getCurrentLoggedInUser();
 
-  const loginStatusHandler = () => {
-    let currentUserInfo = getCurrentLoggedInUser()
-
-    if(currentUserInfo) {
-      dispatch(setAuth(currentUserInfo))
-    } else {
+    if (currentUserInfo) {
+      dispatch(setAuth(currentUserInfo));
     }
-  }
+  };
+
+  const logoutHandler = () => {
+    signout();
+    dispatch(setAuth(''));
+    // TODO: window.location.href = 'http://localhost:3000'
+  };
 
   useEffect(() => {
-    loginStatusHandler()
-    //! 여기서 리덕스에 저장된 유저 정보 불러오기
-    console.log(authCurrentUser)
-    console.log(authCurrentUser.uid)
-    console.log(authCurrentUser.accessToken)
-    console.log(authCurrentUser.email)
-    console.log(authCurrentUser.displayName)
-  })
+    loginStatusHandler();
+  }, []);
 
   return (
     <>
@@ -68,19 +66,21 @@ function App () {
               <Link to='/community'>COMMUNITY</Link>
             </span>
             <span className='nav-link'>
-              <Link to='/mypage'>MYPAGE</Link>
+              {
+                authCurrentUser
+                  ? <Link to='/mypage'>MYPAGE</Link>
+                  : <></>
+              }
             </span>
             <span className='nav-link'>
               <Link to='/signup'>회원가입</Link>
             </span>
             <span className='nav-link'>
-              {/* {
-                isLoggedIn ?
-                <span onClick={signout}>로그아웃</span>
-                :
-                <Link to='/signin'>로그인</Link>
-              } */}
-              <Link to='/signin'>로그인</Link>
+              {
+                authCurrentUser
+                  ? <span onClick={logoutHandler}>로그아웃</span>
+                  : <Link to='/signin'>로그인</Link>
+              }
             </span>
           </div>
           <Routes>

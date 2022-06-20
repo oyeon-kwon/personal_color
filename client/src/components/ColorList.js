@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import Color from './Color';
 import colorData from './color.json';
 import './colorlist.css';
+import { useSelector } from 'react-redux';
 
-function ColorList ({ currentUserInfo }) {
-  console.log(currentUserInfo)
-  // undefined
-  
+
+function ColorList () {
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
+  // 리덕스에 저장된 authCurrentUser의 정보
+
   // TODO: color.json 데이터 가공 필요 (봄 여름 가을 겨울 카테고리로 나누기)
-  // TODO: 여기서 내 퍼스널 컬러 선택하기 기능 추가, 저장하기 누르면 서버로 컬러 전송 (로그인 한 사용자일 경우) -> 마이페이지에서 보여주기
+  // TODO: 여기서 내 퍼스널 컬러 선택하기 기능 추가, 저장하기 누르면 서버로 컬러 전송 (authCurrentUser가 있을 경우에만!)
   const [currentTab, setCurrentTab] = useState(0);
 
   const seasons = [

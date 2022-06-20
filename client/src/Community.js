@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import './community.css';
 import { getAllPostsData, getFilteredByCategoryPostsData, getSearchedPostsData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function Coummunity () {
-  const [postsData, setPostData] = useState([]);
+function Community () {
   const navigate = useNavigate();
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
+  // 리덕스에 저장된 authCurrentUser의 정보
 
+  const [postsData, setPostData] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
-
   const categories = ['전체', 'WARM', 'COOL', '모르겠어요'];
 
   const selectCategoryHandler = async (index) => {
@@ -49,8 +51,14 @@ function Coummunity () {
   };
 
   const writePostHandler = () => {
-    // TODO: 로그인 한 사용자일 경우만 글쓰기 가능하게 인증 확인하기
-    navigate('/community/post');
+    if (authCurrentUser) {
+      // 글쓰기 가능
+      navigate('/community/post');
+    } else {
+      // 글쓰기 불가
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/signin');
+    }
   };
 
   return (
@@ -103,4 +111,4 @@ function Coummunity () {
   );
 }
 
-export default Coummunity;
+export default Community;

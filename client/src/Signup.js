@@ -50,7 +50,7 @@ function Signup () {
       })
       .catch(err => {
       // 에러메시지 공식문서 : https://firebase.google.com/docs/auth/admin/errors
-      console.log(err)
+        console.log(err);
         if (err.message === 'Firebase: Error (auth/invalid-email).') {
           alert('이메일이 유효하지 않습니다.');
         }

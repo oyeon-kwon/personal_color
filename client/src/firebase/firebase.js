@@ -17,7 +17,7 @@ export const firebaseConfig = {
 export const app = firebase.initializeApp(firebaseConfig);
 
 export const auth = getAuth();
-export const storage = firebase.storage()
+export const storage = firebase.storage();
 
 export const signupEmail = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -34,6 +34,7 @@ export const database = getDatabase(app);
 const dbRef = ref(getDatabase());
 
 export const writeUserData = (userId, name, email) => {
+  // TODO: displayName, tone 정보 넣기
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
     username: name,
@@ -45,15 +46,26 @@ export const getUserData = (userId) => {
   return get(child(dbRef, `users/${userId}`));
 };
 
-export const getCurrentLoggedInUser = () => {
-  const currentUser = auth.currentUser
+export const getCurrentLoggedInUser = async () => {
 
-  if(currentUser) {
-    return currentUser
+  let userInfo;
+
+  if (auth.currentUser) {
+    await get(child(dbRef, `users/${auth.currentUser.uid}`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        userInfo = snapshot.val();
+      } else {
+        console.log('No data available');
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  
   } else {
     return null;
   }
-}
+  return userInfo;
+};
 
 // TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
 
@@ -85,11 +97,11 @@ export const verifyTokenFromFirebase = () => {
 
 export const signout = () => {
   signOut(auth).then(() => {
-    console.log('로그아웃 성공')
+    console.log('로그아웃 성공');
   }).catch((error) => {
-    console.log(error)
-  })
-}
+    console.log(error);
+  });
+};
 
 // ! Real time Database 설정
 // 커뮤니티 게시판
