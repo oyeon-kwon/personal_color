@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './postInput.css';
 import { writePostData, storage } from '../firebase/firebase';
+import { useSelector } from 'react-redux';
 
 function PostInput () {
   // TODO: 이미지 업로드 css 변경
+  
+  // 리덕스에 저장된 authCurrentUser의 정보
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
+
+  // TODO: authCurrentUser 활용해서 유저 정보를 포스트 데베에 같이 저장하기
 
   const [postInput, setPostInput] = useState({
     userId: 'oana',

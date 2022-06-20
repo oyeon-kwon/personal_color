@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './postview.css';
 import { getPostData, writeCommentData } from '../firebase/firebase';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 
 function PostView () {
+    // 리덕스에 저장된 authCurrentUser의 정보
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
+
   const [postData, setPostData] = useState();
 
   // 포스트 가져오기
@@ -30,8 +35,7 @@ function PostView () {
     if (comment === '') {
       alert('댓글을 입력하세요.');
     } else {
-      // TODO: 로그인된 user 정보 받아와서 넣어주기
-      writeCommentData(id, 'oana', comment);
+      writeCommentData(id, authCurrentUser.username, comment);
       setComment('');
     }
   };
