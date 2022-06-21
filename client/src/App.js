@@ -21,7 +21,7 @@ import { getCurrentLoggedInUser, signout } from './firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from './reducer/authReducer';
 
-// TODO: 새로고침해도 로그인 유지 되게
+// TODO: 새로고침해야지만 authCurrentUser가 뜬다ㅠㅠ
 // Redux-persist 활용
 // App 이 불러와졌을 때 로컬스토리지에 있던 유저 정보 사용
 // 서버에 현재 로그인 상태 재검증
@@ -69,11 +69,8 @@ function App () {
               {
                 authCurrentUser
                   ? <Link to='/mypage'>MYPAGE</Link>
-                  : <></>
+                  : <Link to='/signup'>회원가입</Link>
               }
-            </span>
-            <span className='nav-link'>
-              <Link to='/signup'>회원가입</Link>
             </span>
             <span className='nav-link'>
               {

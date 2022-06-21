@@ -37,8 +37,29 @@ export const writeUserData = (userId, name, email) => {
   // TODO: displayName, tone 정보 넣기
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
+    userId: userId,
     username: name,
     email: email
+  });
+};
+
+export const writeUserColorData = async (userId, color) => {
+  const db = getDatabase();
+
+  const userRef = ref(db, 'users/');
+
+  await onValue(userRef, (snapshot) => {
+    const users = snapshot.val();
+    const user = users[userId];
+
+    const updateUserData = {
+      ...user,
+      color: color
+    };
+    set(ref(db, 'users/' + userId), updateUserData);
+
+  }, {
+    onlyOnce: true
   });
 };
 

@@ -3,6 +3,7 @@ import Color from './Color';
 import colorData from './color.json';
 import './colorlist.css';
 import { useSelector } from 'react-redux';
+import { writeUserColorData } from '../firebase/firebase'
 
 
 function ColorList () {
@@ -10,7 +11,7 @@ function ColorList () {
   // 리덕스에 저장된 authCurrentUser의 정보
 
   // TODO: color.json 데이터 가공 필요 (봄 여름 가을 겨울 카테고리로 나누기)
-  // TODO: 여기서 내 퍼스널 컬러 선택하기 기능 추가, 저장하기 누르면 서버로 컬러 전송 (authCurrentUser가 있을 경우에만!)
+  
   const [currentTab, setCurrentTab] = useState(0);
 
   const seasons = [
@@ -24,6 +25,15 @@ function ColorList () {
   const selectMenuHandler = (index) => {
     setCurrentTab(index);
   };
+
+  const selectColorToneHandler = (e) => {
+    if(authCurrentUser) {
+      let selectedColor = e.target.parentNode.childNodes[0].textContent
+      writeUserColorData(authCurrentUser.userId, selectedColor)
+    } else {
+      alert('로그인이 필요한 서비스입니다.')
+    }
+  }
 
   return (
     <>
@@ -48,6 +58,7 @@ function ColorList () {
               return (
                 <div className='color-card' key={index}>
                   <div className='color-theme-title'>{colorTheme}</div>
+                  <div className='color-theme-select-button' onClick={selectColorToneHandler}>선택</div>
                   <Color colorTheme={colorTheme} key={index} />
                 </div>
               );

@@ -35,4 +35,21 @@ li {
 .color-theme-title {
     position: relative;
     left: 30px;
+    margin-top: 4rem;
+}
+
+.color-theme-select-button {
+    background-color: #FFF1F0;
+    color: #ff7773;
+    padding: 1rem;
+    border-radius: 40%;
+    position: relative;
+    left: 30px;
+    margin-top: 1rem;
+}
+
+.color-theme-select-button:hover {
+    color: #FFF1F0;
+    background-color: #ff7773;
+    cursor: pointer;
 }
