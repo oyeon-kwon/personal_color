@@ -27,6 +27,7 @@ function Login () {
           if (snapshot.exists()) {
             alert('로그인에 성공했습니다.');
             navigate('/');
+            window.location.reload();
             // verifyTokenFromFirebase();
           } else {
             console.log('No data available');

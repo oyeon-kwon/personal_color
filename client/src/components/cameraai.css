@@ -5,7 +5,7 @@
     color: #FFF1F0;
     border-radius: 50px;
     border: none;
-    margin: 7rem auto 3rem auto;    
+    margin: 2rem auto;    
 }
 
 .ai-camera-button:hover {
@@ -20,6 +20,14 @@
     line-height: 2rem;
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: 300;
+}
+
+.color-select-option {
+    width: 15rem;
+    height: 3rem;
+    border-radius: 30px;
+    padding: 1rem;
+    margin: 7rem auto 0 auto;
 }
 
 #ai-webcam-container {
