@@ -29,6 +29,7 @@ function CameraSelf () {
 
   return (
     <>
+      <div className='camera-desc'>보다 정확한 테스트를 위해 <br /> 메이크업을 하지 않은 상태로  <br /> 화면에 얼굴이 꽉 채워질 수 있게 <br /> 테스트하실 것을 권장합니다.</div>
       <div className='camera-box'>
         <Webcam
           audio={false}

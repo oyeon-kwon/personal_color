@@ -22,3 +22,12 @@
     background-color: #FF7773;
     color: #ffffff;
 }
+
+.camera-desc {
+    margin: 5rem auto 0 auto;
+    color: #FF7773;
+    text-align: center;
+    line-height: 2rem;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+}

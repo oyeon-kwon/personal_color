@@ -32,6 +32,8 @@ function App () {
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보: email, username
 
+  console.log(authCurrentUser)
+
   const loginStatusHandler = async () => {
     const currentUserInfo = await getCurrentLoggedInUser();
 
