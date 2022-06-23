@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './signup.css';
 import signupImg from './img/signup-img.png';
 import { signupEmail, writeUserData } from './firebase/firebase';
@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup () {
   const navigate = useNavigate();
-  // TODO: 비밀번호 확인 구현
+
   // TODO: result.user.emailVerified
 
   const [nameInput, setNameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [passwordCheckInput, setPasswordCheckInput] = useState('');
   const [isSamePassword, setIsSamePassword] = useState(false);
 
   const nameInputHandler = (e) => {
@@ -27,20 +28,26 @@ function Signup () {
   const passwordInputHandler = (e) => {
     const password = e.target.value;
     setPasswordInput(password);
+    if (password !== passwordCheckInput) {
+      setIsSamePassword(false);
+    } else {
+      setIsSamePassword(true);
+    }
   };
 
   const passwordInputCheckHandler = (e) => {
     const passwordCheck = e.target.value;
+    setPasswordCheckInput(passwordCheck)
     if (passwordInput !== passwordCheck) {
       setIsSamePassword(false);
     } else {
-      // 한 박자 늦어..
       setIsSamePassword(true);
     }
   };
 
   const submitSignupHandler = async () => {
-    await signupEmail(emailInput, passwordInput)
+    if(isSamePassword) {
+      await signupEmail(emailInput, passwordInput)
       .then(result => {
         console.log(result);
         const email = result.user.email;
@@ -67,6 +74,9 @@ function Signup () {
           alert('패스워드는 6자 이상의 문자열이어야 합니다.');
         }
       });
+    } else {
+      alert('비밀번호가 일치해야 합니다.')
+    }
   };
 
   return (
@@ -93,6 +103,12 @@ function Signup () {
             <div className='password-check'>
               <div className='desc'>비밀번호 확인</div>
               <input className='form-box' type='password' onChange={passwordInputCheckHandler} />
+              {
+                isSamePassword ? 
+                  <div className='password-check-desc true'>비밀번호가 일치합니다.</div>
+                :
+                  <div className='password-check-desc false'>비밀번호가 일치하지 않습니다.</div>
+              }
             </div>
             <div className='signup-button' onClick={submitSignupHandler}>회원가입</div>
           </div>
