@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth';
 import { getDatabase, ref, set, child, get, push, update, onValue, query, equalTo, orderByChild, orderByValue } from 'firebase/database';
 import axios from 'axios';
 export const firebaseConfig = {

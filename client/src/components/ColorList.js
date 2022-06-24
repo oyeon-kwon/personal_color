@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import Color from './Color';
 import colorData from './color.json';
 import './colorlist.css';
-import { useSelector } from 'react-redux';
-import { writeUserColorData } from '../firebase/firebase'
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuth } from '../reducer/authReducer';
+import { writeUserColorData, getCurrentLoggedInUser } from '../firebase/firebase'
 
 
 function ColorList () {
+  const dispatch = useDispatch();
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보
 
@@ -26,10 +28,12 @@ function ColorList () {
     setCurrentTab(index);
   };
 
-  const selectColorToneHandler = (e) => {
+  const selectColorToneHandler = async (e) => {
     if(authCurrentUser) {
       let selectedColor = e.target.parentNode.childNodes[0].textContent
       writeUserColorData(authCurrentUser.userId, selectedColor)
+      const currentUserInfo = await getCurrentLoggedInUser();
+      dispatch(setAuth(currentUserInfo));
     } else {
       alert('로그인이 필요한 서비스입니다.')
     }
