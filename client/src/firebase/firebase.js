@@ -1,8 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendEmailVerification } from 'firebase/auth';
-import { getDatabase, ref, set, child, get, push, update, onValue, query, equalTo, orderByChild, orderByValue } from 'firebase/database';
-import axios from 'axios';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from 'firebase/auth';
+import { getDatabase, ref, set, child, get, push, update, onValue } from 'firebase/database';
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -63,6 +62,26 @@ export const writeUserColorData = async (userId, color) => {
   });
 };
 
+export const writeUserImageData = async (userId, image) => {
+  const db = getDatabase();
+
+  const userRef = ref(db, 'users/');
+
+  await onValue(userRef, (snapshot) => {
+    const users = snapshot.val();
+    const user = users[userId];
+
+    const updateUserData = {
+      ...user,
+      image: image
+    };
+    set(ref(db, 'users/' + userId), updateUserData);
+
+  }, {
+    onlyOnce: true
+  });
+};
+
 export const getUserData = (userId) => {
   return get(child(dbRef, `users/${userId}`));
 };
@@ -88,33 +107,44 @@ export const getCurrentLoggedInUser = async () => {
   return userInfo;
 };
 
-// TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
-
-export const verifyTokenFromFirebase = () => {
-  getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
-    // Send token to your backend via HTTPS
-    // TODO: https 설정
-    if (idToken) {
-      axios({
-        method: 'post',
-        url: 'http://localhost:4000/auth-token',
-        data: {
-          idToken: idToken
-        }
-      })
-        .then(result => {
-          if (result.status === 200) {
-            const tokenUid = result.data;
-            return tokenUid;
-          }
-        });
-    }
-  }).catch(function (error) {
-    // Handle error
-    console.log(error);
-    console.log('토큰이 올바르지 않습니다.');
+export const deleteUserHandler = () => {
+  const user = auth.currentUser;
+  deleteUser(user).then(() => {
+    // User deleted.
+    console.log('삭제됨')
+  }).catch((error) => {
+    console.log(error)
   });
-};
+}
+
+
+// // TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
+
+// export const verifyTokenFromFirebase = () => {
+//   getAuth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+//     // Send token to your backend via HTTPS
+//     // TODO: https 설정
+//     if (idToken) {
+//       axios({
+//         method: 'post',
+//         url: 'http://localhost:4000/auth-token',
+//         data: {
+//           idToken: idToken
+//         }
+//       })
+//         .then(result => {
+//           if (result.status === 200) {
+//             const tokenUid = result.data;
+//             return tokenUid;
+//           }
+//         });
+//     }
+//   }).catch(function (error) {
+//     // Handle error
+//     console.log(error);
+//     console.log('토큰이 올바르지 않습니다.');
+//   });
+// };
 
 export const signout = () => {
   signOut(auth).then(() => {

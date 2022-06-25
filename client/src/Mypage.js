@@ -1,22 +1,67 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './mypage.css';
 import { useSelector } from 'react-redux';
-import colorresult from './components/colorresult.json'
+import colorresult from './components/colorresult.json';
+import { storage, writeUserImageData, deleteUserHandler } from './firebase/firebase';
 
 function Mypage () {
   const seasons = ['봄', '여름', '가을', '겨울']
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보: email, username, color, +img
+  const [imgUrl, setImgUrl] = useState('')
+  const [editUserinfoModalisOpen, setEditUserinfoModalisOpen] = useState(false);
 
-  // TODO: 데이터 동적으로 가져오기, 회원 탈퇴, 이미지 추가 만들기, 비밀번호 재설정
+  const imageHandler = (e) => {
+    const imgFile = e.target.files;
+    // 이미지 storage로 전송
+    const file = imgFile[0];
+    const storageRef = storage.ref();
+    const saveRoute = storageRef.child(`${authCurrentUser.userId + '-' + imgFile[0].name}`);
+    const upload = saveRoute.put(file);
+
+    const imgUrl = `https://firebasestorage.googleapis.com/v0/b/personal-color-62f62.appspot.com/o/${authCurrentUser.userId + '-' + e.target.files[0].name}?alt=media`;
+    setImgUrl(imgUrl)
+  };
+
+  const editUserinfoPopUpHandler = () => {
+    setEditUserinfoModalisOpen(!editUserinfoModalisOpen)
+  }
+
+  const editUserImageHandler = () => {
+    writeUserImageData(authCurrentUser.userId, imgUrl)
+    // TODo: 바뀐 이미지 바로 이미지 뜨게 수정
+  }
+
+  // TODO: 회원 탈퇴 구현
 
   return (
     <>
       {/* - 나에게 잘 어울리는 결과 분석 (어울리는 컬러 / 베스트 스타일링 (헤어컬러, 메이크업-섀도우, 볼터치, 립, 코디) / 같은 타입 연예인) */}
       <div className='mypage-box'>
-        <div className='personal-img'>
-          <img src={authCurrentUser.img} alt='img' />
+        <div className='personal-img-box'>
+          <img src={authCurrentUser.image} alt='img' className='personal-img' />
         </div>
+
+        <div className='mypage-edit-button' onClick={editUserinfoPopUpHandler}>내 정보 수정</div>
+        {
+          editUserinfoModalisOpen ?
+          <>
+            <div className='modal-backdrop' >
+
+              <div className='modal'>
+                <span onClick={editUserinfoPopUpHandler} className='close-btn'>&times;</span>
+                <div className='personal-img-box'>
+                  <img src={authCurrentUser.image} alt='img' className='personal-img' />
+                </div>
+                <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
+                <div className='mypage-personal-img-add-button' onClick={editUserImageHandler}>이미지 수정</div>
+                <div className='delete-user-button' onClick={deleteUserHandler}>회원 탈퇴</div>
+              </div>
+            </div>
+          </>
+
+          : null
+        }
         <div className='mypage-personal-desc'>{authCurrentUser.username}님의 퍼스널 컬러는</div>
         <div className='mypage-title'>{authCurrentUser.color}</div>
           {
@@ -38,7 +83,7 @@ function Mypage () {
               if(authCurrentUser.color.indexOf(season) !== -1) {
                 let color = colorresult[i]['recommend-color'].map((color) => {
                   return (
-                    <div className='mypage-color-chip' style={{backgroundColor: `${color}`}} key={i}></div>
+                    <div className='mypage-color-chip' style={{backgroundColor: `${color}`}} key={color+i}></div>
                   )
                 })
                 return color
