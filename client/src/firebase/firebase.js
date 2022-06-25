@@ -110,8 +110,7 @@ export const getCurrentLoggedInUser = async () => {
 export const deleteUserHandler = () => {
   const user = auth.currentUser;
   deleteUser(user).then(() => {
-    // User deleted.
-    console.log('삭제됨')
+    alert('탈퇴가 완료되었습니다.')
   }).catch((error) => {
     console.log(error)
   });

@@ -3,8 +3,10 @@ import './mypage.css';
 import { useSelector } from 'react-redux';
 import colorresult from './components/colorresult.json';
 import { storage, writeUserImageData, deleteUserHandler } from './firebase/firebase';
+import { useNavigate } from 'react-router-dom';
 
 function Mypage () {
+  const navigate = useNavigate();
   const seasons = ['봄', '여름', '가을', '겨울']
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보: email, username, color, +img
@@ -32,7 +34,10 @@ function Mypage () {
     // TODo: 바뀐 이미지 바로 이미지 뜨게 수정
   }
 
-  // TODO: 회원 탈퇴 구현
+  const deleteUserMypageHandler = () => {
+    deleteUserHandler()
+    navigate('/');
+  }
 
   return (
     <>
@@ -55,7 +60,7 @@ function Mypage () {
                 </div>
                 <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
                 <div className='mypage-personal-img-add-button' onClick={editUserImageHandler}>이미지 수정</div>
-                <div className='delete-user-button' onClick={deleteUserHandler}>회원 탈퇴</div>
+                <div className='delete-user-button' onClick={deleteUserMypageHandler}>회원 탈퇴</div>
               </div>
             </div>
           </>
