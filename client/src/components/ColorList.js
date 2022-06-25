@@ -4,8 +4,7 @@ import colorData from './color.json';
 import './colorlist.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../reducer/authReducer';
-import { writeUserColorData, getCurrentLoggedInUser } from '../firebase/firebase'
-
+import { writeUserColorData, getCurrentLoggedInUser } from '../firebase/firebase';
 
 function ColorList () {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ function ColorList () {
   // 리덕스에 저장된 authCurrentUser의 정보
 
   // TODO: color.json 데이터 가공 필요 (봄 여름 가을 겨울 카테고리로 나누기)
-  
+
   const [currentTab, setCurrentTab] = useState(0);
 
   const seasons = [
@@ -29,15 +28,15 @@ function ColorList () {
   };
 
   const selectColorToneHandler = async (e) => {
-    if(authCurrentUser) {
-      let selectedColor = e.target.parentNode.childNodes[0].textContent
-      writeUserColorData(authCurrentUser.userId, selectedColor)
+    if (authCurrentUser) {
+      const selectedColor = e.target.parentNode.childNodes[0].textContent;
+      writeUserColorData(authCurrentUser.userId, selectedColor);
       const currentUserInfo = await getCurrentLoggedInUser();
       dispatch(setAuth(currentUserInfo));
     } else {
-      alert('로그인이 필요한 서비스입니다.')
+      alert('로그인이 필요한 서비스입니다.');
     }
-  }
+  };
 
   return (
     <>

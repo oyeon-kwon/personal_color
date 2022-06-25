@@ -2,14 +2,14 @@ import React, { useState, useRef, useCallback } from 'react';
 import './cameraai.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { writeUserColorData } from '../firebase/firebase'
+import { writeUserColorData } from '../firebase/firebase';
 
 function CameraAI () {
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보
-  const [selectedColor, setSelectedColor] = useState('')
+  const [selectedColor, setSelectedColor] = useState('');
 
-// TODO: DOM 쓰지말고 useRef 로 리팩토링
+  // TODO: DOM 쓰지말고 useRef 로 리팩토링
 
   const [isAICameraStart, setIsAICameraStart] = useState(false);
   const navigate = useNavigate();
@@ -62,20 +62,20 @@ function CameraAI () {
   };
 
   const selectedColorHandler = (e) => {
-    setSelectedColor(e.target.value)
-  }
+    setSelectedColor(e.target.value);
+  };
 
   const selectColorAndCloseHandler = () => {
-    if(authCurrentUser) {
-      console.log(authCurrentUser)
-      console.log(selectedColor)
+    if (authCurrentUser) {
+      console.log(authCurrentUser);
+      console.log(selectedColor);
       setIsAICameraStart(!isAICameraStart);
       navigate('/color');
       window.location.reload();
 
-      writeUserColorData(authCurrentUser.userId, selectedColor)
+      writeUserColorData(authCurrentUser.userId, selectedColor);
     } else {
-      alert('로그인이 필요한 서비스입니다.')
+      alert('로그인이 필요한 서비스입니다.');
     }
   };
 
@@ -87,15 +87,14 @@ function CameraAI () {
             <div className='ai-camera-desc'>보다 정확한 테스트를 위해 <br /> 메이크업을 하지 않은 상태로  <br /> 화면에 얼굴이 꽉 채워질 수 있게 <br /> 테스트하실 것을 권장합니다.</div>
             <button type='button' onClick={init} className='ai-camera-button'>진단 시작하기</button>
           </>
-          : 
-          <>
+          : <>
             <select className='color-select-option' onChange={selectedColorHandler}>
               <option label='WARM'>WARM</option>
               <option label='COOL'>COOL</option>
             </select>
             <button type='button' onClick={selectColorAndCloseHandler} className='ai-camera-button'>내 컬러 저장하고 진단 끝내기</button>
           </>
-          
+
     }
       <div id='ai-webcam-container' />
       <div id='ai-label-container' ref={labelContainerRef} />

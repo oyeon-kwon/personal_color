@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function PostInput () {
   // TODO: 이미지 업로드 css 변경
-  
+
   // 리덕스에 저장된 authCurrentUser의 정보
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
 

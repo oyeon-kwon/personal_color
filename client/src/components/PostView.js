@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './postview.css';
 import { getPostData, writeCommentData } from '../firebase/firebase';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-
 function PostView () {
-    // 리덕스에 저장된 authCurrentUser의 정보
+  // 리덕스에 저장된 authCurrentUser의 정보
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
 
   const [postData, setPostData] = useState();

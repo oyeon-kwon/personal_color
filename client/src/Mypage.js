@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 function Mypage () {
   const navigate = useNavigate();
-  const seasons = ['봄', '여름', '가을', '겨울']
+  const seasons = ['봄', '여름', '가을', '겨울'];
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보: email, username, color, +img
-  const [imgUrl, setImgUrl] = useState('')
+  const [imgUrl, setImgUrl] = useState('');
   const [editUserinfoModalisOpen, setEditUserinfoModalisOpen] = useState(false);
 
   const imageHandler = (e) => {
@@ -22,22 +22,25 @@ function Mypage () {
     const upload = saveRoute.put(file);
 
     const imgUrl = `https://firebasestorage.googleapis.com/v0/b/personal-color-62f62.appspot.com/o/${authCurrentUser.userId + '-' + e.target.files[0].name}?alt=media`;
-    setImgUrl(imgUrl)
+    setImgUrl(imgUrl);
   };
 
   const editUserinfoPopUpHandler = () => {
-    setEditUserinfoModalisOpen(!editUserinfoModalisOpen)
-  }
+    setEditUserinfoModalisOpen(!editUserinfoModalisOpen);
+  };
 
   const editUserImageHandler = () => {
-    writeUserImageData(authCurrentUser.userId, imgUrl)
+    writeUserImageData(authCurrentUser.userId, imgUrl);
     // TODo: 바뀐 이미지 바로 이미지 뜨게 수정
-  }
+  };
 
   const deleteUserMypageHandler = () => {
-    deleteUserHandler()
-    navigate('/');
-  }
+    const result = window.confirm('정말 탈퇴하시겠습니까?');
+    if (result === true) {
+      deleteUserHandler();
+      navigate('/');
+    }
+  };
 
   return (
     <>
@@ -49,34 +52,34 @@ function Mypage () {
 
         <div className='mypage-edit-button' onClick={editUserinfoPopUpHandler}>내 정보 수정</div>
         {
-          editUserinfoModalisOpen ?
-          <>
-            <div className='modal-backdrop' >
+          editUserinfoModalisOpen
+            ? <>
+              <div className='modal-backdrop'>
 
-              <div className='modal'>
-                <span onClick={editUserinfoPopUpHandler} className='close-btn'>&times;</span>
-                <div className='personal-img-box'>
-                  <img src={authCurrentUser.image} alt='img' className='personal-img' />
+                <div className='modal'>
+                  <span onClick={editUserinfoPopUpHandler} className='close-button'>&times;</span>
+                  <div className='personal-img-box'>
+                    <img src={authCurrentUser.image} alt='img' className='personal-img' />
+                  </div>
+                  <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
+                  <div className='mypage-personal-img-add-button' onClick={editUserImageHandler}>이미지 수정</div>
+                  <div className='delete-user-button' onClick={deleteUserMypageHandler}>회원 탈퇴</div>
                 </div>
-                <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
-                <div className='mypage-personal-img-add-button' onClick={editUserImageHandler}>이미지 수정</div>
-                <div className='delete-user-button' onClick={deleteUserMypageHandler}>회원 탈퇴</div>
               </div>
-            </div>
-          </>
+            </>
 
-          : null
+            : null
         }
         <div className='mypage-personal-desc'>{authCurrentUser.username}님의 퍼스널 컬러는</div>
         <div className='mypage-title'>{authCurrentUser.color}</div>
-          {
+        {
             seasons.map((season, i) => {
-              if(authCurrentUser.color.indexOf(season) !== -1) {
+              if (authCurrentUser.color.indexOf(season) !== -1) {
                 return (
                   <>
                     <div className='personal-color-desc'>{colorresult[i].desc}</div>
                   </>
-                )
+                );
               }
             })
           }
@@ -85,13 +88,13 @@ function Mypage () {
         <div className='mypage-colorchip-box'>
           {
             seasons.map((season, i) => {
-              if(authCurrentUser.color.indexOf(season) !== -1) {
-                let color = colorresult[i]['recommend-color'].map((color) => {
+              if (authCurrentUser.color.indexOf(season) !== -1) {
+                const color = colorresult[i]['recommend-color'].map((color) => {
                   return (
-                    <div className='mypage-color-chip' style={{backgroundColor: `${color}`}} key={color+i}></div>
-                  )
-                })
-                return color
+                    <div className='mypage-color-chip' style={{ backgroundColor: `${color}` }} key={color + i} />
+                  );
+                });
+                return color;
               }
             })
           }

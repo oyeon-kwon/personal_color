@@ -56,7 +56,6 @@ export const writeUserColorData = async (userId, color) => {
       color: color
     };
     set(ref(db, 'users/' + userId), updateUserData);
-
   }, {
     onlyOnce: true
   });
@@ -76,7 +75,6 @@ export const writeUserImageData = async (userId, image) => {
       image: image
     };
     set(ref(db, 'users/' + userId), updateUserData);
-
   }, {
     onlyOnce: true
   });
@@ -87,7 +85,6 @@ export const getUserData = (userId) => {
 };
 
 export const getCurrentLoggedInUser = async () => {
-
   let userInfo;
 
   if (auth.currentUser) {
@@ -100,7 +97,6 @@ export const getCurrentLoggedInUser = async () => {
     }).catch((error) => {
       console.log(error);
     });
-  
   } else {
     return null;
   }
@@ -109,13 +105,13 @@ export const getCurrentLoggedInUser = async () => {
 
 export const deleteUserHandler = () => {
   const user = auth.currentUser;
+  console.log(user);
   deleteUser(user).then(() => {
-    alert('탈퇴가 완료되었습니다.')
+    alert('탈퇴가 완료되었습니다.');
   }).catch((error) => {
-    console.log(error)
+    console.log(error);
   });
-}
-
+};
 
 // // TODO: verifyTokenFromFirebase 함수가 유효하면 로그인 유지 되게 설정
 
