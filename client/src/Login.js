@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css';
 import { auth, loginEmail, getUserData, writeUserData, verifyTokenFromFirebase, getCurrentLoggedInUser } from './firebase/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+/* global Kakao */
 
 function Login () {
+  
+
+
+
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
@@ -60,6 +65,12 @@ function Login () {
     const token = credential.accessToken;
   };
 
+  const kakaoLoginHandler = () =>{
+    Kakao.Auth.authorize({
+      redirectUri : "http://localhost:3000"
+    })
+  }
+
   return (
     <>
       <div className='modal-background'>
@@ -81,9 +92,8 @@ function Login () {
               <span className='line' />
             </div>
             <div className='social-login-box'>
-              <span className='naver social-login-button'>네이버</span>
               <span className='google social-login-button' onClick={googleLoginHandler}>구글</span>
-              <span className='kakao social-login-button'>카카오</span>
+              <span className='kakao social-login-button' onClick={kakaoLoginHandler}>카카오</span>
             </div>
           </div>
         </div>
