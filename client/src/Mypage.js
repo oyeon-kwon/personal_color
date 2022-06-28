@@ -1,15 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './mypage.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import colorresult from './components/colorresult.json';
-import { storage, writeUserImageData, deleteUserHandler } from './firebase/firebase';
+import { storage, writeUserImageData, deleteUserHandler, getUserData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import { setAuth } from './reducer/authReducer';
 
 function Mypage () {
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const seasons = ['봄', '여름', '가을', '겨울'];
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
-  // 리덕스에 저장된 authCurrentUser의 정보: email, username, color, +img
+
+  // 유저 데이터 최신 상태로 받아오기
+  useEffect(() => {
+    getUserData(authCurrentUser.userId)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        let currentUserInfo = snapshot.val()
+        dispatch(setAuth(currentUserInfo));
+      } else {
+        console.log('No data available');
+      }
+    });
+  }, [])
+
   const [imgUrl, setImgUrl] = useState('');
   const [editUserinfoModalisOpen, setEditUserinfoModalisOpen] = useState(false);
 
@@ -73,6 +89,7 @@ function Mypage () {
         <div className='mypage-personal-desc'>{authCurrentUser.username}님의 퍼스널 컬러는</div>
         <div className='mypage-title'>{authCurrentUser.color}</div>
         {
+          authCurrentUser.color ?
             seasons.map((season, i) => {
               if (authCurrentUser.color.indexOf(season) !== -1) {
                 return (
@@ -82,21 +99,24 @@ function Mypage () {
                 );
               }
             })
+            : null
           }
         <div className='divider-small' />
         <div className='mypage-title'>어울리는 컬러</div>
         <div className='mypage-colorchip-box'>
           {
-            seasons.map((season, i) => {
-              if (authCurrentUser.color.indexOf(season) !== -1) {
-                const color = colorresult[i]['recommend-color'].map((color) => {
-                  return (
-                    <div className='mypage-color-chip' style={{ backgroundColor: `${color}` }} key={color + i} />
-                  );
-                });
-                return color;
-              }
-            })
+            authCurrentUser.color ?
+              seasons.map((season, i) => {
+                if (authCurrentUser.color.indexOf(season) !== -1) {
+                  const color = colorresult[i]['recommend-color'].map((color) => {
+                    return (
+                      <div className='mypage-color-chip' style={{ backgroundColor: `${color}` }} key={color + i} />
+                    );
+                  });
+                  return color;
+                }
+              })
+            : null
           }
         </div>
       </div>
