@@ -44,7 +44,7 @@ function PostView () {
       if (comment === '') {
         alert('댓글을 입력하세요.');
       } else {
-        writeCommentData(id, 'oana', comment);
+        writeCommentData(id, authCurrentUser.username, comment);
         setComment('');
       }
     }
@@ -60,7 +60,7 @@ function PostView () {
             <div className='edit-button'>수정</div>
             <div className='post-desc-box'>
               <span className='post-category'>{postData.category}</span>
-              <span className='post-user'>{postData.userId}</span>
+              <span className='post-user'>{postData.username}</span>
               <span className='post-created-at'>{postData.createdAt}</span>
               {
              postData.comment
@@ -75,7 +75,7 @@ function PostView () {
               <div className='post-img-content'>
                 <img src={postData.image} />
               </div>
-              <div className='post-text-content'>{postData.content}</div>
+              <div className='post-text-content' dangerouslySetInnerHTML={{ __html: postData.content }}></div>
             </div>
             <div className='divider-large' />
             <div className='comment-box'>
