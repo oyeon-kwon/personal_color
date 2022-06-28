@@ -31,7 +31,7 @@ function App () {
   // 카카오 로그인
   useEffect(()=>{
 
-    Kakao.isInitialized()
+    // Kakao.isInitialized()
     const authorizeCodeFromKakao = window.location.search.split("=")[1]
 
     axios.post('http://localhost:4000/kakao', {

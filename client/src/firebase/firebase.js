@@ -152,7 +152,7 @@ export const signout = () => {
 // ! Real time Database 설정
 // 커뮤니티 게시판
 
-export const writePostData = (userId, title, content, image, category) => {
+export const writePostData = (userId, username, title, content, image, category) => {
   const db = getDatabase();
 
   const now = new Date();
@@ -161,6 +161,7 @@ export const writePostData = (userId, title, content, image, category) => {
   const newPostRef = push(postListRef);
   set(newPostRef, {
     userId: userId,
+    username: username,
     title: title,
     content: content,
     image: image,

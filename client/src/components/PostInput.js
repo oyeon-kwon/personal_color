@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './postInput.css';
 import { writePostData, storage } from '../firebase/firebase';
 import { useSelector } from 'react-redux';
+import { Editor } from '@tinymce/tinymce-react';
+import { useNavigate } from 'react-router-dom';
 
 function PostInput () {
-  // TODO: 이미지 업로드 css 변경
 
+  const navigate = useNavigate();
+  // TODO: 이미지 업로드 css 변경
   // 리덕스에 저장된 authCurrentUser의 정보
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
-
-  // TODO: authCurrentUser 활용해서 유저 정보를 포스트 데베에 같이 저장하기
+  const editorRef = useRef(null);
 
   const [postInput, setPostInput] = useState({
-    userId: 'oana',
+    userId: authCurrentUser.userId,
+    username: authCurrentUser.username,
     title: '',
     content: '',
     category: '',
@@ -36,11 +39,14 @@ function PostInput () {
     setPostInput({ ...postInput, image: imgUrl });
   };
 
-  const registPost = () => {
-    // TODO: firebase에서 userId 받아오기!!!
+  const change = () => {
+    if (editorRef.current) {
+      setPostInput({ ...postInput, content: editorRef.current.getContent() })
+    }
+  }
 
-    // 텍스트 정보 DB로 전송
-    const { userId, title, content, category, image } = postInput;
+  const registPost = () => {
+    const { userId, username, title, content, category, image } = postInput;
 
     if (!postInput.title) {
       alert('제목을 입력하세요.');
@@ -49,10 +55,11 @@ function PostInput () {
     } else if (!postInput.category) {
       alert('카테고리를 지정하세요.');
     } else {
-      writePostData(userId, title, content, image, category);
+      writePostData(userId, username, title, content, image, category);
+      navigate('/community');
     }
-    // TODO: 전송 후 PostView로 라우팅 처리 필요
   };
+  
 
   return (
     <>
@@ -68,14 +75,30 @@ function PostInput () {
 
           <div className='post-content'>
             <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
-            <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} />
+            {/* <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} /> */}
+            <Editor
+              onInit={(evt, editor) => editorRef.current = editor}
+              initialValue="<p>내용을 입력하세요.</p>"
+              init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+              }}
+              onChange={change}
+            />
           </div>
-
           <div className='regist-button' onClick={registPost}>등록</div>
         </div>
-
       </div>
-
     </>
   );
 }
