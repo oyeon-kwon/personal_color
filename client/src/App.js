@@ -80,7 +80,7 @@ function App () {
     <>
       <div className='body'>
         <Router>
-          <div className='nav'>
+          <div id='nav'>
             <span className='nav-link'>
               <Link to='/'>HOME</Link>
             </span>
@@ -119,9 +119,6 @@ function App () {
             <Route path='/color' element={<ColorResult />} />
           </Routes>
         </Router>
-        {/* <Landing /> */}
-        {/* <Signup /> */}
-        {/* <Login /> */}
       </div>
     </>
 

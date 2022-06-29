@@ -11,7 +11,6 @@ li {
 }
 
 .submenu {
-    width: 100%;
     padding: 15px 10px;
     cursor: pointer;
     background-color: #FFF1F0;
@@ -42,14 +41,12 @@ li {
 
 .color-recommend-box {
     width: 55rem;
-    height: 30rem;
     margin: 0 auto;
 }
 
 .color-recommend-title {
     font-size: 2rem;
     text-align: center;
-    margin-top: 3rem;
     color: #ff7773;
 }
 

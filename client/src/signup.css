@@ -1,10 +1,11 @@
 .signup-box {
     display: flex;
+
 }
 
 .left-nav { 
     width: 40vw;
-    height: 100vh;
+    height: 95vh;
     background-color: #fdc1bf;
     text-align: center;
     align-items: center;

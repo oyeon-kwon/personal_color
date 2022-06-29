@@ -28,7 +28,7 @@ time, mark, audio, video {
   flex-direction: column;
 }
 
-.nav {
+#nav {
   background-color: #ff7773;
   width: 100vw;
   height: 3rem;
