@@ -27,7 +27,17 @@
     height: 3rem;
     border-radius: 30px;
     padding: 1rem;
-    margin: 7rem auto 0 auto;
+    margin: 4rem auto 0 auto;
+}
+
+.color-select-option-desc {
+    margin: 2rem auto 0 auto;
+    color: #FF7773;
+    text-align: center;
+    line-height: 1.2rem;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
 }
 
 #ai-webcam-container {
