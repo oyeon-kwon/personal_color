@@ -54,3 +54,70 @@
 .button-img {
     width:40vw;
 }
+
+.arrow-container {
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-container-desc {
+    /* 폰트 적용하기 */
+}
+
+.arrow-img {
+    width: 6rem;
+}
+
+.landing-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-section-1 {
+    height: 40rem;
+    background-color: #ffa9a6;
+}
+
+.person-thinking {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-section1-img {
+    width: 5rem;
+}
+
+.section-container {
+    display: flex;
+    align-items: center;
+    margin: 2rem;
+}
+
+.landing-section-2 {
+    height: 40rem;
+}
+
+.landing-section-2-text {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.landing-section-2-img {
+    width: 500px;
+}
+
+.landing-section-3 {
+    height: 40rem;
+}
+
+.landing-section-4 {
+    height: 40rem;
+}
+
+.landing-section-5 {
+    height: 40rem;
+}
