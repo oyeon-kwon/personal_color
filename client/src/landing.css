@@ -62,14 +62,17 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15rem;
 }
 
 .arrow-container-desc {
-    /* 폰트 적용하기 */
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 2rem;
 }
 
 .arrow-img {
-    width: 6rem;
+    width: 5rem;
+    transform: rotate(0.5turn);
 }
 
 .landing-section {
@@ -79,45 +82,50 @@
 
 .landing-section-1 {
     height: 40rem;
-    background-color: #ffa9a6;
+    display: flex;
+    margin: 0 auto;
 }
 
 .person-thinking {
     display: flex;
     flex-direction: column;
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 1.3rem;
 }
 
-.landing-section1-img {
-    width: 5rem;
+.landing-section1-img1 {
+    width: 200px;
 }
 
-.section-container {
-    display: flex;
-    align-items: center;
-    margin: 2rem;
+.landing-section1-img2 {
+    width: 150px;
+}
+
+.landing-section1-img3 {
+    width: 200px;
 }
 
 .landing-section-2 {
-    height: 40rem;
+    height: 60rem;
+    margin: 0 auto;
+    display: flex;
 }
 
-.landing-section-2-text {
-    font-size: 1.3rem;
+.landing-section-text {
+    font-size: 1.1rem;
     text-align: center;
 }
 
-.landing-section-2-img {
-    width: 500px;
+.landing-section-browser-img {
+    position: absolute;
+    width: 36.5rem;
+    top: 5rem;
+    left: -10.2rem;
 }
 
-.landing-section-3 {
-    height: 40rem;
-}
-
-.landing-section-4 {
-    height: 40rem;
-}
-
-.landing-section-5 {
-    height: 40rem;
+.gif {
+    width: 30rem;
+    position: absolute;
+    top: 11.7rem;
+    left: -7rem;
 }
