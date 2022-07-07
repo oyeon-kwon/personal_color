@@ -1,0 +1,54 @@
+.modal-background {
+    position: fixed;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    position: absolute;
+    width: 20rem;
+    height: 15rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    color: #717171;
+    position: relative;
+    left: 10.5rem;
+    top: -10.7rem;
+}
+
+.confirm-button {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 30px;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    color: #ffffff;
+    background-color: #ff7773;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 4.5rem;
+}
+
+.confirm-button:hover {
+    color: #FF7773;
+    background-color: #FFF1F0;
+    cursor: pointer;
+}

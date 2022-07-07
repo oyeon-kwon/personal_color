@@ -11,6 +11,8 @@ import PostView from './components/PostView';
 import PostInput from './components/PostInput';
 import CameraAI from './components/CameraAI';
 import ColorResult from './components/ColorResult';
+// import Modal from './components/Modal';
+// import Loading from './components/Loading';
 import axios from 'axios';
 import {
   BrowserRouter as Router,

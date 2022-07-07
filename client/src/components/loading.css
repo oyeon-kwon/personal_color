@@ -1,0 +1,28 @@
+  .line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #ff7773;
+    margin: 2px;
+  }
+  
+  .load-1 .line:nth-last-child(1) {
+    animation: loadingA 0.5s 1s infinite;
+  }
+  .load-1 .line:nth-last-child(2) {
+    animation: loadingA 1s 0.5s infinite;
+  }
+  .load-1 .line:nth-last-child(3) {
+    animation: loadingA 1.5s 0s infinite;
+  }
+  
+  @keyframes loadingA {
+    from {
+      height: 15px;
+    }
+    to {
+      height: 35px;
+    }
+  }
+  
