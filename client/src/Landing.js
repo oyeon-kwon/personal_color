@@ -12,6 +12,7 @@ import landingFirst3 from './img/landing3.png'
 import browser from './img/browser.png'
 import landingSecondGIF from './img/landingSecondGIF.gif'
 import landingThirdGIF from './img/landingThirdGIF.gif'
+import landingFourthGIF from './img/landingFourthGIF.gif'
 import Loading from './components/Loading';
 
 function Landing () {
@@ -171,7 +172,7 @@ function Landing () {
                   <div className='section-container'>
                     <div className='landing-section-text'>나와 같은 톤인 사람들과 함께 <br /> 메이크업, 의상 등 다양한 정보를 공유하세요.</div>
                     <img src={browser} className='landing-section-browser-img' alt="" />
-                    <img src={landingThirdGIF} className='gif' alt="" />
+                    <img src={landingFourthGIF} className='gif' alt="" />
                   </div>
               </Tween>
             </Scene>
