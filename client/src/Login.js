@@ -84,9 +84,9 @@ function Login () {
             </div>
             <div className='submit-button' onClick={submitLoginHandler}>로그인</div>
             <div className='hr'>
-              <span className='line' />
+              <span className='login-line' />
               <span>or</span>
-              <span className='line' />
+              <span className='login-line' />
             </div>
             <div className='social-login-box'>
               <span className='google social-login-button' onClick={googleLoginHandler}>구글</span>
