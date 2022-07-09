@@ -24,7 +24,6 @@ time, mark, audio, video {
 .body {
   display: flex;
   width: 100vw;
-  height: 100vh;
   flex-direction: column;
   font-family: 'IBM Plex Sans KR', sans-serif;
   font-weight: 300;
