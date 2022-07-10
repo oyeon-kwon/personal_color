@@ -44,23 +44,24 @@
 .post-desc-box {
     display: flex;
     justify-content: space-between;
+    margin: 1rem;
+    margin-top: 2rem;
 }
 
 .post-category {
-    margin: 1rem;
     color: #a6a6a6
 }
 
 .post-user {
-    margin: 1rem;
+    
 }
 
 .post-created-at {
-    margin: 1rem;
+    margin-left: 2rem;
 }
 
 .comment-count {
-    margin: 1rem;
+    margin-left: 2rem;
 }
 
 .divider-large {
@@ -69,7 +70,9 @@
 }
 
 .post-content {
-    padding: 2rem 0;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .comment-box {

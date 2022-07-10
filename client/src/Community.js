@@ -83,29 +83,32 @@ function Community () {
         TODO: 아이콘
         <button>검색</button>
       </div> */}
-      <button className='write-post-button' onClick={writePostHandler}>글쓰기</button>
-      <div className='community-content-box'>
-        {
-          postsData.length === 0
-            ? <div>게시물이 없습니다.</div>
-            : <table>
-              {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
-              <tbody>
-                {
-                postsData.map((post) => {
-                  return (
-                    <tr className='community-content' id={post.id} key={post.id} onClick={viewPostHandler}>
-                      <td className='community-content-category'>{post.category}</td>
-                      <td className='community-content-title'>{post.title}</td>
-                      <td className='community-content-date'>{post.createdAt}</td>
-                    </tr>
-                  );
-                })
-              }
-              </tbody>
-            </table>
-        }
-        {/* TODO: 페이지네이션 네비게이터 */}
+      <div className='community-body'>
+        <button className='write-post-button' onClick={writePostHandler}>글쓰기</button>
+
+        <div className='community-content-box'>
+          {
+            postsData.length === 0
+              ? <div>게시물이 없습니다.</div>
+              : <table>
+                {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
+                <tbody>
+                  {
+                  postsData.map((post) => {
+                    return (
+                      <tr className='community-content' id={post.id} key={post.id} onClick={viewPostHandler}>
+                        <td className='community-content-category'>{post.category}</td>
+                        <td className='community-content-title'>{post.title}</td>
+                        <td className='community-content-date'>{post.createdAt}</td>
+                      </tr>
+                    );
+                  })
+                }
+                </tbody>
+              </table>
+          }
+          {/* TODO: 페이지네이션 네비게이터 */}
+        </div>
       </div>
     </>
   );

@@ -59,22 +59,30 @@ function PostView () {
             <div className='post-title'>{postData.title}</div>
             <div className='edit-button'>수정</div>
             <div className='post-desc-box'>
-              <span className='post-category'>{postData.category}</span>
-              <span className='post-user'>{postData.username}</span>
-              <span className='post-created-at'>{postData.createdAt}</span>
-              {
-             postData.comment
-               ? <span className='comment-count'>댓글 {postData.comment.length}</span>
-               : <span className='comment-count'>댓글 0</span>
-           }
+              <div className='post-desc-box-left'>
+                <span className='post-category'>{postData.category}</span>
+                {
+                  postData.comment
+                  ? <span className='comment-count'>댓글 {postData.comment.length}</span>
+                  : <span className='comment-count'>댓글 0</span>
+                }
+              </div>
+              <div className='post-desc-box-right'>
+                <span className='post-user'>{postData.username}</span>
+                <span className='post-created-at'>{postData.createdAt}</span>
+              </div>
             </div>
 
             <div className='divider-large' />
 
             <div className='post-content'>
-              <div className='post-img-content'>
-                <img src={postData.image} />
-              </div>
+              {
+                postData.image ?
+                  <div className='post-img-content'>
+                    <img src={postData.image} />
+                  </div>
+                : null
+              }
               <div className='post-text-content' dangerouslySetInnerHTML={{ __html: postData.content }}></div>
             </div>
             <div className='divider-large' />
