@@ -36,17 +36,17 @@
 }
 
 .post-image-input {
-
+    margin: 0 auto 1rem 1rem;
 }
 
 .post-text-content-input {
     border: none;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     font-size: 1rem;
 }
 
 .regist-button {
-    margin: 1rem 1rem auto auto;
+    margin: 0rem 1rem auto auto;
     width: 3rem;
     height: 2rem;
     display: flex;

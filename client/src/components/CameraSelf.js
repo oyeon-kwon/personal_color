@@ -9,9 +9,6 @@ function CameraSelf () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // TODO: CSS 수정
-  // TODO: 주의사항 안내
-
   const webcamRef = useRef(null);
   const capture = useCallback(
     () => {

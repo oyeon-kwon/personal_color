@@ -77,6 +77,7 @@ function PostInput () {
             <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
             {/* <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} /> */}
             <Editor
+              apiKey='e6sv2d6b7g924si85no9hpocav5y2q319sp6ewsd21hfqizr'
               onInit={(evt, editor) => editorRef.current = editor}
               initialValue="<p>내용을 입력하세요.</p>"
               init={{
