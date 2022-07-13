@@ -71,13 +71,12 @@ function Mypage () {
           editUserinfoModalisOpen
             ? <>
               <div className='modal-backdrop'>
-
                 <div className='modal'>
                   <span onClick={editUserinfoPopUpHandler} className='close-button'>&times;</span>
                   <div className='personal-img-box'>
                     <img src={authCurrentUser.image} alt='img' className='personal-img' />
                   </div>
-                  <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
+                  <input className='mypage-post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
                   <div className='mypage-personal-img-add-button' onClick={editUserImageHandler}>이미지 수정</div>
                   <div className='delete-user-button' onClick={deleteUserMypageHandler}>회원 탈퇴</div>
                 </div>

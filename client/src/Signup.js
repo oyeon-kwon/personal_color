@@ -92,6 +92,13 @@ function Signup () {
               <div className='desc'>이름</div>
               <input className='form-box' onChange={nameInputHandler} />
             </div>
+            <div className='gender'>
+              <div className='desc'>성별</div>
+              <label className="switch">
+                <input type="checkbox" />
+                <div className="slider round"></div>
+              </label>
+            </div>
             <div className='email'>
               <div className='desc'>email</div>
               <input className='form-box' onChange={emailInputHandler} />
