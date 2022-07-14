@@ -32,12 +32,13 @@ export const loginEmail = async (email, password) => {
 export const database = getDatabase(app);
 const dbRef = ref(getDatabase());
 
-export const writeUserData = (userId, name, email) => {
+export const writeUserData = (userId, name, gender, email) => {
   // TODO: displayName, tone 정보 넣기
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
     userId: userId,
     username: name,
+    gender: gender,
     email: email
   });
 };

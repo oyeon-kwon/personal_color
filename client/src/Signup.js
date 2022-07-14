@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './signup.css';
 import signupImg from './img/signup-img.png';
-import { signupEmail, writeUserData, sendEmailtest } from './firebase/firebase';
+import { signupEmail, writeUserData, writeUserImageData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import male_profile from './img/male_profile.png';
+import female_profile from './img/female_profile.png';
 
 function Signup () {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ function Signup () {
   // TODO: result.user.emailVerified
 
   const [nameInput, setNameInput] = useState('');
+  const [gender, setGender] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordCheckInput, setPasswordCheckInput] = useState('');
@@ -19,6 +22,22 @@ function Signup () {
     const name = e.target.value;
     setNameInput(name);
   };
+
+
+  const maleRef = useRef();
+  const femaleRef = useRef();
+
+  const genderSelectHandler = (e) => {
+    setGender(e.target.textContent)
+    
+    if(e.target.textContent === '남성') {
+      maleRef.current.classList.add('gender-select-button-active')
+      femaleRef.current.classList.remove('gender-select-button-active')
+    } else if(e.target.textContent === '여성') {
+      femaleRef.current.classList.add('gender-select-button-active')
+      maleRef.current.classList.remove('gender-select-button-active')
+    }
+  }
 
   const emailInputHandler = (e) => {
     const email = e.target.value;
@@ -52,7 +71,14 @@ function Signup () {
           console.log(result);
           const email = result.user.email;
           const uid = result.user.uid;
-          writeUserData(uid, nameInput, email);
+          writeUserData(uid, nameInput, gender, email);
+          
+          if(gender === '남성') {
+            writeUserImageData(uid, male_profile)
+          } else if(gender === '여성') {
+            writeUserImageData(uid, female_profile)
+          }
+
           navigate('/signin');
         })
         .catch(err => {
@@ -93,11 +119,10 @@ function Signup () {
               <input className='form-box' onChange={nameInputHandler} />
             </div>
             <div className='gender'>
-              <div className='desc'>성별</div>
-              <label className="switch">
-                <input type="checkbox" />
-                <div className="slider round"></div>
-              </label>
+              <div className='gender-button-container'>
+                <div className='gender-select-button' ref={maleRef} onClick={genderSelectHandler}>남성</div>
+                <div className='gender-select-button' ref={femaleRef} onClick={genderSelectHandler}>여성</div>
+              </div>
             </div>
             <div className='email'>
               <div className='desc'>email</div>
