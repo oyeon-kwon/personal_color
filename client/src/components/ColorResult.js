@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import './colorresult.css';
 import colorResultsData from './colorresult.json';
+import Statistics from './Statistics';
 
 function ColorResult () {
   const [currentTab, setCurrentTab] = useState(0);
@@ -48,6 +49,10 @@ function ColorResult () {
             })
         }
         </div>
+      </div>
+      <div className='color-overall-box'>
+        <div className='color-overall-title'>우리나라 퍼스널컬러 분포</div>
+        <Statistics />
       </div>
     </>
   );

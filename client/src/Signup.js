@@ -112,7 +112,7 @@ function Signup () {
           <img src={signupImg} alt='회원가입이미지' className='signup-img' />
         </div>
         <div className='form-body'>
-          <div className='form-title'>Welcome to Personal Color!</div>
+          <div className='form-title'>Welcome to Colordentity!</div>
           <div className='form'>
             <div className='name'>
               <div className='desc'>이름</div>

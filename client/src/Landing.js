@@ -33,7 +33,7 @@ function Landing () {
     <>
       <div className='content-box-1'>
         <div className='desc'>
-          <div className='desc-lg'>간단하게 퍼스널 컬러를 테스트 해 보세요!</div>
+          <div className='desc-lg'>컬러덴티티로 간단하게 퍼스널 컬러를 테스트 해 보세요!</div>
           <div className='desc-sm'>스스로 맞는 컬러가 무엇인지 측정해 보거나<br />빅데이터를 기반으로 학습한 AI를 통해 측정할 수 있습니다.</div>
         </div>
         <div className='test-button-container'>
