@@ -5,6 +5,7 @@ import './colorlist.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../reducer/authReducer';
 import { writeUserColorData, getCurrentLoggedInUser } from '../firebase/firebase';
+import WarmCoolSelfCheck from './WarmCoolSelfCheck';
 
 function ColorList () {
   const dispatch = useDispatch();
@@ -67,6 +68,9 @@ function ColorList () {
               );
             })
         }
+      </div>
+      <div className='warm-cool-checklist'>
+        <WarmCoolSelfCheck />
       </div>
     </>
   );
