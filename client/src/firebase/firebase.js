@@ -28,12 +28,10 @@ export const loginEmail = async (email, password) => {
 
 //! Realtime DB 설정
 // 회원가입
-// TODO: 회원 탈퇴 기능 만들기
 export const database = getDatabase(app);
 const dbRef = ref(getDatabase());
 
 export const writeUserData = (userId, name, gender, email) => {
-  // TODO: displayName, tone 정보 넣기
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
     userId: userId,

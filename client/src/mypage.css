@@ -11,8 +11,8 @@
     border-radius: 100%;
     width: 10rem;
     height: 10rem;
-    background-color: #FF7773;
-    /* margin: 3rem auto 0 auto; */
+    margin: 2rem auto 0 auto;
+    box-sizing: border-box;
 }
 
 .personal-img {
@@ -22,7 +22,7 @@
 }
 
 .mypage-post-image-input {
-    margin: 1rem auto;
+    margin: 0 auto;
     display: flex;
     text-align: center;
 }
@@ -61,33 +61,82 @@
     height: 30rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     text-align: center;
-    justify-content: center;
 }
 
 .close-button {
     cursor: pointer;
-    position: relative;
-    
+    margin: 1.5rem 2rem 0 auto;
 }
 
-.mypage-personal-img-add-button {
+label {
+    cursor: pointer;
+    content: '이미지 추가';
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto 1rem auto;
     width: 7rem;
     height: 2rem;
-    margin: 0 auto 2rem auto;
-    border: none;
+    border: 1px solid #fdc1bf;
+    color: #fdc1bf;
+    transition: 0.3s;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+label:hover {
+    background-color: #e3e3e3;
+    color: #ff7773;
+    cursor: pointer;
+}
+ 
+ #upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+
+.mypage-name {
+    display: flex;
+    margin: 0.5rem auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.mypage-edit-desc {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+input.mypage-form-box {
+    border: solid 1px #c4c4c4;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 20px;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.mypage-personal-edit-button {
+    width: 7rem;
+    height: 2rem;
     background-color: #ff7773;
     color: #ffffff;
     transition: 0.3s;
     border-radius: 20px;
+    margin: 0 auto 1rem auto;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
 }
 
-.mypage-personal-img-add-button:hover {
+.mypage-personal-edit-button:hover {
     background-color: #e3e3e3;
     color: #ff7773;
     cursor: pointer;
@@ -102,6 +151,7 @@
 .mypage-personal-desc {
     text-align: center;
     margin: 0.5rem;
+    margin-bottom: 3rem;
 }
 
 .mypage-title {

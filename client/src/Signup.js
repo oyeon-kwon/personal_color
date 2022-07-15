@@ -23,7 +23,6 @@ function Signup () {
     setNameInput(name);
   };
 
-
   const maleRef = useRef();
   const femaleRef = useRef();
 

@@ -47,12 +47,13 @@
 
 .img-container {
     position: relative;
-    top: -16rem;
+    top: -18rem;
     left: 35rem;
 }
 
 .button-img {
     width:40vw;
+    height: 35vh;
 }
 
 .arrow-container {
