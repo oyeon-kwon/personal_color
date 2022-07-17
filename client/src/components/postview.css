@@ -20,8 +20,12 @@
     margin: 1rem;
 }
 
-.edit-button {
+.button-container {
+    display: flex;
     margin: 1rem 1rem auto auto;
+}
+
+.edit-button {
     width: 3rem;
     height: 2rem;
     display: flex;
@@ -36,6 +40,27 @@
 }
 
 .edit-button:hover {
+    background-color: #e6e6e6;
+    color: #FF7773;
+    cursor: pointer;
+}
+
+.delete-button {
+    margin-left: 1rem;
+    width: 3rem;
+    height: 2rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 0.5rem;
+    transition: all 0.5s ease;
+    border: 1px solid #fdc1bf;
+    color: #fdc1bf;
+}
+
+.delete-button:hover {
     background-color: #e6e6e6;
     color: #FF7773;
     cursor: pointer;
@@ -73,6 +98,10 @@
     margin: 1rem;
     display: flex;
     justify-content: center;
+}
+
+.post-img {
+    width: 15rem;
 }
 
 .comment-box {

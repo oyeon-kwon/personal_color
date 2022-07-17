@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, deleteUser } from 'firebase/auth';
-import { getDatabase, ref, set, child, get, push, update, onValue } from 'firebase/database';
+import { getDatabase, ref, set, child, get, push, update, onValue, remove } from 'firebase/database';
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -185,6 +185,26 @@ export const getAllPostsData = async () => {
 
   return postsData;
 };
+
+export const deletePostData = async (postId) => {
+
+  // let postsData;
+
+  // await get(child(dbRef, 'posts/')).then((snapshot) => {
+  //   if (snapshot.exists()) {
+  //     postsData = snapshot.val();
+  //     postsData[postId].removeValue()
+
+  //   } else {
+  //     console.log('No data available');
+  //   }
+  // }).catch((error) => {
+  //   console.error(error);
+  // });
+
+  console.log(database.ref(`posts/${postId}`))
+
+}
 
 export const getFilteredByCategoryPostsData = async (category) => {
   let allPostData;

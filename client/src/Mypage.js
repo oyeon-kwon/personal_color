@@ -81,7 +81,7 @@ function Mypage () {
 
                   {/*  */}
 
-                  <label htmlFor="upload-photo">이미지 추가</label>
+                  <label htmlFor="upload-photo" className='upload-photo'>이미지 추가</label>
                   <input type="file" name="photo" id="upload-photo" onChange={imageHandler} />
 
                   {/*  */}

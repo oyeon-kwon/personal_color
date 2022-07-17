@@ -59,7 +59,6 @@ function PostInput () {
       navigate('/community');
     }
   };
-  
 
   return (
     <>
@@ -73,9 +72,9 @@ function PostInput () {
           </select>
           <input className='post-title-input' placeholder='제목을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
 
+
           <div className='post-content'>
-            <input className='post-image-input' type='file' multiple='multiple' onChange={imageHandler} />
-            {/* <input className='post-text-content-input' placeholder='내용을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, content: e.target.value }); }} /> */}
+            <input id='post-file' className='post-image-input' type='file' onChange={imageHandler} />
             <Editor
               apiKey='e6sv2d6b7g924si85no9hpocav5y2q319sp6ewsd21hfqizr'
               onInit={(evt, editor) => editorRef.current = editor}

@@ -35,6 +35,11 @@
     flex-direction: column;
 }
 
+.file-container {
+    display: flex;
+    align-items: center;
+}
+
 .post-image-input {
     margin: 0 auto 1rem 1rem;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './postview.css';
-import { getPostData, writeCommentData } from '../firebase/firebase';
+import { getPostData, writeCommentData, deletePostData } from '../firebase/firebase';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -50,6 +50,15 @@ function PostView () {
     }
   };
 
+  const deletePostHandler = () => {
+    // 권한 있는지 유저 확인
+    // console.log(authCurrentUser)
+
+    // console.log(id)
+    deletePostData(id)
+    // 쿼리 파라미터에 있는 키 값 가져오기
+  }
+
   return (
     <>
       {
@@ -57,7 +66,11 @@ function PostView () {
         ? <div className='post-view-box'>
           <div className='post-box'>
             <div className='post-title'>{postData.title}</div>
-            <div className='edit-button'>수정</div>
+            {/* 권한 있는 사람만 수정 삭제 가능 */}
+            <div className='button-container'>
+              <div className='edit-button' >수정</div>
+              <div className='delete-button' onClick={deletePostHandler}>삭제</div>
+            </div>
             <div className='post-desc-box'>
               <div className='post-desc-box-left'>
                 <span className='post-category'>{postData.category}</span>
@@ -79,7 +92,7 @@ function PostView () {
               {
                 postData.image ?
                   <div className='post-img-content'>
-                    <img src={postData.image} />
+                    <img src={postData.image} className='post-img'/>
                   </div>
                 : null
               }
