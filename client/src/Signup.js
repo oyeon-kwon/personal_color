@@ -115,7 +115,7 @@ function Signup () {
           <div className='form'>
             <div className='name'>
               <div className='desc'>이름</div>
-              <input className='form-box' onChange={nameInputHandler} />
+              <input className='form-box' onChange={nameInputHandler} placeholder='김컬러' />
             </div>
             <div className='gender'>
               <div className='gender-button-container'>
@@ -125,7 +125,7 @@ function Signup () {
             </div>
             <div className='email'>
               <div className='desc'>email</div>
-              <input className='form-box' onChange={emailInputHandler} />
+              <input className='form-box' onChange={emailInputHandler} placeholder='email@address.com'/>
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>

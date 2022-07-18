@@ -186,6 +186,7 @@ export const getAllPostsData = async () => {
   return postsData;
 };
 
+//!-- 해야함
 export const deletePostData = async (postId) => {
 
   // let postsData;
@@ -201,8 +202,6 @@ export const deletePostData = async (postId) => {
   // }).catch((error) => {
   //   console.error(error);
   // });
-
-  console.log(database.ref(`posts/${postId}`))
 
 }
 
