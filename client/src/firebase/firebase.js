@@ -189,21 +189,23 @@ export const getAllPostsData = async () => {
 //!-- 해야함
 export const deletePostData = async (postId) => {
 
-  // let postsData;
+  let postsData;
 
-  // await get(child(dbRef, 'posts/')).then((snapshot) => {
-  //   if (snapshot.exists()) {
-  //     postsData = snapshot.val();
-  //     postsData[postId].removeValue()
+  await get(child(dbRef, 'posts/')).then((snapshot) => {
+    if (snapshot.exists()) {
+      postsData = snapshot.val();
+      postsData[postId].removeValue()
 
-  //   } else {
-  //     console.log('No data available');
-  //   }
-  // }).catch((error) => {
-  //   console.error(error);
-  // });
+    } else {
+      console.log('No data available');
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
 
 }
+
+//! ---여기까지
 
 export const getFilteredByCategoryPostsData = async (category) => {
   let allPostData;
