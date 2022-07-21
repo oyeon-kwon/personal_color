@@ -130,3 +130,9 @@
     top: 11.7rem;
     left: -7rem;
 }
+
+@media screen and (max-width: 400px) {
+    .content-box-1 {
+        
+    }
+}

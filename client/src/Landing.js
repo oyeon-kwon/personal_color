@@ -181,7 +181,7 @@ function Landing () {
         {/* <div className='landing-section-2'>
           나에게 어울리는 색상이 무엇인지, 내 착붙템은 무엇일지 한 눈에 살펴보세요.
         </div> */}
-        <div>컬러덴티티로 진단을 시작해볼까요? 하고 버튼 추가</div>
+        <div className='landing-section-3'>컬러덴티티로 진단을 시작해볼까요? 하고 버튼 추가</div>
       </div>
 
     </>
