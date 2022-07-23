@@ -134,6 +134,10 @@
 @media screen and (max-width: 400px) {
     .content-box-1 {
         width: 350px;
+        display: flex;
+        flex-direction: column;
+        /* margin: 0 auto; */
+        padding: 3rem;
     }
 
     .desc {
@@ -147,4 +151,91 @@
     .desc-sm {
         font-size: 0.4rem;
     }
+
+    .test-button-container {
+        display: flex;
+        margin: 5rem auto;
+    }
+
+    .test-button {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 0.5rem;
+    }
+
+    .img-container {
+        display: none;
+    }
+
+    .arrow-container {
+        height: 10rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    .arrow-container-desc {
+        font-size: 1.5rem;
+    }
+
+    .arrow-img {
+        width: 3rem;
+    }
+
+    .landing-section-1 {
+        padding: 2rem;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .person-thinking {
+        font-size: 1rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .desc2 {
+        margin-left: -2rem;
+    }
+
+    .desc3 {
+        margin-left: -2rem;
+    }
+
+    .landing-section1-img1 {
+        width: 7rem;
+    }
+
+    .landing-section1-img2 {
+        width: 7rem;
+    }
+
+    .landing-section1-img3 {
+        width: 7rem;
+    }
+
+    .landing-section-2 {
+        height: 30rem;
+    }
+
+    .landing-section-text {
+        font-size: 0.8rem;
+    }
+
+    .landing-section-browser-img {
+        position: absolute;
+        width: 25rem;
+        top: 5rem;
+        left: -6.5rem;
+    }
+    
+    .gif {
+        width: 20.5rem;
+        position: absolute;
+        top: 9.7rem;
+        left: -4.3rem;
+    }
+    
 }

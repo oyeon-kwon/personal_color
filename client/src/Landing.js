@@ -37,8 +37,8 @@ function Landing () {
           <div className='desc-sm'>스스로 맞는 컬러가 무엇인지 측정해 보거나<br />빅데이터를 기반으로 학습한 AI를 통해 측정할 수 있습니다.</div>
         </div>
         <div className='test-button-container'>
-          <div className='test-button self' onMouseOver={() => setButtonStatus('self')} onClick={selfTestHandler}>스스로 진단하기</div>
-          <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')} onClick={aiTestHandler}>AI로 진단하기</div>
+          <div className='test-button self' onMouseOver={() => setButtonStatus('self')} onClick={selfTestHandler}>스스로<br />진단하기</div>
+          <div className='test-button ai' onMouseOver={() => setButtonStatus('ai')} onClick={aiTestHandler}>AI로<br />진단하기</div>
         </div>
       </div>
       <div className='img-container'>
@@ -63,7 +63,7 @@ function Landing () {
             duration={300}
             offset={-300}        
           >
-            <Timeline target={<div className='person-thinking'>내 얼굴 톤에 맞는 화장품이 뭔지 모르겠어요.<img src={landingFirst1} className='landing-section1-img1'/></div>}>
+            <Timeline target={<div className='person-thinking desc1'>내 얼굴 톤에 맞는 화장품이 뭔지 모르겠어요.<img src={landingFirst1} className='landing-section1-img1'/></div>}>
               <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={1} />
               <Tween to={{ x: "0px", y: "150px" }} duration={1} />
             </Timeline>
@@ -77,7 +77,7 @@ function Landing () {
             duration={300}
             offset={-300}        
           >
-            <Timeline target={<div className='person-thinking'>톤그로라고 놀림 받았어요ㅠㅠ<img src={landingFirst2} className='landing-section1-img2'/></div>}>
+            <Timeline target={<div className='person-thinking desc2'>톤그로라고 놀림 받았어요ㅠㅠ<img src={landingFirst2} className='landing-section1-img2'/></div>}>
               <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={1} />
               <Tween to={{ x: "30px", y: "0px" }} duration={1} />
             </Timeline>
@@ -91,7 +91,7 @@ function Landing () {
             duration={300}
             offset={-300}        
           >
-            <Timeline target={<div className='person-thinking'>핑크립을 바르면 왜 이렇게 입술만 둥둥 떠보일까요?<img src={landingFirst3} className='landing-section1-img3'/></div>}>
+            <Timeline target={<div className='person-thinking desc3'>핑크립을 바르면 왜 이렇게 입술만 둥둥 떠보일까요?<img src={landingFirst3} className='landing-section1-img3'/></div>}>
               <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={1} />
               <Tween to={{ x: "30px", y: "150px" }} duration={1} />
             </Timeline>
