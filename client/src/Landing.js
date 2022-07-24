@@ -13,7 +13,6 @@ import browser from './img/browser.png'
 import landingSecondGIF from './img/landingSecondGIF.gif'
 import landingThirdGIF from './img/landingThirdGIF.gif'
 import landingFourthGIF from './img/landingFourthGIF.gif'
-import Loading from './components/Loading';
 
 function Landing () {
   // TODO: 호버 이미지 크기 조정

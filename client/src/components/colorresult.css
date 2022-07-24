@@ -80,3 +80,27 @@ li {
     color: #ff7773;
     margin: 3rem auto;
 }
+
+
+@media screen and (max-width: 400px) {
+    .color-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+        width: 400px;
+    }
+
+    .color-type {
+        font-size: 2rem;
+    }
+
+    .color-desc {
+        font-size: 0.8rem;
+    }
+
+    .color-recommend-title {
+        font-size: 2rem;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Landing from './Landing';
 import Signup from './Signup';
@@ -14,6 +14,7 @@ import ColorResult from './components/ColorResult';
 // import Modal from './components/Modal';
 // import Loading from './components/Loading';
 import axios from 'axios';
+import logo from './img/logowhite.png'
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,6 +24,10 @@ import {
 import { getCurrentLoggedInUser, signout, writeUserData, writeUserImageData, getUserData } from './firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from './reducer/authReducer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+
 /* global Kakao */
 
 function App () {
@@ -78,34 +83,49 @@ function App () {
     loginStatusHandler();
   }, []);
 
+  const navLinksRef = useRef();
+
+  const showMenuForResponsive = () => {
+    if(navLinksRef.current.classList.value.indexOf('active') === -1) {
+      navLinksRef.current.classList.add('active')
+    } else {
+      navLinksRef.current.classList.remove('active')
+    }
+  }
+
   return (
     <>
       <div className='body'>
         <Router>
           <div id='nav'>
-            <span className='nav-link'>
-              <Link to='/'>HOME</Link>
-            </span>
-            <span className='nav-link'>
-              <Link to='/color'>COLOR</Link>
-            </span>
-            <span className='nav-link'>
-              <Link to='/community'>COMMUNITY</Link>
-            </span>
-            <span className='nav-link'>
-              {
-                authCurrentUser
-                  ? <Link to='/mypage'>MYPAGE</Link>
-                  : <Link to='/signup'>회원가입</Link>
-              }
-            </span>
-            <span className='nav-link'>
-              {
-                authCurrentUser
-                  ? <span onClick={logoutHandler}>로그아웃</span>
-                  : <Link to='/signin'>로그인</Link>
-              }
-            </span>
+            <img className='home-logo' src={logo}></img>
+            <FontAwesomeIcon icon={faBars} className='menu-hamburger' onClick={showMenuForResponsive} />
+
+            <div ref={navLinksRef} className='nav-link-list'>
+              <span className='nav-link'>
+                <Link to='/'>HOME</Link>
+              </span>
+              <span className='nav-link'>
+                <Link to='/color'>COLOR</Link>
+              </span>
+              <span className='nav-link'>
+                <Link to='/community'>COMMUNITY</Link>
+              </span>
+              <span className='nav-link'>
+                {
+                  authCurrentUser
+                    ? <Link to='/mypage'>MYPAGE</Link>
+                    : <Link to='/signup'>회원가입</Link>
+                }
+              </span>
+              <span className='nav-link'>
+                {
+                  authCurrentUser
+                    ? <span onClick={logoutHandler}>로그아웃</span>
+                    : <Link to='/signin'>로그인</Link>
+                }
+              </span>
+            </div>
           </div>
           <Routes>
             <Route path='/' element={<Landing />} />

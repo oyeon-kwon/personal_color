@@ -38,6 +38,14 @@ time, mark, audio, video {
   align-items: center;
   color: #ffffff;
   }
+
+  .home-logo {
+    display: none;
+  }
+
+  .menu-hamburger {
+    display: none;
+  }
   
   .nav-link {
   margin: 0 15px;
@@ -48,4 +56,50 @@ time, mark, audio, video {
   a {
   text-decoration: none;
   color: #ffffff;
+  }
+
+  @media screen and (max-width: 400px) { 
+    #nav {
+      width: 100%;
+      /* justify-content: space-between; */
+      display: flex;
+      margin: 0 auto;
+      
+    }
+
+    .nav-link-list {
+      /* font-size: 0.3rem;
+      margin: 0 5px; */
+      display: none;
+    }
+
+    .nav-link-list.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+
+      top: 3rem;
+      background-color: #ffffff;
+      opacity: 85%;
+      border-radius: 0 0 50px 50px;
+      line-height: 3rem;
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    a {
+      color: #ff7773;
+    }
+
+    .home-logo {
+      display: block;
+      width: 1.7rem;
+    }
+
+    .menu-hamburger {
+      display: block;
+      position: absolute;
+      right: 1rem;
+    }
   }

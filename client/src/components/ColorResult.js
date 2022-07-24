@@ -29,9 +29,11 @@ function ColorResult () {
             })
         }
       </div>
-      <div className='color-type'>{colorResultsData[currentTab].type}</div>
-      <pre className='color-desc'>{colorResultsData[currentTab].desc}</pre>
-      <div className='color-recommend-box'>
+      <div className='color-container'>
+        <div className='color-type'>{colorResultsData[currentTab].type}</div>
+        <pre className='color-desc'>{colorResultsData[currentTab].desc}</pre>
+        <div className='color-recommend-box'>
+      </div>
 
         <div className='color-recommend-title'>어울리는 색상</div>
         <div className='color-recommend-colorchip-box'>
