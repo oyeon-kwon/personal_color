@@ -97,8 +97,11 @@ li {
     }
 
     .color-desc {
+        display: flex;
+        margin: 2rem;
+        text-align: left;
         font-size: 0.9rem;
-        width: 300px;
+        width: 350px;
         overflow: auto;
     }
 
