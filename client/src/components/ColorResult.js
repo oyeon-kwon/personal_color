@@ -31,7 +31,9 @@ function ColorResult () {
       </div>
       <div className='color-container'>
         <div className='color-type'>{colorResultsData[currentTab].type}</div>
-        <pre className='color-desc'>{colorResultsData[currentTab].desc}</pre>
+        <div className='color-desc'>
+          <pre>{colorResultsData[currentTab].desc}</pre>
+        </div>
         <div className='color-recommend-box'>
       </div>
 
@@ -54,7 +56,9 @@ function ColorResult () {
       </div>
       <div className='color-overall-box'>
         <div className='color-overall-title'>우리나라 퍼스널컬러 분포</div>
-        <Statistics />
+        <div className='color-overall-chart'>
+          <Statistics/>
+        </div>
       </div>
     </>
   );

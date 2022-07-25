@@ -97,10 +97,28 @@ li {
     }
 
     .color-desc {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        width: 300px;
+        overflow: auto;
+    }
+
+    .color-recommend-box {
+        margin: 3rem auto;
     }
 
     .color-recommend-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .color-recommend-colorchip-box {
+        padding: 3rem;
+    }
+
+    .color-overall-box {
+        margin: 3rem auto;
+    }
+
+    .color-overall-title {
+        font-size: 1.5rem;
     }
 }
