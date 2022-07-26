@@ -85,3 +85,36 @@ td {
 .community-content-date {
     text-align: right;
 }
+
+@media screen and (max-width: 400px) { 
+    .category-box {
+        width: 400px;
+        font-size: 0.5rem;
+    }
+
+    .category {
+        height: 2rem;
+    }
+
+    .community-content-category {
+        font-size: 0.7rem;
+        width: 5px;
+    }
+
+    .write-post-button {
+        width: 50px;
+        font-size: 0.7rem;
+    }
+
+    .community-content-title {
+        font-size: 0.7rem;
+        width: 500px;
+    }
+
+    .community-content-date {
+        font-size: 0.7rem;
+        width: 7px;
+    }
+
+
+}
