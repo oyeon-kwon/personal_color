@@ -41,7 +41,7 @@
     margin: 1rem 1rem 0 0.5rem;
 }
 
-input > .form-box {
+.name-form-box, .email-form-box, .password-form-box, .password-check-form-box{
     border: solid 1px #c4c4c4;
     width: 30rem;
     height: 3rem;
@@ -50,12 +50,6 @@ input > .form-box {
     padding: 1rem;
     box-sizing: border-box;
 }
-/* 
-.gender {
-    width: 30rem;
-    height: 5rem;
-    margin: 0 1rem 0 6rem;
-} */
 
 .gender-button-container {
     display: flex;
@@ -134,4 +128,45 @@ input:focus {
     background-color: #ffcecc;
     color: #ff7773;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+@media screen and (max-width: 400px) {
+    .left-nav {
+        display: none;
+    }
+
+    .form-title {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .form-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gender-button-container {
+        width: 305px;
+        font-size: 0.8rem;
+        margin: 0 auto 1rem -0.5rem;
+
+    }
+
+    .gender-select-button {
+        width: 100%;
+    }
+
+    .name-form-box, .email-form-box, .password-form-box, .password-check-form-box {
+        width: 260px;
+    }
+
+    .signup-button {
+        width: 260px;
+    }
 }

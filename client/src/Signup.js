@@ -115,7 +115,7 @@ function Signup () {
           <div className='form'>
             <div className='name'>
               <div className='desc'>이름</div>
-              <input className='form-box' onChange={nameInputHandler} placeholder='김컬러' />
+              <input className='name-form-box' onChange={nameInputHandler} placeholder='김컬러' />
             </div>
             <div className='gender'>
               <div className='gender-button-container'>
@@ -125,15 +125,15 @@ function Signup () {
             </div>
             <div className='email'>
               <div className='desc'>email</div>
-              <input className='form-box' onChange={emailInputHandler} placeholder='email@address.com'/>
+              <input className='email-form-box' onChange={emailInputHandler} placeholder='email@address.com'/>
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>
-              <input className='form-box' type='password' onChange={passwordInputHandler} />
+              <input className='password-form-box' type='password' onChange={passwordInputHandler} />
             </div>
             <div className='password-check'>
               <div className='desc'>비밀번호 확인</div>
-              <input className='form-box' type='password' onChange={passwordInputCheckHandler} />
+              <input className='password-check-form-box' type='password' onChange={passwordInputCheckHandler} />
               {
                 isSamePassword
                   ? <div className='password-check-desc true'>비밀번호가 일치합니다.</div>
