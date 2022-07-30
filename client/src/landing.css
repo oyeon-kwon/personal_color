@@ -131,13 +131,10 @@
     left: -7rem;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .content-box-1 {
         width: 100%;
         padding: 0;
-    }
-
-    .desc {
     }
     
     .desc-lg {
@@ -163,14 +160,14 @@
     }
 
     .test-button {
-        width: 3.5rem;
-        height: 3.5rem;
+        width: 4.5rem;
+        height: 4.5rem;
         font-size: 0.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin: 0 auto;
+        margin: -3rem auto;
     }
 
     .img-container {
