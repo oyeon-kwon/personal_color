@@ -76,11 +76,11 @@ function Login () {
           <div className='form'>
             <div className='email'>
               <div className='desc'>email</div>
-              <input className='form-box' onChange={emailInputHandler} />
+              <input className='email-form-box' onChange={emailInputHandler} />
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>
-              <input className='form-box' type='password' onChange={passwordInputHandler} />
+              <input className='password-form-box' type='password' onChange={passwordInputHandler} />
             </div>
             <div className='submit-button' onClick={submitLoginHandler}>로그인</div>
             <div className='hr'>
