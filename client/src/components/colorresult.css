@@ -82,7 +82,11 @@ li {
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
+    .tab-box {
+        font-size: 0.85rem;
+    }
+    
     .color-container {
         display: flex;
         flex-direction: column;
