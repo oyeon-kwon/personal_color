@@ -13,6 +13,7 @@ import browser from './img/browser.png'
 import landingSecondGIF from './img/landingSecondGIF.gif'
 import landingThirdGIF from './img/landingThirdGIF.gif'
 import landingFourthGIF from './img/landingFourthGIF.gif'
+import logo from './img/logo.png'
 
 function Landing () {
   // TODO: 호버 이미지 크기 조정
@@ -177,10 +178,29 @@ function Landing () {
             </Scene>
           </Controller>
         </div>
-        {/* <div className='landing-section-2'>
-          나에게 어울리는 색상이 무엇인지, 내 착붙템은 무엇일지 한 눈에 살펴보세요.
-        </div> */}
-        <div className='landing-section-3'>컬러덴티티로 진단을 시작해볼까요? 하고 버튼 추가</div>
+        <div className='landing-section-3'>
+          <div className='landing-final-desc'>
+            컬러덴티티와 함께<br />내 퍼스널컬러 진단을 시작해 볼까요?
+          </div>
+          <div className='final-test-button-container'>
+            <div className='final-test-button' onClick={selfTestHandler}>스스로 진단하기</div>
+            <div className='final-test-button' onClick={aiTestHandler}>AI로 진단하기</div>
+          </div>
+        </div>
+        <div className='landing-footer'>
+          <img src={logo} className='logo-footer-img' />
+          <div className='info'>
+            <p>컬러덴티티</p>
+            <p>
+              권오연
+              <span className='info-divider'>|</span>
+              <a className='info-link' href='https://github.com/oyeon-kwon'>Github</a>
+              <span className='info-divider'>|</span>
+              <a className='info-link' href='https://o-yeon.tistory.com/'>Blog</a>
+            </p>
+          </div>
+          <div className='terms-container'><span className='terms'>이용약관</span><span className='terms-divider'>|</span><span className='terms'>개인정보처리방침</span></div>
+        </div>
       </div>
 
     </>

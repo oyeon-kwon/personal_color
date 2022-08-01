@@ -37,7 +37,7 @@
     justify-content: center;
     margin: 0 4rem 0 0;
     font-size: 0.7rem;
-    border: solid 5px #e1e1e1;
+    border: solid 5px #fff1f0;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -67,8 +67,9 @@
 }
 
 .arrow-container-desc {
-    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Black Han Sans', sans-serif;
     font-size: 2rem;
+    color: #ff7773;
 }
 
 .arrow-img {
@@ -107,7 +108,7 @@
 }
 
 .landing-section-2 {
-    height: 60rem;
+    height: 50rem;
     margin: 0 auto;
     display: flex;
 }
@@ -129,6 +130,93 @@
     position: absolute;
     top: 11.7rem;
     left: -7rem;
+}
+
+.landing-section-3 {
+    height: 30rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-final-desc {
+    font-size: 2rem;
+    display: flex;
+    font-family: 'Black Han Sans', sans-serif;
+    color: #ff7773;
+    margin: 1rem auto;
+}
+
+.final-test-button-container {
+    display: flex;
+}
+
+.final-test-button {
+    width: 10rem;
+    height: 3rem;
+    background-color: #ff7773;
+    color: #ffffff;
+    border-radius: 30px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 1rem;
+}
+
+.final-test-button:hover {
+    cursor: pointer;
+    background-color: #fff1f0;
+    color: #ff7773
+}
+
+.landing-footer {
+    border-top: 1px solid rgb(236, 236, 236);
+    height: 10rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo-footer-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 3rem;
+    margin-right: 1rem;
+}
+
+.info {
+    font-weight: 200;
+    font-size: 0.9rem;
+}
+
+.info-divider {
+    margin: 0 7px;
+    color: #929292;
+    font-size: 0.8rem;
+}
+
+.info-link {
+    color: black;
+    font-weight: 400;
+}
+
+.terms-container {
+    position: absolute;
+    right: 2rem;    
+}
+
+.terms {
+    color: #434343;
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+.terms-divider {
+    margin: 0 5px;
+    color: #929292;
+    font-size: 0.8rem;
 }
 
 @media screen and (max-width: 500px) {
