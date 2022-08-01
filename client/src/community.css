@@ -86,7 +86,7 @@ td {
     text-align: right;
 }
 
-@media screen and (max-width: 400px) { 
+@media screen and (max-width: 500px) { 
     .category-box {
         width: 400px;
         font-size: 0.5rem;

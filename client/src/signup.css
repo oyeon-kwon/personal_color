@@ -41,9 +41,9 @@
     margin: 1rem 1rem 0 0.5rem;
 }
 
-.name-form-box, .email-form-box, .password-form-box, .password-check-form-box{
+.name-form-box, .email-form-box, .password-form-box, .password-check-form-box {
     border: solid 1px #c4c4c4;
-    width: 30rem;
+    width: 25rem;
     height: 3rem;
     border-radius: 20px;
     margin: 0.5rem 1rem 1rem 0;
@@ -131,6 +131,47 @@ input:focus {
 }
 
 
+@media screen and (max-width: 500px) {
+    .left-nav {
+        display: none;
+    }
+
+    .form-title {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .form-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gender-button-container {
+        width: 27.5rem;
+        font-size: 0.8rem;
+        margin: 0 auto 1rem -0.5rem;
+
+    }
+
+    .gender-select-button {
+        width: 100%;
+    }
+
+    .name-form-box, .email-form-box, .password-form-box, .password-check-form-box {
+        width: 25rem ;
+    }
+
+    .signup-button {
+        width: 25rem;
+    }
+}
+
+
 @media screen and (max-width: 400px) {
     .left-nav {
         display: none;
@@ -152,7 +193,7 @@ input:focus {
     }
 
     .gender-button-container {
-        width: 305px;
+        width: 20rem;
         font-size: 0.8rem;
         margin: 0 auto 1rem -0.5rem;
 
@@ -163,10 +204,11 @@ input:focus {
     }
 
     .name-form-box, .email-form-box, .password-form-box, .password-check-form-box {
-        width: 260px;
+        width: 17.5rem ;
     }
 
     .signup-button {
-        width: 260px;
+        width: 17.5rem;
+        margin-left: -0.2rem;
     }
 }
