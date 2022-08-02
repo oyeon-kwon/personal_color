@@ -1,0 +1,60 @@
+.terms-background {
+    position: fixed;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms-body {
+    position: absolute;
+    width: 30rem;
+    height: 50rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: left;
+    z-index: 999;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.terms-body-info {
+    margin: 3.5rem;
+    overflow: scroll;
+}
+
+.close-button {
+    color: #717171;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+}
+
+.terms-big-title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #a9a9a9;
+}
+
+.terms-medium-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.terms-small-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0.3rem 0;
+}
+
+.terms-desc {
+    font-size: 0.7rem;
+}

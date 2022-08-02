@@ -213,6 +213,10 @@
     font-size: 0.8rem;
 }
 
+.terms:hover {
+    cursor: pointer;
+}
+
 .terms-divider {
     margin: 0 5px;
     color: #929292;
