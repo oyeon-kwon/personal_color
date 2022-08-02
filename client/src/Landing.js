@@ -15,6 +15,7 @@ import landingThirdGIF from './img/landingThirdGIF.gif'
 import landingFourthGIF from './img/landingFourthGIF.gif'
 import logo from './img/logo.png'
 import Terms from './components/Terms';
+import Privacy from './components/Privacy';
 
 function Landing () {
   // TODO: 호버 이미지 크기 조정
@@ -23,6 +24,7 @@ function Landing () {
   const [buttonStatus, setButtonStatus] = useState('self');
 
   const [isTermsOpen, setIsTermsOpen] = useState(false)
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false)
 
   const selfTestHandler = () => {
     navigate('/camera-self');
@@ -34,6 +36,10 @@ function Landing () {
 
   const termsModalHandler = () => {
     setIsTermsOpen(!isTermsOpen)
+  }
+
+  const privacyModalHandler = () => {
+    setIsPrivacyOpen(!isPrivacyOpen)
   }
 
   return (
@@ -206,11 +212,14 @@ function Landing () {
               <a className='info-link' href='https://o-yeon.tistory.com/'>Blog</a>
             </p>
           </div>
-          <div className='terms-container'><span className='terms' onClick={termsModalHandler}>이용약관</span><span className='terms-divider'>|</span><span className='terms'>개인정보처리방침</span></div>
+          <div className='terms-container'><span className='terms' onClick={termsModalHandler}>이용약관</span><span className='terms-divider'>|</span><span className='terms' onClick={privacyModalHandler}>개인정보처리방침</span></div>
         </div>
       </div>
       {
         isTermsOpen ? <Terms termsModalHandler={termsModalHandler} /> : null
+      }
+      {
+        isPrivacyOpen ? <Privacy privacyModalHandler={privacyModalHandler}/> : null
       }
     </>
   );
