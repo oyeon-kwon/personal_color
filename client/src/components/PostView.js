@@ -54,23 +54,21 @@ function PostView () {
   };
 
   const deletePostHandler = async () => {
-
     let deleteConfirm = window.confirm('삭제하시겠습니까?')
 
     if(deleteConfirm) {
       const postData = await getPostData(id);
   
-      if(authCurrentUser.userId === postData.userId) {
-        await deletePostData(id)
-          // TODO: 이거 navigate then으로 늦게 처리되게
-          navigate('/community');
-      } else {
-        alert('본인의 게시물만 삭제할 수 있습니다.')
-      }
+      await deletePostData(id)
+      // TODO: 이거 navigate then으로 늦게 처리되게
+      navigate('/community');
     }
   }
 
-  
+  const editPostHandler = () => {
+    navigate(`/community/${id}/edit`)
+    
+  }
 
   return (
     <>
@@ -79,11 +77,14 @@ function PostView () {
         ? <div className='post-view-box'>
           <div className='post-box'>
             <div className='post-title'>{postData.title}</div>
-            {/* 권한 있는 사람만 수정 삭제 가능 */}
-            <div className='button-container'>
-              <div className='edit-button' >수정</div>
-              <div className='delete-button' onClick={deletePostHandler}>삭제</div>
-            </div>
+            {
+              authCurrentUser.userId === postData.userId ? 
+                <div className='button-container'>
+                  <div className='edit-button' onClick={editPostHandler} >수정</div>
+                  <div className='delete-button' onClick={deletePostHandler}>삭제</div>
+                </div>
+              : null
+            }
             <div className='post-desc-box'>
               <div className='post-desc-box-left'>
                 <span className='post-category'>{postData.category}</span>

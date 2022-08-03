@@ -11,6 +11,7 @@ import PostView from './components/PostView';
 import PostInput from './components/PostInput';
 import CameraAI from './components/CameraAI';
 import ColorResult from './components/ColorResult';
+import PostEdit from './components/PostEdit';
 // import Modal from './components/Modal';
 // import Loading from './components/Loading';
 import axios from 'axios';
@@ -137,6 +138,7 @@ function App () {
             <Route path='/community' element={<Commumity />} />
             <Route path='/community/:id' element={<PostView />} />
             <Route path='/community/post' element={<PostInput />} />
+            <Route path='/community/:id/edit' element={<PostEdit />} />
             <Route path='/mypage' element={<Mypage />} />
             <Route path='/color' element={<ColorResult />} />
           </Routes>

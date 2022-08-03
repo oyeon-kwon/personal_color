@@ -199,6 +199,19 @@ export const deletePostData = async (postId) => {
   });
 }
 
+export const editPostData = async (postId, userId, username, title, content, image, category) => {
+
+  const db = getDatabase();
+
+  set(ref(db, 'posts/' + postId), {
+    userId: userId,
+    username: username,
+    title: title,
+    content: content,
+    image: image,
+    category: category
+  })
+}
 
 export const getFilteredByCategoryPostsData = async (category) => {
   let allPostData;
