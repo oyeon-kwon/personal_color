@@ -186,26 +186,19 @@ export const getAllPostsData = async () => {
   return postsData;
 };
 
-//!-- 해야함
 export const deletePostData = async (postId) => {
 
-  let postsData;
+  const db = getDatabase();
 
-  await get(child(dbRef, 'posts/')).then((snapshot) => {
-    if (snapshot.exists()) {
-      postsData = snapshot.val();
-      postsData[postId].removeValue()
-
-    } else {
-      console.log('No data available');
-    }
-  }).catch((error) => {
-    console.error(error);
+  remove(ref(db, 'posts/' + postId))
+  .then(() => {
+    alert('삭제되었습니다.')
+  })
+  .catch((error) => {
+    console.log(error)
   });
-
 }
 
-//! ---여기까지
 
 export const getFilteredByCategoryPostsData = async (category) => {
   let allPostData;

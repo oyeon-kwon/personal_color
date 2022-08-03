@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './postview.css';
 import { getPostData, writeCommentData, deletePostData } from '../firebase/firebase';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function PostView () {
+
+  const navigate = useNavigate();
+
   // 리덕스에 저장된 authCurrentUser의 정보
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
 
@@ -50,14 +53,24 @@ function PostView () {
     }
   };
 
-  const deletePostHandler = () => {
-    // 권한 있는지 유저 확인
-    // console.log(authCurrentUser)
+  const deletePostHandler = async () => {
 
-    // console.log(id)
-    deletePostData(id)
-    // 쿼리 파라미터에 있는 키 값 가져오기
+    let deleteConfirm = window.confirm('삭제하시겠습니까?')
+
+    if(deleteConfirm) {
+      const postData = await getPostData(id);
+  
+      if(authCurrentUser.userId === postData.userId) {
+        await deletePostData(id)
+          // TODO: 이거 navigate then으로 늦게 처리되게
+          navigate('/community');
+      } else {
+        alert('본인의 게시물만 삭제할 수 있습니다.')
+      }
+    }
   }
+
+  
 
   return (
     <>
