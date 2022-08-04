@@ -199,7 +199,7 @@ export const deletePostData = async (postId) => {
   });
 }
 
-export const editPostData = async (postId, userId, username, title, content, image, category) => {
+export const editPostData = async (postId, userId, username, title, content, image, category, createdAt) => {
 
   const db = getDatabase();
 
@@ -209,7 +209,8 @@ export const editPostData = async (postId, userId, username, title, content, ima
     title: title,
     content: content,
     image: image,
-    category: category
+    category: category,
+    createdAt: createdAt
   })
 }
 

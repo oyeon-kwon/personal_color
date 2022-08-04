@@ -21,13 +21,15 @@ function PostEdit () {
 
   const getPostDataHandler = async () => {
     const oldPostData = await getPostData(id);
+
     setPostInput({
         userId: authCurrentUser.userId,
         username: authCurrentUser.username,
         title: oldPostData.title,
         content: oldPostData.content,
         category: oldPostData.category,
-        image: oldPostData.image
+        image: oldPostData.image,
+        createdAt: oldPostData.createdAt
     })
   };
 
