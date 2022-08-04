@@ -295,21 +295,8 @@ export const writeCommentData = async (postId, commentUserId, commentUser, comme
   });
 };
 
-//!---
 export const deleteCommentData = async (postId, commentId, commentIndex) => {
   const db = getDatabase();
-  // 포스트를 가져와서 코멘트 객체를 업데이트 시키는 것으로 해야 함
-
-  // set(ref(db, 'posts/' + postId), {
-  //   userId: userId,
-  //   username: username,
-  //   title: title,
-  //   content: content,
-  //   image: image,
-  //   category: category,
-  //   createdAt: createdAt
-  // })
-
   const postRef = ref(db, 'posts/');
 
   await onValue(postRef, (snapshot) => {
@@ -319,7 +306,7 @@ export const deleteCommentData = async (postId, commentId, commentIndex) => {
     let newComments = post.comment.filter((comment) => {
       return comment.commentId !== post.comment[commentIndex].commentId
     })
-    
+
     const updatePostCommentData = {
       ...post,
       comment: newComments
@@ -328,5 +315,4 @@ export const deleteCommentData = async (postId, commentId, commentIndex) => {
   }, {
     onlyOnce: true
   });
-
 }
