@@ -47,7 +47,7 @@ function PostView () {
       if (comment === '') {
         alert('댓글을 입력하세요.');
       } else {
-        writeCommentData(id, authCurrentUser.username, comment);
+        writeCommentData(id, authCurrentUser.userId, authCurrentUser.username, comment);
         setComment('');
       }
     }
@@ -131,7 +131,7 @@ function PostView () {
             <div className='divider-large' />
             <div className='comment-box'>
               <div className='comment-input-box'>
-                <input className='comment-input' type='text' placeholder='댓글을 입력하세요' value={comment} onChange={inputComment} onKeyUp={enterCommentKey} />
+                <input className='comment-input' type='text' placeholder='댓글을 입력하세요' value={comment} onChange={inputComment} onKeyDown={enterCommentKey} />
                 <span className='comment-button' onClick={createComment}>댓글 등록</span>
               </div>
               <div className='comments'>
