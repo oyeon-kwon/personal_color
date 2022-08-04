@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Pagination from './components/Pagination';
 import './community.css';
 import { getAllPostsData, getFilteredByCategoryPostsData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
@@ -72,6 +73,11 @@ function Community () {
     }
   };
 
+  // 페이지네이션
+  const limit = 10;
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
   return (
     <>
       <div className='category-box'>
@@ -102,15 +108,21 @@ function Community () {
             postsData.length === 0
               ? <div>게시물이 없습니다.</div>
               : <table>
-                {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
                 <tbody>
                   {
-                    postsData.map(postDataRenderer)
+                    postsData.slice(offset, offset + limit).map(postDataRenderer)
                   }
                 </tbody>
               </table>
           }
-          {/* TODO: 페이지네이션 네비게이터 */}
+          <footer>
+            <Pagination
+            total={postsData.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+            />
+        </footer>
         </div>
       </div>
     </>
