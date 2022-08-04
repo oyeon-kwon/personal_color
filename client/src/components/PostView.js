@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './postview.css';
-import { getPostData, writeCommentData, deletePostData } from '../firebase/firebase';
+import { getPostData, writeCommentData, deletePostData, deleteCommentData } from '../firebase/firebase';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -37,7 +37,7 @@ function PostView () {
     if (comment === '') {
       alert('댓글을 입력하세요.');
     } else {
-      writeCommentData(id, authCurrentUser.username, comment);
+      writeCommentData(id, authCurrentUser.userId, authCurrentUser.username, comment);
       setComment('');
     }
   };
@@ -54,11 +54,9 @@ function PostView () {
   };
 
   const deletePostHandler = async () => {
-    let deleteConfirm = window.confirm('삭제하시겠습니까?')
+    let deleteConfirm = window.confirm('게시물을 삭제하시겠습니까?')
 
     if(deleteConfirm) {
-      const postData = await getPostData(id);
-  
       await deletePostData(id)
       // TODO: 이거 navigate then으로 늦게 처리되게
       navigate('/community');
@@ -67,7 +65,25 @@ function PostView () {
 
   const editPostHandler = () => {
     navigate(`/community/${id}/edit`)
+  }
+
+  const deleteCommentHandler = async (e) => {
+    let commentId = e.target.dataset.key
+    let commentIndex;
     
+    for(let i=0; i<postData.comment.length; i++) {
+      if(postData.comment[i].commentId === commentId) {
+        commentIndex = i
+      }
+    }
+    
+    let deleteConfirm = window.confirm('댓글을 삭제하시겠습니까?')
+
+    if(deleteConfirm) {
+      if(authCurrentUser.userId === postData.comment[commentIndex].commentUserId) {
+        deleteCommentData(id, commentId, commentIndex)
+      }
+    }
   }
 
   return (
@@ -120,18 +136,27 @@ function PostView () {
               </div>
               <div className='comments'>
                 {
-              postData.comment
-                ? postData.comment.map((comment, i) => {
-                    return (
-                      <div key={i}>
-                        <div className='comment-user'>{comment.commentUser}</div>
-                        <div className='comment-text'>{comment.commentInput}</div>
-                        <div className='divider-medium' />
-                      </div>
-                    );
-                  })
-                : <></>
-            }
+                  postData.comment
+                    ? postData.comment.map((comment) => {
+                        return (
+                          <>
+                            <div className='comment-info' key={comment.commentId}>
+                              <div className='comment-info-left'>
+                                <div className='comment-user'>{comment.commentUser}</div>
+                                <div className='comment-text'>{comment.commentInput}</div>
+                              </div>
+                              <div className='comment-info-right'>
+                                <div className='comment-delete' onClick={deleteCommentHandler} data-key={comment.commentId}>삭제</div>
+                                <div className='comment-createdat'>{comment.createdAt}</div>
+                              </div>
+                            </div>
+                            <div className='divider-medium' />
+                          </>
+                        );
+                      })
+                    : <></>
+                }
+                
               </div>
             </div>
           </div>

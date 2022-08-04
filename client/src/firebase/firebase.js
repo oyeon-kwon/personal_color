@@ -253,10 +253,11 @@ export const getPostData = async (id) => {
   return postData[id];
 };
 
-export const writeCommentData = async (postId, commentUser, commentInput) => {
+export const writeCommentData = async (postId, commentUserId, commentUser, commentInput) => {
   const db = getDatabase();
 
   const postRef = ref(db, 'posts/');
+  const now = new Date();
 
   await onValue(postRef, (snapshot) => {
     const posts = snapshot.val();
@@ -266,15 +267,21 @@ export const writeCommentData = async (postId, commentUser, commentInput) => {
       const newPost = {
         ...post,
         comment: [{
+          commentId: postId + '-commentNumber-0',
+          commentUserId: commentUserId,
           commentUser: commentUser,
-          commentInput: commentInput
+          commentInput: commentInput,
+          createdAt: now.toLocaleDateString()
         }]
       };
       set(ref(db, 'posts/' + postId), newPost);
     } else {
-      post.comment.unshift({
+      post.comment.push({
+        commentId: postId + '-commentNumber-' + post.comment.length,
+        commentUserId: commentUserId,
         commentUser: commentUser,
-        commentInput: commentInput
+        commentInput: commentInput,
+        createdAt: now.toLocaleDateString()
       });
 
       const newPost = {
@@ -287,3 +294,39 @@ export const writeCommentData = async (postId, commentUser, commentInput) => {
     onlyOnce: true
   });
 };
+
+//!---
+export const deleteCommentData = async (postId, commentId, commentIndex) => {
+  const db = getDatabase();
+  // 포스트를 가져와서 코멘트 객체를 업데이트 시키는 것으로 해야 함
+
+  // set(ref(db, 'posts/' + postId), {
+  //   userId: userId,
+  //   username: username,
+  //   title: title,
+  //   content: content,
+  //   image: image,
+  //   category: category,
+  //   createdAt: createdAt
+  // })
+
+  const postRef = ref(db, 'posts/');
+
+  await onValue(postRef, (snapshot) => {
+    const posts = snapshot.val();
+    const post = posts[postId];
+
+    let newComments = post.comment.filter((comment) => {
+      return comment.commentId !== post.comment[commentIndex].commentId
+    })
+    
+    const updatePostCommentData = {
+      ...post,
+      comment: newComments
+    };
+    set(ref(db, 'posts/' + postId), updatePostCommentData);
+  }, {
+    onlyOnce: true
+  });
+
+}
