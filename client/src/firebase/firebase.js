@@ -158,7 +158,9 @@ export const writePostData = (userId, username, title, content, image, category)
 
   const postListRef = ref(db, 'posts');
   const newPostRef = push(postListRef);
+
   set(newPostRef, {
+    // postId: 
     userId: userId,
     username: username,
     title: title,
@@ -230,7 +232,11 @@ export const getFilteredByCategoryPostsData = async (category) => {
 
   for (const key in allPostData) {
     if (allPostData[key].category === category) {
-      filteredByCategoryPost.push(allPostData[key]);
+      const filteredPostObject = {
+        id: key,
+        ...allPostData[key]
+      };
+      filteredByCategoryPost.push(filteredPostObject);
     }
   }
 

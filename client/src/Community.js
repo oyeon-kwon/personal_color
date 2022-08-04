@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './community.css';
-import { getAllPostsData, getFilteredByCategoryPostsData, getSearchedPostsData } from './firebase/firebase';
+import { getAllPostsData, getFilteredByCategoryPostsData } from './firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -12,16 +12,6 @@ function Community () {
   const [postsData, setPostData] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
   const categories = ['전체', 'WARM', 'COOL', '모르겠어요'];
-
-  const selectCategoryHandler = async (index) => {
-    setCurrentTab(index);
-
-    if (index === 0) {
-      return getAllPosts();
-    }
-    const filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index]);
-    setPostData(filteredByCategoryData);
-  };
 
   const getAllPosts = async () => {
     const response = await getAllPostsData();
@@ -41,14 +31,35 @@ function Community () {
     getAllPosts();
   }, []);
 
+  const selectCategoryHandler = async (index) => {
+    setCurrentTab(index);
+
+    if (index === 0) {
+      return getAllPosts();
+    }
+    const filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index]);
+    setPostData(filteredByCategoryData);
+  };
+
   const viewPostHandler = (e) => {
-    const id = e.target.parentElement.id;
+    let id = e.target.dataset.key
+
     for (let i = 0; i < postsData.length; i++) {
       if (postsData[i].id === id) {
         navigate(`/community/${id}`);
       }
     }
   };
+
+  const postDataRenderer = (post) => {
+      return (
+        <tr className='community-content' data-id={post.id} data-key={post.id} onClick={viewPostHandler}>
+          <td className='community-content-category' data-key={post.id} >{post.category}</td>
+          <td className='community-content-title' data-key={post.id} >{post.title}</td>
+          <td className='community-content-date' data-key={post.id} >{post.createdAt}</td>
+        </tr>
+      );
+  }
 
   const writePostHandler = () => {
     if (authCurrentUser) {
@@ -94,16 +105,8 @@ function Community () {
                 {/* TODO: 페이지네이션으로 최대 게시물 10개 */}
                 <tbody>
                   {
-                  postsData.map((post) => {
-                    return (
-                      <tr className='community-content' id={post.id} key={post.id} onClick={viewPostHandler}>
-                        <td className='community-content-category'>{post.category}</td>
-                        <td className='community-content-title'>{post.title}</td>
-                        <td className='community-content-date'>{post.createdAt}</td>
-                      </tr>
-                    );
-                  })
-                }
+                    postsData.map(postDataRenderer)
+                  }
                 </tbody>
               </table>
           }
