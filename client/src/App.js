@@ -122,7 +122,7 @@ function App () {
               <span className='nav-link'>
                 {
                   authCurrentUser
-                    ? <span onClick={logoutHandler}>로그아웃</span>
+                    ? <span onClick={logoutHandler} className='logout'>로그아웃</span>
                     : <Link to='/signin'>로그인</Link>
                 }
               </span>

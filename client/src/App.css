@@ -58,6 +58,10 @@ time, mark, audio, video {
   color: #ffffff;
   }
 
+  .logout:hover {
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 400px) { 
     #nav {
       width: 100%;
