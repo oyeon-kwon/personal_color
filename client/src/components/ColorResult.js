@@ -34,8 +34,7 @@ function ColorResult () {
         <div className='color-desc'>
           <pre>{colorResultsData[currentTab].desc}</pre>
         </div>
-        <div className='color-recommend-box'>
-      </div>
+        <div className='color-recommend-box' />
 
         <div className='color-recommend-title'>어울리는 색상</div>
         <div className='color-recommend-colorchip-box'>
@@ -57,7 +56,7 @@ function ColorResult () {
       <div className='color-overall-box'>
         <div className='color-overall-title'>우리나라 퍼스널컬러 분포</div>
         <div className='color-overall-chart'>
-          <Statistics/>
+          <Statistics />
         </div>
       </div>
     </>

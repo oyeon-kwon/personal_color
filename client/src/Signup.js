@@ -27,16 +27,16 @@ function Signup () {
   const femaleRef = useRef();
 
   const genderSelectHandler = (e) => {
-    setGender(e.target.textContent)
-    
-    if(e.target.textContent === '남성') {
-      maleRef.current.classList.add('gender-select-button-active')
-      femaleRef.current.classList.remove('gender-select-button-active')
-    } else if(e.target.textContent === '여성') {
-      femaleRef.current.classList.add('gender-select-button-active')
-      maleRef.current.classList.remove('gender-select-button-active')
+    setGender(e.target.textContent);
+
+    if (e.target.textContent === '남성') {
+      maleRef.current.classList.add('gender-select-button-active');
+      femaleRef.current.classList.remove('gender-select-button-active');
+    } else if (e.target.textContent === '여성') {
+      femaleRef.current.classList.add('gender-select-button-active');
+      maleRef.current.classList.remove('gender-select-button-active');
     }
-  }
+  };
 
   const emailInputHandler = (e) => {
     const email = e.target.value;
@@ -71,11 +71,11 @@ function Signup () {
           const email = result.user.email;
           const uid = result.user.uid;
           writeUserData(uid, nameInput, gender, email);
-          
-          if(gender === '남성') {
-            writeUserImageData(uid, male_profile)
-          } else if(gender === '여성') {
-            writeUserImageData(uid, female_profile)
+
+          if (gender === '남성') {
+            writeUserImageData(uid, male_profile);
+          } else if (gender === '여성') {
+            writeUserImageData(uid, female_profile);
           }
 
           navigate('/signin');
@@ -125,7 +125,7 @@ function Signup () {
             </div>
             <div className='email'>
               <div className='desc'>email</div>
-              <input className='email-form-box' onChange={emailInputHandler} placeholder='email@address.com'/>
+              <input className='email-form-box' onChange={emailInputHandler} placeholder='email@address.com' />
             </div>
             <div className='password'>
               <div className='desc'>비밀번호</div>

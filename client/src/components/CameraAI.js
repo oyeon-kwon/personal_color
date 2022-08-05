@@ -95,7 +95,8 @@ function CameraAI () {
               <option label='WINTER COOL'>겨울 COOL</option>
             </select>
             <div className='color-select-option-desc'>WARM이 나온 경우 <br /> 평소에 파스텔톤을 선호한다면 SPRING을, <br /> 원색을 선호한다면 FALL을 선택하세요. <br /><br />
-COOL이 나온 경우 <br /> 평소에 파스텔톤을 선호한다면 SUMMER를, <br /> 원색을 선호한다면 WINTER를 선택하세요.</div>
+              COOL이 나온 경우 <br /> 평소에 파스텔톤을 선호한다면 SUMMER를, <br /> 원색을 선호한다면 WINTER를 선택하세요.
+            </div>
             <button type='button' onClick={selectColorAndCloseHandler} className='ai-camera-button'>내 컬러 저장하고 진단 끝내기</button>
           </>
     }

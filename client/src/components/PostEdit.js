@@ -6,7 +6,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function PostEdit () {
-
   const navigate = useNavigate();
   // TODO: 이미지 업로드 css 변경
   // 리덕스에 저장된 authCurrentUser의 정보
@@ -23,21 +22,19 @@ function PostEdit () {
     const oldPostData = await getPostData(id);
 
     setPostInput({
-        userId: authCurrentUser.userId,
-        username: authCurrentUser.username,
-        title: oldPostData.title,
-        content: oldPostData.content,
-        category: oldPostData.category,
-        image: oldPostData.image,
-        createdAt: oldPostData.createdAt
-    })
+      userId: authCurrentUser.userId,
+      username: authCurrentUser.username,
+      title: oldPostData.title,
+      content: oldPostData.content,
+      category: oldPostData.category,
+      image: oldPostData.image,
+      createdAt: oldPostData.createdAt
+    });
   };
 
   useEffect(() => {
     getPostDataHandler();
   }, []);
-
-
 
   const handleChangeCategory = (e) => {
     setPostInput({ ...postInput, category: e.target.value });
@@ -58,9 +55,9 @@ function PostEdit () {
 
   const change = () => {
     if (editorRef.current) {
-      setPostInput({ ...postInput, content: editorRef.current.getContent() })
+      setPostInput({ ...postInput, content: editorRef.current.getContent() });
     }
-  }
+  };
 
   const registPost = () => {
     const { userId, username, title, content, category, image } = postInput;
@@ -75,7 +72,6 @@ function PostEdit () {
       editPostData(id, userId, username, title, content, image, category);
       navigate('/community');
     }
-
   };
 
   return (
@@ -89,7 +85,6 @@ function PostEdit () {
             <option value='모르겠어요'>모르겠어요</option>
           </select>
           <input className='post-title-input' value={postInput.title} onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
-
 
           <div className='post-content'>
             <input id='post-file' className='post-image-input' type='file' onChange={imageHandler} />

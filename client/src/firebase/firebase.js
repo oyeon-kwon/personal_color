@@ -160,7 +160,7 @@ export const writePostData = (userId, username, title, content, image, category)
   const newPostRef = push(postListRef);
 
   set(newPostRef, {
-    // postId: 
+    // postId:
     userId: userId,
     username: username,
     title: title,
@@ -189,20 +189,18 @@ export const getAllPostsData = async () => {
 };
 
 export const deletePostData = async (postId) => {
-
   const db = getDatabase();
 
   remove(ref(db, 'posts/' + postId))
-  .then(() => {
-    alert('삭제되었습니다.')
-  })
-  .catch((error) => {
-    console.log(error)
-  });
-}
+    .then(() => {
+      alert('삭제되었습니다.');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const editPostData = async (postId, userId, username, title, content, image, category, createdAt) => {
-
   const db = getDatabase();
 
   set(ref(db, 'posts/' + postId), {
@@ -213,8 +211,8 @@ export const editPostData = async (postId, userId, username, title, content, ima
     image: image,
     category: category,
     createdAt: createdAt
-  })
-}
+  });
+};
 
 export const getFilteredByCategoryPostsData = async (category) => {
   let allPostData;
@@ -309,9 +307,9 @@ export const deleteCommentData = async (postId, commentId, commentIndex) => {
     const posts = snapshot.val();
     const post = posts[postId];
 
-    let newComments = post.comment.filter((comment) => {
-      return comment.commentId !== post.comment[commentIndex].commentId
-    })
+    const newComments = post.comment.filter((comment) => {
+      return comment.commentId !== post.comment[commentIndex].commentId;
+    });
 
     const updatePostCommentData = {
       ...post,
@@ -321,4 +319,4 @@ export const deleteCommentData = async (postId, commentId, commentIndex) => {
   }, {
     onlyOnce: true
   });
-}
+};

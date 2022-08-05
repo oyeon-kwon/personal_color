@@ -15,7 +15,7 @@ import PostEdit from './components/PostEdit';
 // import Modal from './components/Modal';
 // import Loading from './components/Loading';
 import axios from 'axios';
-import logo from './img/logowhite.png'
+import logo from './img/logowhite.png';
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,9 +25,8 @@ import {
 import { getCurrentLoggedInUser, signout, writeUserData, writeUserImageData, getUserData } from './firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from './reducer/authReducer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 /* global Kakao */
 
@@ -37,34 +36,32 @@ function App () {
   // 리덕스에 저장된 authCurrentUser의 정보: email, username
 
   // 카카오 로그인
-  useEffect(()=>{
-
+  useEffect(() => {
     // Kakao.isInitialized()
-    const authorizeCodeFromKakao = window.location.search.split("=")[1]
+    const authorizeCodeFromKakao = window.location.search.split('=')[1];
 
     axios.post('http://localhost:4000/kakao', {
       authorizeCodeFromKakao: authorizeCodeFromKakao
     }).then(kakaoUserData => {
-      if(kakaoUserData.data.kakao_account.email) {
-        writeUserData(kakaoUserData.data.id, kakaoUserData.data.properties.nickname, kakaoUserData.data.kakao_account.email) 
-        writeUserImageData(kakaoUserData.data.id, kakaoUserData.data.properties.profile_image)
+      if (kakaoUserData.data.kakao_account.email) {
+        writeUserData(kakaoUserData.data.id, kakaoUserData.data.properties.nickname, kakaoUserData.data.kakao_account.email);
+        writeUserImageData(kakaoUserData.data.id, kakaoUserData.data.properties.profile_image);
       } else {
-        writeUserData(kakaoUserData.data.id, kakaoUserData.data.properties.nickname) 
-        writeUserImageData(kakaoUserData.data.id, kakaoUserData.data.properties.profile_image)
+        writeUserData(kakaoUserData.data.id, kakaoUserData.data.properties.nickname);
+        writeUserImageData(kakaoUserData.data.id, kakaoUserData.data.properties.profile_image);
       }
 
-      getUserData(kakaoUserData.data.id)        
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          let currentUserInfo = snapshot.val()
-          dispatch(setAuth(currentUserInfo));
-        } else {
-          console.log('No data available');
-        }
-      });
-    })
-  },[])
-
+      getUserData(kakaoUserData.data.id)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const currentUserInfo = snapshot.val();
+            dispatch(setAuth(currentUserInfo));
+          } else {
+            console.log('No data available');
+          }
+        });
+    });
+  }, []);
 
   const loginStatusHandler = async () => {
     const currentUserInfo = await getCurrentLoggedInUser();
@@ -87,19 +84,19 @@ function App () {
   const navLinksRef = useRef();
 
   const showMenuForResponsive = () => {
-    if(navLinksRef.current.classList.value.indexOf('active') === -1) {
-      navLinksRef.current.classList.add('active')
+    if (navLinksRef.current.classList.value.indexOf('active') === -1) {
+      navLinksRef.current.classList.add('active');
     } else {
-      navLinksRef.current.classList.remove('active')
+      navLinksRef.current.classList.remove('active');
     }
-  }
+  };
 
   return (
     <>
       <div className='body'>
         <Router>
           <div id='nav'>
-            <img className='home-logo' src={logo}></img>
+            <img className='home-logo' src={logo} />
             <FontAwesomeIcon icon={faBars} className='menu-hamburger' onClick={showMenuForResponsive} />
 
             <div ref={navLinksRef} className='nav-link-list'>

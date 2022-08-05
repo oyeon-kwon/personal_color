@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 /* global Kakao */
 
 function Login () {
-  
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
@@ -62,11 +61,11 @@ function Login () {
     const token = credential.accessToken;
   };
 
-  const kakaoLoginHandler = () =>{
+  const kakaoLoginHandler = () => {
     Kakao.Auth.authorize({
-      redirectUri : "http://localhost:3000"
-    })
-  }
+      redirectUri: 'http://localhost:3000'
+    });
+  };
 
   return (
     <>

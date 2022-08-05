@@ -43,7 +43,7 @@ function Community () {
   };
 
   const viewPostHandler = (e) => {
-    let id = e.target.dataset.key
+    const id = e.target.dataset.key;
 
     for (let i = 0; i < postsData.length; i++) {
       if (postsData[i].id === id) {
@@ -53,14 +53,14 @@ function Community () {
   };
 
   const postDataRenderer = (post) => {
-      return (
-        <tr className='community-content' data-id={post.id} data-key={post.id} onClick={viewPostHandler}>
-          <td className='community-content-category' data-key={post.id} >{post.category}</td>
-          <td className='community-content-title' data-key={post.id} >{post.title}</td>
-          <td className='community-content-date' data-key={post.id} >{post.createdAt}</td>
-        </tr>
-      );
-  }
+    return (
+      <tr className='community-content' data-id={post.id} data-key={post.id} onClick={viewPostHandler}>
+        <td className='community-content-category' data-key={post.id}>{post.category}</td>
+        <td className='community-content-title' data-key={post.id}>{post.title}</td>
+        <td className='community-content-date' data-key={post.id}>{post.createdAt}</td>
+      </tr>
+    );
+  };
 
   const writePostHandler = () => {
     if (authCurrentUser) {
@@ -117,12 +117,12 @@ function Community () {
           }
           <footer>
             <Pagination
-            total={postsData.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
+              total={postsData.length}
+              limit={limit}
+              page={page}
+              setPage={setPage}
             />
-        </footer>
+          </footer>
         </div>
       </div>
     </>

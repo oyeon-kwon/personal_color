@@ -16,15 +16,14 @@ function Pagination ({ total, limit, page, setPage }) {
               className={page === i + 1 ? 'page-button focused' : 'page-button'}
               key={i + 1}
               onClick={() => {
-                  setPage(i + 1)
-                  window.scrollTo(0,0)
-              }    
-            }
+                setPage(i + 1);
+                window.scrollTo(0, 0);
+              }}
             >
               {i + 1}
             </div>
           ))}
-        <div className='page-button' onClick={() => setPage(page + 1)} >
+        <div className='page-button' onClick={() => setPage(page + 1)}>
           &gt;
         </div>
       </div>

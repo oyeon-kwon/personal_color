@@ -5,7 +5,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function PostView () {
-
   const navigate = useNavigate();
 
   // 리덕스에 저장된 authCurrentUser의 정보
@@ -54,37 +53,37 @@ function PostView () {
   };
 
   const deletePostHandler = async () => {
-    let deleteConfirm = window.confirm('게시물을 삭제하시겠습니까?')
+    const deleteConfirm = window.confirm('게시물을 삭제하시겠습니까?');
 
-    if(deleteConfirm) {
-      await deletePostData(id)
+    if (deleteConfirm) {
+      await deletePostData(id);
       // TODO: 이거 navigate then으로 늦게 처리되게
       navigate('/community');
     }
-  }
+  };
 
   const editPostHandler = () => {
-    navigate(`/community/${id}/edit`)
-  }
+    navigate(`/community/${id}/edit`);
+  };
 
   const deleteCommentHandler = async (e) => {
-    let commentId = e.target.dataset.key
+    const commentId = e.target.dataset.key;
     let commentIndex;
-    
-    for(let i=0; i<postData.comment.length; i++) {
-      if(postData.comment[i].commentId === commentId) {
-        commentIndex = i
-      }
-    }
-    
-    let deleteConfirm = window.confirm('댓글을 삭제하시겠습니까?')
 
-    if(deleteConfirm) {
-      if(authCurrentUser.userId === postData.comment[commentIndex].commentUserId) {
-        deleteCommentData(id, commentId, commentIndex)
+    for (let i = 0; i < postData.comment.length; i++) {
+      if (postData.comment[i].commentId === commentId) {
+        commentIndex = i;
       }
     }
-  }
+
+    const deleteConfirm = window.confirm('댓글을 삭제하시겠습니까?');
+
+    if (deleteConfirm) {
+      if (authCurrentUser.userId === postData.comment[commentIndex].commentUserId) {
+        deleteCommentData(id, commentId, commentIndex);
+      }
+    }
+  };
 
   return (
     <>
@@ -94,20 +93,20 @@ function PostView () {
           <div className='post-box'>
             <div className='post-title'>{postData.title}</div>
             {
-              authCurrentUser.userId === postData.userId ? 
-                <div className='button-container'>
-                  <div className='edit-button' onClick={editPostHandler} >수정</div>
+              authCurrentUser.userId === postData.userId
+                ? <div className='button-container'>
+                  <div className='edit-button' onClick={editPostHandler}>수정</div>
                   <div className='delete-button' onClick={deletePostHandler}>삭제</div>
-                </div>
-              : null
+                  </div>
+                : null
             }
             <div className='post-desc-box'>
               <div className='post-desc-box-left'>
                 <span className='post-category'>{postData.category}</span>
                 {
                   postData.comment
-                  ? <span className='comment-count'>댓글 {postData.comment.length}</span>
-                  : <span className='comment-count'>댓글 0</span>
+                    ? <span className='comment-count'>댓글 {postData.comment.length}</span>
+                    : <span className='comment-count'>댓글 0</span>
                 }
               </div>
               <div className='post-desc-box-right'>
@@ -120,13 +119,13 @@ function PostView () {
 
             <div className='post-content'>
               {
-                postData.image ?
-                  <div className='post-img-content'>
-                    <img src={postData.image} className='post-img'/>
-                  </div>
-                : null
+                postData.image
+                  ? <div className='post-img-content'>
+                    <img src={postData.image} className='post-img' />
+                    </div>
+                  : null
               }
-              <div className='post-text-content' dangerouslySetInnerHTML={{ __html: postData.content }}></div>
+              <div className='post-text-content' dangerouslySetInnerHTML={{ __html: postData.content }} />
             </div>
             <div className='divider-large' />
             <div className='comment-box'>
@@ -156,7 +155,7 @@ function PostView () {
                       })
                     : <></>
                 }
-                
+
               </div>
             </div>
           </div>

@@ -7,28 +7,27 @@ import { useNavigate } from 'react-router-dom';
 import { setAuth } from './reducer/authReducer';
 
 function Mypage () {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const seasons = ['봄', '여름', '가을', '겨울'];
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
-  
+
   const [imgUrl, setImgUrl] = useState('');
   const [editUserinfoModalisOpen, setEditUserinfoModalisOpen] = useState(false);
-  const [userImage, setUserImage] = useState(authCurrentUser.image)
+  const [userImage, setUserImage] = useState(authCurrentUser.image);
 
   // 유저 데이터 최신 상태로 받아오기
   useEffect(() => {
     getUserData(authCurrentUser.userId)
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        let currentUserInfo = snapshot.val()
-        dispatch(setAuth(currentUserInfo));
-      } else {
-        console.log('No data available');
-      }
-    });
-  }, [])
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const currentUserInfo = snapshot.val();
+          dispatch(setAuth(currentUserInfo));
+        } else {
+          console.log('No data available');
+        }
+      });
+  }, []);
 
   const imageHandler = (e) => {
     const imgFile = e.target.files;
@@ -39,7 +38,7 @@ function Mypage () {
     const upload = saveRoute.put(file);
 
     const imgUrl = `https://firebasestorage.googleapis.com/v0/b/personal-color-62f62.appspot.com/o/${authCurrentUser.userId + '-' + e.target.files[0].name}?alt=media`;
-    
+
     setImgUrl(imgUrl);
   };
 
@@ -49,7 +48,7 @@ function Mypage () {
 
   const editUserHandler = () => {
     writeUserImageData(authCurrentUser.userId, imgUrl);
-    setUserImage(imgUrl)
+    setUserImage(imgUrl);
   };
 
   const deleteUserMypageHandler = () => {
@@ -81,8 +80,8 @@ function Mypage () {
 
                   {/*  */}
 
-                  <label htmlFor="upload-photo" className='upload-photo'>이미지 추가</label>
-                  <input type="file" name="photo" id="upload-photo" onChange={imageHandler} />
+                  <label htmlFor='upload-photo' className='upload-photo'>이미지 추가</label>
+                  <input type='file' name='photo' id='upload-photo' onChange={imageHandler} />
 
                   {/*  */}
 
@@ -96,15 +95,14 @@ function Mypage () {
         }
 
         {
-          authCurrentUser.color === undefined ?
-          <>
-            <div className='mypage-personal-desc'>{authCurrentUser.username}님의 등록된 컬러 정보가 없습니다. <br /> 진단을 통해 내 컬러 정보를 등록하러 가 볼까요?</div>
-          </>
-          :
-          <>
-            <div className='mypage-personal-desc'>{authCurrentUser.username}님의 퍼스널 컬러는</div>
-            <div className='mypage-title'>{authCurrentUser.color}</div>
-            {
+          authCurrentUser.color === undefined
+            ? <>
+              <div className='mypage-personal-desc'>{authCurrentUser.username}님의 등록된 컬러 정보가 없습니다. <br /> 진단을 통해 내 컬러 정보를 등록하러 가 볼까요?</div>
+            </>
+            : <>
+              <div className='mypage-personal-desc'>{authCurrentUser.username}님의 퍼스널 컬러는</div>
+              <div className='mypage-title'>{authCurrentUser.color}</div>
+              {
               seasons.map((season, i) => {
                 if (authCurrentUser.color.indexOf(season) !== -1) {
                   return (
@@ -115,10 +113,10 @@ function Mypage () {
                 }
               })
               }
-            <div className='divider-small' />
-            <div className='mypage-title'>어울리는 컬러</div>
-            <div className='mypage-colorchip-box'>
-              {
+              <div className='divider-small' />
+              <div className='mypage-title'>어울리는 컬러</div>
+              <div className='mypage-colorchip-box'>
+                {
                 seasons.map((season, i) => {
                   if (authCurrentUser.color.indexOf(season) !== -1) {
                     const color = colorresult[i]['recommend-color'].map((color) => {
@@ -130,8 +128,8 @@ function Mypage () {
                   }
                 })
               }
-            </div>
-          </>
+              </div>
+            </>
         }
       </div>
     </>

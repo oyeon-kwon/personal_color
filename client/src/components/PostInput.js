@@ -6,7 +6,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import { useNavigate } from 'react-router-dom';
 
 function PostInput () {
-
   const navigate = useNavigate();
   // TODO: 이미지 업로드 css 변경
   // 리덕스에 저장된 authCurrentUser의 정보
@@ -41,9 +40,9 @@ function PostInput () {
 
   const change = () => {
     if (editorRef.current) {
-      setPostInput({ ...postInput, content: editorRef.current.getContent() })
+      setPostInput({ ...postInput, content: editorRef.current.getContent() });
     }
-  }
+  };
 
   const registPost = () => {
     const { userId, username, title, content, category, image } = postInput;
@@ -72,13 +71,12 @@ function PostInput () {
           </select>
           <input className='post-title-input' placeholder='제목을 입력해 주세요.' onChange={(e) => { setPostInput({ ...postInput, title: e.target.value }); }} />
 
-
           <div className='post-content'>
             <input id='post-file' className='post-image-input' type='file' onChange={imageHandler} />
             <Editor
               apiKey='e6sv2d6b7g924si85no9hpocav5y2q319sp6ewsd21hfqizr'
               onInit={(evt, editor) => editorRef.current = editor}
-              initialValue="<p>내용을 입력하세요.</p>"
+              initialValue='<p>내용을 입력하세요.</p>'
               init={{
                 height: 500,
                 menubar: false,
