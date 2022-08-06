@@ -51,8 +51,13 @@
     left: 35rem;
 }
 
-.button-img {
-    width:40vw;
+.button-img-self {
+    width: 30vw;
+    height: 35vh;
+}
+
+.button-img-ai {
+    width: 40vw;
     height: 35vh;
 }
 

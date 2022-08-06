@@ -53,12 +53,13 @@ function Login () {
     googleProvider.addScope('profile');
     googleProvider.addScope('email');
     const googleLoginResult = await signInWithPopup(auth, googleProvider);
-    console.log(googleLoginResult.user.auth.persistenceManager);
     // 유저 정보
     const user = googleLoginResult.user;
+    console.log(user)
     // 액세스 토큰
     const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
     const token = credential.accessToken;
+
   };
 
   const kakaoLoginHandler = () => {

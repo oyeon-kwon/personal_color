@@ -57,8 +57,8 @@ function Landing () {
       <div className='img-container'>
         {
           buttonStatus === 'self'
-            ? <img src={selfImg} className='button-img' alt='img' />
-            : buttonStatus === 'ai' ? <img src={aiImg} className='button-img' alt='img' />
+            ? <img src={selfImg} className='button-img-self' alt='img' />
+            : buttonStatus === 'ai' ? <img src={aiImg} className='button-img-ai' alt='img' />
               : <></>
         }
       </div>
