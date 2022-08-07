@@ -3,10 +3,15 @@ import './login.css';
 import { auth, loginEmail, getUserData, writeUserData, verifyTokenFromFirebase, getCurrentLoggedInUser } from './firebase/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { setAuth } from './reducer/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
 /* global Kakao */
 
 function Login () {
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
@@ -53,13 +58,21 @@ function Login () {
     googleProvider.addScope('profile');
     googleProvider.addScope('email');
     const googleLoginResult = await signInWithPopup(auth, googleProvider);
-    // 유저 정보
-    const user = googleLoginResult.user;
-    console.log(user)
+    
+    // 유저 정보 
+    const user = {
+      userId: googleLoginResult.user.uid,
+      username: googleLoginResult.user.displayName,
+      email: googleLoginResult.user.email,
+      image: googleLoginResult.user.photoURL
+    }
+
+    dispatch(setAuth(user));
+    navigate('/');
+
     // 액세스 토큰
     const credential = GoogleAuthProvider.credentialFromResult(googleLoginResult);
     const token = credential.accessToken;
-
   };
 
   const kakaoLoginHandler = () => {

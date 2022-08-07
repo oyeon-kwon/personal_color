@@ -22,6 +22,7 @@ function Mypage () {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const currentUserInfo = snapshot.val();
+          console.log(currentUserInfo)
           dispatch(setAuth(currentUserInfo));
         } else {
           console.log('No data available');
