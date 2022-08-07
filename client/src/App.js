@@ -27,10 +27,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from './reducer/authReducer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 /* global Kakao */
 
 function App () {
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보: email, username
@@ -74,7 +77,8 @@ function App () {
   const logoutHandler = () => {
     signout();
     dispatch(setAuth(''));
-    // TODO: window.location.href = 'http://localhost:3000'
+    navigate('/');
+    
   };
 
   useEffect(() => {
