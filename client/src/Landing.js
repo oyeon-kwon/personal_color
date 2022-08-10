@@ -18,7 +18,6 @@ import Terms from './components/Terms';
 import Privacy from './components/Privacy';
 
 function Landing () {
-  // TODO: 호버 이미지 크기 조정
   const ref = useRef();
   const navigate = useNavigate();
   const [buttonStatus, setButtonStatus] = useState('self');
