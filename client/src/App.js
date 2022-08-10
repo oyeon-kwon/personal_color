@@ -1,17 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
-// import Landing from './Landing';
-// import Signup from './Signup';
-// import Login from './Login';
-// import CameraSelf from './components/CameraSelf';
-// import ColorList from './components/ColorList';
-// import Commumity from './Community';
-// import Mypage from './Mypage';
-// import PostView from './components/PostView';
-// import PostInput from './components/PostInput';
-// import CameraAI from './components/CameraAI';
-// import ColorResult from './components/ColorResult';
-// import PostEdit from './components/PostEdit';
 import Nav from './components/Nav';
 // import Modal from './components/Modal';
 // import Loading from './components/Loading';
