@@ -20,10 +20,9 @@ function App () {
     Kakao.isInitialized()
     const authorizeCodeFromKakao = window.location.search.split('=')[1];
 
-    axios.post('http://localhost:4000/kakao', {
+    axios.post('http://ec2-13-209-42-30.ap-northeast-2.compute.amazonaws.com:4000/kakao', {
       authorizeCodeFromKakao: authorizeCodeFromKakao
     }).then(kakaoUserData => {
-      console.log(kakaoUserData.data)
       if (kakaoUserData.data.kakao_account.email) {
         writeUserData(kakaoUserData.data.id, kakaoUserData.data.properties.nickname, 'unknown', kakaoUserData.data.kakao_account.email);
         writeUserImageData(kakaoUserData.data.id, kakaoUserData.data.properties.profile_image);
@@ -36,7 +35,6 @@ function App () {
       getUserData(kakaoUserData.data.id)
         .then((snapshot) => {
           if (snapshot.exists()) {
-            console.log(snapshot)
             const currentUserInfo = snapshot.val();
             dispatch(setAuth(currentUserInfo));
           } else {
