@@ -132,6 +132,7 @@ input:focus {
 
 
 @media screen and (max-width: 500px) {
+
     .left-nav {
         display: none;
     }
@@ -141,10 +142,17 @@ input:focus {
         text-align: center;
     }
 
-    .form-body {
+    /* .form-body {
         display: flex;
         justify-content: center;
-    }
+    } */
+
+    /* .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    } */
 
     .name {
         display: flex;
@@ -168,6 +176,13 @@ input:focus {
 
     .signup-button {
         width: 25rem;
+        height: 3rem;
+        background-color: #ff7773;
+        border-radius: 20px;
+        margin: 2rem auto;
+        box-sizing: border-box;
+        color: #ffffff;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
 }
 
