@@ -341,5 +341,26 @@
         top: 9.7rem;
         left: -4.3rem;
     }
+
+    .landing-final-desc {
+        font-size: 1.4rem;
+    }
     
+    .landing-footer {
+        font-size: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .logo-footer-img {
+        margin: 0;
+    }
+
+    .terms-container {
+        display: none;
+    }
 }
