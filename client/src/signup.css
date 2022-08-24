@@ -19,7 +19,10 @@
 .form-body {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 auto;  
+    text-align: left;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-title {
@@ -31,9 +34,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  text-align: left;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .desc {
@@ -57,7 +58,7 @@
     border-radius: 20px;
     padding: 1rem;
     box-sizing: border-box;
-    margin: 0.5rem 1rem 1rem 1.7rem;
+    margin: 0.5rem 1rem 1rem 0.5rem;
 }
 
 .gender-select-button {
@@ -83,12 +84,6 @@
     background-color: #fdc1bf;
 }
 
-/* input { 
-    -webkit-appearance : none;
-    -moz-appearance:none;
-    appearance:none;
-} */
-
 input:focus {
     outline: none;
 }
@@ -112,7 +107,8 @@ input:focus {
     height: 3rem;
     background-color: #ff7773;
     border-radius: 20px;
-    margin: 2rem auto;
+    margin: 2rem 0;
+    margin-left: -0.6rem;
     padding: 1rem;
     box-sizing: border-box;
     display: flex;
@@ -142,18 +138,6 @@ input:focus {
         text-align: center;
     }
 
-    /* .form-body {
-        display: flex;
-        justify-content: center;
-    } */
-
-    /* .form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-    } */
-
     .name {
         display: flex;
         flex-direction: column;
@@ -170,19 +154,18 @@ input:focus {
         width: 100%;
     }
 
-    .name-form-box, .email-form-box, .password-form-box, .password-check-form-box {
+    .name-form-box, .email-form-box, .password-form-box, .password-check-form-box, .signup-button {
         width: 25rem ;
     }
 
     .signup-button {
-        width: 25rem;
         height: 3rem;
         background-color: #ff7773;
         border-radius: 20px;
-        margin: 2rem auto;
         box-sizing: border-box;
         color: #ffffff;
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        margin-left: 0.5rem;
     }
 }
 
@@ -224,6 +207,6 @@ input:focus {
 
     .signup-button {
         width: 17.5rem;
-        margin-left: -0.2rem;
+        margin-left: 0.5rem;
     }
 }

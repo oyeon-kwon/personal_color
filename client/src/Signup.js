@@ -112,7 +112,7 @@ function Signup () {
         </div>
         <div className='form-body'>
           <div className='form-title'>Welcome to Colordentity!</div>
-          <div className='form'>
+          {/* <div className='form'> */}
             <div className='name'>
               <div className='desc'>이름</div>
               <input className='name-form-box' onChange={nameInputHandler} placeholder='김컬러' />
@@ -142,7 +142,7 @@ function Signup () {
             </div>
             <div className='signup-button' onClick={submitSignupHandler}>회원가입</div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
 
     </>
