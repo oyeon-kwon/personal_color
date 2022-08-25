@@ -18,6 +18,7 @@ function Community () {
     const response = await getAllPostsData();
     const allPostArray = [];
 
+    
     for (const key in response) {
       const postObject = {
         id: key,
@@ -25,8 +26,15 @@ function Community () {
       };
       allPostArray.push(postObject);
     }
-    setPostData(allPostArray);
+
+    let orderedByRecentPost = allPostArray.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt)
+    })
+
+    setPostData(orderedByRecentPost)
   };
+
+
 
   useEffect(() => {
     getAllPosts();
