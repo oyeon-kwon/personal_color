@@ -1,0 +1,18 @@
+{
+    "name": "Colordentity",
+    "short_name": "Colordentity",
+    "description": "퍼스널 컬러 측정 앱입니다.",
+    "scope": ".",
+    "start_url": "./",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "icons": [
+      {
+        "src": "/src/img/icon.png",
+        "sizes": "152x152",
+        "type": "image/png"
+      }
+    ]
+  }
