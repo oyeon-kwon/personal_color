@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Pagination from './components/Pagination';
 import './community.css';
 import { getAllPostsData, getFilteredByCategoryPostsData } from './firebase/firebase';
@@ -13,6 +13,13 @@ function Community () {
   const [postsData, setPostData] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
   const categories = ['전체', 'WARM', 'COOL', '모르겠어요'];
+
+
+  // 페이지네이션에 필요한 상태
+  const limit = 10;
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
 
   const getAllPosts = async () => {
     const response = await getAllPostsData();
@@ -33,22 +40,18 @@ function Community () {
 
     setPostData(orderedByRecentPost)
   };
-
-
-
-  useEffect(() => {
-    getAllPosts();
-  }, []);
-
+  
   const selectCategoryHandler = async (index) => {
     setCurrentTab(index);
-
+    
     if (index === 0) {
       return getAllPosts();
     }
     const filteredByCategoryData = await getFilteredByCategoryPostsData(categories[index]);
+    setPage(1)
     setPostData(filteredByCategoryData);
   };
+
 
   const viewPostHandler = (e) => {
     const id = e.target.dataset.key;
@@ -70,6 +73,7 @@ function Community () {
     );
   };
 
+
   const writePostHandler = () => {
     if (authCurrentUser) {
       // 글쓰기 가능
@@ -81,10 +85,11 @@ function Community () {
     }
   };
 
-  // 페이지네이션
-  const limit = 10;
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
+    
+  useEffect(() => {
+    getAllPosts();
+  }, []);
+
 
   return (
     <>
@@ -123,6 +128,9 @@ function Community () {
                 </tbody>
               </table>
           }
+          {/* {
+            postsData.map(postDataRenderer)
+          } */}
           <footer>
             <Pagination
               total={postsData.length}
