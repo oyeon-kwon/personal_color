@@ -7,13 +7,12 @@ import { useSelector } from 'react-redux';
 
 function Community () {
   const navigate = useNavigate();
-  const authCurrentUser = useSelector((state) => state.authReducer.auth);
   // 리덕스에 저장된 authCurrentUser의 정보
+  const authCurrentUser = useSelector((state) => state.authReducer.auth);
 
   const [postsData, setPostData] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
   const categories = ['전체', 'WARM', 'COOL', '모르겠어요'];
-
 
   // 페이지네이션에 필요한 상태
   const limit = 10;
@@ -128,9 +127,6 @@ function Community () {
                 </tbody>
               </table>
           }
-          {/* {
-            postsData.map(postDataRenderer)
-          } */}
           <footer>
             <Pagination
               total={postsData.length}

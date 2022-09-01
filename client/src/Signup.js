@@ -64,7 +64,17 @@ function Signup () {
   };
 
   const submitSignupHandler = async () => {
-    if (isSamePassword) {
+    if(!nameInput) {
+      alert('이름을 입력하세요.')
+    } else if(!gender) {
+      alert('성별을 선택하세요.')
+    } else if(!emailInput) {
+      alert('이메일을 입력하세요.')
+    } else if(!passwordInput) {
+      alert('비밀번호를 입력하세요.')
+    } else if(!passwordCheckInput) {
+      alert('비밀번호 확인을 입력하세요.')
+    } else if (isSamePassword) {
       await signupEmail(emailInput, passwordInput)
         .then(result => {
           console.log(result);
