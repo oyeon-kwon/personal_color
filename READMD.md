@@ -57,3 +57,4 @@ npm start
 * [firebase에 이미지 저장하기](https://o-yeon.tistory.com/199)
 * [React로 만든 앱에 PWA 적용하기](https://o-yeon.tistory.com/203)
 * [firestore 경로 설정](https://o-yeon.tistory.com/204)
+* [redux-persist로 로그인 유지 구현](https://o-yeon.tistory.com/205)
