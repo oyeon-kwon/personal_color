@@ -59,3 +59,4 @@ npm start
 * [firestore 경로 설정](https://o-yeon.tistory.com/204)
 * [redux-persist로 로그인 유지 구현](https://o-yeon.tistory.com/205)
 * [React에서 DOM에 직접 접근보다 useRef를 사용하는 이유](https://o-yeon.tistory.com/206)
+* [객체를 배열로 담아서 데이터 꺼내오기](https://o-yeon.tistory.com/207)
