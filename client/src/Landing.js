@@ -60,7 +60,7 @@ function Landing() {
           </div>
         </div>
         <div className="test-button-container">
-          <div
+          <button
             className="test-button self"
             onMouseOver={() => setButtonStatus("self")}
             onClick={selfTestHandler}
@@ -68,8 +68,8 @@ function Landing() {
             스스로
             <br />
             진단하기
-          </div>
-          <div
+          </button>
+          <button
             className="test-button ai"
             onMouseOver={() => setButtonStatus("ai")}
             onClick={aiTestHandler}
@@ -77,7 +77,7 @@ function Landing() {
             AI로
             <br />
             진단하기
-          </div>
+          </button>
         </div>
       </div>
       <div className="img-container">
@@ -91,12 +91,7 @@ function Landing() {
       </div>
 
       <div className="landing-section">
-        <div className="arrow-container">
-          <div className="arrow-container-desc">
-            퍼스널 컬러를 알면 뭐가 좋나요?
-          </div>
-          <img src={arrow} alt="" className="arrow-img" />
-        </div>
+        <div className="arrow-container"></div>
         <div className="landing-section-1">
           <Controller>
             <Scene pin={false} reverse duration={300} offset={-300}>
@@ -253,12 +248,12 @@ function Landing() {
             <br />내 퍼스널컬러 진단을 시작해 볼까요?
           </div>
           <div className="final-test-button-container">
-            <div className="final-test-button" onClick={selfTestHandler}>
+            <button className="final-test-button" onClick={selfTestHandler}>
               스스로 진단하기
-            </div>
-            <div className="final-test-button" onClick={aiTestHandler}>
+            </button>
+            <button className="final-test-button" onClick={aiTestHandler}>
               AI로 진단하기
-            </div>
+            </button>
           </div>
         </div>
         <div className="landing-footer">
